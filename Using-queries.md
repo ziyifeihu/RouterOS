@@ -52,3 +52,4 @@ $request->setArgument('.proplist', 'mac-address');
 or if you wanted MAC addresses and comments
 ```php
 $request->setArgument('.proplist', 'mac-address,comment');
+```
