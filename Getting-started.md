@@ -27,7 +27,7 @@ You might notice that the version number of PEAR2_Net_RouterOS suggests it's a b
 ### Manual installation
 The archive includes a version of PEAR2_Net_Transmitter, so if you've downloaded the archive, you can just extract the contents of the "src" folder wherever you like. To emulate the PEAR2 installer, you can place the files in a folder that's within your include_path.
 
-If you're installing from source, you'll have to also [install PEAR2_Net_Transmitter](https://github.com/boenrobot/PEAR2_Net_Transmitter/wiki/Getting-started) in one way or another before you can use this package.
+If you're installing from the respository, you'll have to also [install PEAR2_Net_Transmitter](https://github.com/boenrobot/PEAR2_Net_Transmitter/wiki/Getting-started) in one way or another before you can use this package.
 ## Usage
 To use this in a PHP file, you could manally include every required class, but to save yourself some hassle, it's a better idea that you just include the file Autoload.php, like:
 ```php
