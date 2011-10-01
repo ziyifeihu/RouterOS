@@ -49,7 +49,7 @@ Like every other PEAR2 package, PEAR2_Net_RouterOS uses namespaces - a feature i
 ```php
 <?php
 include_once 'PEAR2/Net/RouterOS/Autoload.php';
-$client = new PEAR2\Net\RouterOS\Client('example.com', 'admin');
+$client = new \PEAR2\Net\RouterOS\Client('example.com', 'admin');
 // Use the client here
 ?>
 ```
