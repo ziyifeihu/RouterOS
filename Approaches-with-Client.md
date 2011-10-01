@@ -28,7 +28,7 @@ IP: 192.168.0.100 MAC: 00:00:00:00:00:01
 IP: 192.168.0.101 MAC: 00:00:00:00:00:02
 */
 ?>
-````
+```
 
 You can also use the syntax from RouterOS's shell (spaces between words instead of "/"), but again - no arguments. Also, the command needs to be absolute (begin with "/"). Examples in the rest of this documentation will use the API syntax.
 
