@@ -22,7 +22,7 @@ Assuming you have [installed Pyrus](http://pear.php.net/manual/en/installationpy
 pyrus install PEAR2_Net_RouterOS-alpha
 ```
 
-You might notice that the version number of PEAR2_Net_RouterOS suggests it's a beta, and yet we use "-alpha" in the command above. Well, yes, PEAR2_Net_RouterOS is a beta, but it has a dependency to another package - [PEAR2_Net_Transmitter](https://github.com/boenrobot/PEAR2_Net_Transmitter) - which is an alpha. To avoid getting errors, you need to use "-alpha" until that package reaches a beta.
+You might notice that the version number of PEAR2_Net_RouterOS suggests it's a beta, and yet we use "-alpha" in the command above. Well, yes, PEAR2_Net_RouterOS is a beta, but it has a dependency to another package - PEAR2_Net_Transmitter - which is an alpha. To avoid getting errors, you need to use "-alpha" until that package reaches a beta.
 
 If you've decided to not use the pear2.php.net channel, but instead install directly from the archive distributed at the project page, you can use
 ```sh
