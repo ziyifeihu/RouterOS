@@ -68,7 +68,7 @@ If you don't care about the responses, you can just do something like the follow
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
-require_once 'PEAr2/Net/RouterOS/Autoload.php';
+require_once 'PEAR2/Net/RouterOS/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
  
@@ -172,7 +172,7 @@ Processing of responses can also be started with Client::completeRequest(). The 
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
-require_once 'PEAr2/Net/RouterOS/Autoload.php';
+require_once 'PEAR2/Net/RouterOS/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
  
