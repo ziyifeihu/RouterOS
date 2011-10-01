@@ -59,4 +59,4 @@ $client = new Ros('example.com', 'admin');
 // Use the client here
 ?>
 ```
-Note that namespace declarations must appear before any includes. They must in fact be the first thing in a PHP file. The rest of the examples in this documentation will be setting \PEAR2\Net\RouterOS as the default namespace.
+Note that namespace declarations must appear before any includes. They must in fact be the first thing in a PHP file. The rest of the examples in this documentation will be setting PEAR2\Net\RouterOS as the default namespace.
