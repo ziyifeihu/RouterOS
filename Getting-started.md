@@ -1,6 +1,18 @@
 # Getting started
 ## Introduction
 RouterOS is the flag product of the company [MikroTik](http://mikrotik.com) and is a powerful router software. One of its many abilities is to allow control over it via an API. This package provides a client for [that API](http://wiki.mikrotik.com/wiki/Manual:API), in turn allowing you to use PHP to control RouterOS hosts.
+## Requirements
+* PHP 5.3.0 or later. 
+* A host with RouterOS v3 or later. 
+* Enabled API service on the RouterOS host.
+* The PCRE extension (bundled and enabled by default in PHP)
+* The iconv extension (optional; bundled and enabled by default in PHP; required only if you want to use automatic charset convertion)
+
+The API service is disabled by default. To enable it, you need to execute 
+```sh
+/ip service set numbers="api" address="0.0.0.0/0" disabled="no"
+```
+at a RouterOS terminal. The "address" argument in the command above allows you to limit access to this service only to certain IP addresses. For security's sake, it's better that you limit connections only to the IP address with which PHP will access RouterOS.
 ## Installation
 ### Installation with [Pyrus/PEAR2](http://pear2.php.net/)
 Assuming you have [installed Pyrus](http://pear.php.net/manual/en/installationpyrus.introduction.php), you can install PEAR2_Net_RouterOS with
