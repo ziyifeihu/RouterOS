@@ -2,14 +2,14 @@
 Description of the various approaches in using the Client class
 
 ## Synchonious requests
-The easiest approach in using Net_RouterOS is to connect, send a request, get the responses, and use them if you need to, all at one time. This is reffered to as "Synchonious request".
+The easiest approach in using PEAR2_Net_RouterOS is to connect, send a request, get the responses, and use them if you need to, all at one time. This is reffered to as "Synchonious request".
 
 ### Simple requests
 If the request you want to send is just a simple command with no arguments, the easiest way is to pass it right there at the Client::sendSync() method, like this:
 ```php
 <?php
-namespace Net\RouterOS;
-require_once 'Net/RouterOS/Autoload.php';
+namespace PEAR2\Net\RouterOS;
+require_once 'PEAR2/Net/RouterOS/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
  
@@ -37,8 +37,8 @@ To add arguments to a command, you need to use the Request::setArgument() method
 
 ```php
 <?php
-namespace Net\RouterOS;
-require_once 'Net/RouterOS/Autoload.php';
+namespace PEAR2\Net\RouterOS;
+require_once 'PEAR2/Net/RouterOS/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
  
@@ -67,8 +67,8 @@ You may want to deal with the responses from commands later instead of right aft
 If you don't care about the responses, you can just do something like the following
 ```php
 <?php
-namespace Net\RouterOS;
-require_once 'Net/RouterOS/Autoload.php';
+namespace PEAR2\Net\RouterOS;
+require_once 'PEAr2/Net/RouterOS/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
  
@@ -93,8 +93,8 @@ One way to get responses is to let Net_RouterOS process any new ones, and then e
 
 ```php
 <?php
-namespace Net\RouterOS;
-require_once 'Net/RouterOS/Autoload.php';
+namespace PEAR2\Net\RouterOS;
+require_once 'PEAR2/Net/RouterOS/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
  
@@ -133,8 +133,8 @@ Instead of extracting responses, you may instead assign responses for a request 
 
 ```php
 <?php
-namespace \Net\RouterOS;
-require_once 'Net/RouterOS/Autoload.php';
+namespace PEAR2\Net\RouterOS;
+require_once 'PEAR2/Net/RouterOS/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
  
@@ -171,8 +171,8 @@ Processing of responses can also be started with Client::completeRequest(). The 
 
 ```php
 <?php
-namespace Net\RouterOS;
-require_once 'Net/RouterOS/Autoload.php';
+namespace PEAR2\Net\RouterOS;
+require_once 'PEAr2/Net/RouterOS/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
  
