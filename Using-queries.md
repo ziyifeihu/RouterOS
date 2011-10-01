@@ -1,4 +1,6 @@
 # Using queries
+A brief guide to using queries
+
 ## Commands handling queries
 Queries are a RouterOS API specific construct that allows you to limit the results returned for a request.
 
