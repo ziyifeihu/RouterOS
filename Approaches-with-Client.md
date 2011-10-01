@@ -1,0 +1,205 @@
+# Approaches with client
+Description of the various approaches in using the Client class
+
+## Synchonious requests
+The easiest approach in using Net_RouterOS is to connect, send a request, get the responses, and use them if you need to, all at one time. This is reffered to as "Synchonious request".
+
+### Simple requests
+If the request you want to send is just a simple command with no arguments, the easiest way is to pass it right there at the Client::sendSync() method, like this:
+```php
+<?php
+namespace Net\RouterOS;
+require_once 'Net/RouterOS/Autoload.php';
+ 
+$client = new Client('192.168.0.1', 'admin');
+ 
+$responses = $client->sendSync(new Request('/ip/arp/print'));
+ 
+foreach($responses as $response) {
+    if ($response->getType() === Response::TYPE_DATA) {
+        echo 'IP: ', $response->getArgument('address'),
+            ' MAC: ', $response->getArgument('mac-address'),
+            "\n";
+    }
+}
+//Example output:
+/*
+IP: 192.168.0.100 MAC: 00:00:00:00:00:01
+IP: 192.168.0.101 MAC: 00:00:00:00:00:02
+*/
+?>
+````
+
+You can also use the syntax from RouterOS's shell (spaces between words instead of "/"), but again - no arguments. Also, the command needs to be absolute (begin with "/"). Examples in the rest of this documentation will use the API syntax.
+
+### Requests with arguments
+To add arguments to a command, you need to use the Request::setArgument() method before you send the request. You can reuse the same request object by clearing its arguments and/or setting new values appropriately, as in the following example.
+
+```php
+<?php
+namespace Net\RouterOS;
+require_once 'Net/RouterOS/Autoload.php';
+ 
+$client = new Client('192.168.0.1', 'admin');
+ 
+$addRequest = new Request('/ip/arp/add');
+ 
+$addRequest->setArgument('address', '192.168.0.100');
+$addRequest->setArgument('mac-address', '00:00:00:00:00:01');
+if ($client->sendSync($addRequest)->getType() !== Response::TYPE_FINAL) {
+    die("Error when creating ARP entry for '192.168.0.100'");
+}
+ 
+$addRequest->setArgument('address', '192.168.0.101');
+$addRequest->setArgument('mac-address', '00:00:00:00:00:02');
+if ($client->sendSync($addRequest)->getType() !== Response::TYPE_FINAL) {
+    die("Error when creating ARP entry for '192.168.0.101'");
+}
+ 
+echo 'OK';
+?>
+```
+
+### Asynchronous requests
+You may want to deal with the responses from commands later instead of right after you send them. Or you might only need to deal with one of the responses, and yet you need to send several requests. Or you might want to use a command which returns responses continiously, and is therefore not suitable for Client::sendSync(). Either way, Client::sendAsync() is the method you need. Depending on the way you want to deal with the responses, there are various other methods which you may use along with it.
+
+#### Send and forget
+If you don't care about the responses, you can just do something like the following
+```php
+<?php
+namespace Net\RouterOS;
+require_once 'Net/RouterOS/Autoload.php';
+ 
+$client = new Client('192.168.0.1', 'admin');
+ 
+$addRequest = new Request('/ip/arp/add');
+ 
+$addRequest->setArgument('address', '192.168.0.100');
+$addRequest->setArgument('mac-address', '00:00:00:00:00:01');
+$addRequest->setTag('arp1');
+$client->sendAsync($addRequest);
+ 
+$addRequest->setArgument('address', '192.168.0.101');
+$addRequest->setArgument('mac-address', '00:00:00:00:00:02');
+$addRequest->setTag('arp2');
+$client->sendAsync($addRequest);
+?>
+```
+
+Note that, as in the example above, different asynchronious requests need to have a different "tag", regardless of whether you care about the responses or not. A "tag" in this context is a RouterOS API specific construct that allows clients like Net_RouterOS to keep track of responses coming from multiple requests, since they don't appear in the order of their execution. You can only reuse a tag once you get its final response.
+
+#### Loop and extract
+One way to get responses is to let Net_RouterOS process any new ones, and then extract those that interest you. You can start processing with the Client::loop() method. If you've made requests that you know will eventually be finished, you can use Client::loop() without an argument to let processing stop only once all requests have returned their final response. Here's an example that continues from the previous one.
+
+```php
+<?php
+namespace Net\RouterOS;
+require_once 'Net/RouterOS/Autoload.php';
+ 
+$client = new Client('192.168.0.1', 'admin');
+ 
+$addRequest = new Request('/ip/arp/add');
+ 
+$addRequest->setArgument('address', '192.168.0.100');
+$addRequest->setArgument('mac-address', '00:00:00:00:00:01');
+$addRequest->setTag('arp1');
+$client->sendAsync($addRequest);
+ 
+$addRequest->setArgument('address', '192.168.0.101');
+$addRequest->setArgument('mac-address', '00:00:00:00:00:02');
+$addRequest->setTag('arp2');
+$client->sendAsync($addRequest);
+ 
+$client->loop();
+ 
+$responses = $client->extractNewResponses();
+foreach($responses as $response) {
+    if ($responses->getType() !== Response::TYPE_FINAL) {
+        echo "Error with {$response->getTag()}!\n";
+    }else {
+        echo "OK with {$response->getTag()}!\n";
+    }
+}
+//Example output:
+/*
+OK with arp1
+OK with arp2
+*/
+?>
+```
+
+#### Callback and loop
+Instead of extracting responses, you may instead assign responses for a request to a callback. Once you do that, starting the processing is all you need to do.
+
+```php
+<?php
+namespace \Net\RouterOS;
+require_once 'Net/RouterOS/Autoload.php';
+ 
+$client = new Client('192.168.0.1', 'admin');
+ 
+//Custom function, defined specifically for the example
+function ResponseHandler($response) {
+    if ($response->getType() === Response::TYPE_FINAL) {
+        echo "{$response->getTag()} is done.\n";
+    }
+}
+ 
+$addRequest = new Request('/ip/arp/add');
+ 
+$addRequest->setArgument('address', '192.168.0.100');
+$addRequest->setArgument('mac-address', '00:00:00:00:00:01');
+$addRequest->setTag('arp1');
+$client->sendAsync($addRequest, 'ResponseHandler');
+ 
+$addRequest->setArgument('address', '192.168.0.101');
+$addRequest->setArgument('mac-address', '00:00:00:00:00:02');
+$addRequest->setTag('arp2');
+$client->sendAsync($addRequest, 'ResponseHandler');
+ 
+$client->loop();
+//Example output:
+/*
+arp1 is done.
+arp2 is done.
+*/
+?>
+```
+
+#### Send and complete
+Processing of responses can also be started with Client::completeRequest(). The difference is that Client::loop() ends when a certain timeout is reached, or when all requests are finished, and Client::completeRequest() instead ends when the final response of a specified request has been processed, regardless of the time it takes. The return value is an array of all responses, or an empty array if the request was assigned to a callback.
+
+```php
+<?php
+namespace Net\RouterOS;
+require_once 'Net/RouterOS/Autoload.php';
+ 
+$client = new Client('192.168.0.1', 'admin');
+ 
+$addRequest = new Request('/ip/arp/add');
+ 
+$addRequest->setArgument('address', '192.168.0.100');
+$addRequest->setArgument('mac-address', '00:00:00:00:00:01');
+$addRequest->setTag('arp1');
+$client->sendAsync($addRequest);
+ 
+$addRequest->setArgument('address', '192.168.0.101');
+$addRequest->setArgument('mac-address', '00:00:00:00:00:02');
+$addRequest->setTag('arp2');
+$client->sendAsync($addRequest);
+ 
+foreach($client->completeRequest('arp1') as $response) {
+    if ($response->getType() === Response::TYPE_ERROR) {
+        echo "Error response for 'arp1'!\n";
+    }
+}
+ 
+foreach($client->completeRequest('arp2') as $response) {
+    if ($response->getType() === Response::TYPE_ERROR) {
+        echo "Error response for 'arp2'!\n";
+    }
+}
+ 
+echo 'OK';
+?>
+```
