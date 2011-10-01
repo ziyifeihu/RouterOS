@@ -7,6 +7,7 @@ RouterOS is the flag product of the company [MikroTik](http://mikrotik.com) and 
 * Enabled API service on the RouterOS host.
 * The PCRE extension (bundled and enabled by default in PHP)
 * The iconv extension (optional; bundled and enabled by default in PHP; required only if you want to use automatic charset convertion)
+* [PEAR2_Net_Transmitter](https://github.com/boenrobot/PEAR2_Net_Transmitter) (bundled with the PEAR2_Net_RouterOS archive; installed automatically by Pyrus)
 
 The API service is disabled by default. To enable it, you need to execute 
 ```sh
