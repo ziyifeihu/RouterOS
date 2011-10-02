@@ -35,7 +35,7 @@ The archive includes a version of PEAR2_Net_Transmitter, so if you've downloaded
 
 If you're installing from the respository, you'll have to also [install PEAR2_Net_Transmitter](https://github.com/boenrobot/PEAR2_Net_Transmitter/wiki/Getting-started) in one way or another before you can use this package.
 ## Usage
-To use this in a PHP file, you could manally include every required class, but to save yourself some hassle, it's a better idea that you just include the file Autoload.php, like:
+To use this package in a PHP file, you could manually include every required class, but to save yourself some hassle, it's a better idea that you just include the file Autoload.php, like:
 ```php
 <?php
 include_once 'PEAR2/Net/RouterOS/Autoload.php';
