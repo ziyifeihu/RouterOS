@@ -33,7 +33,7 @@ If you haven't installed PEAR_Net_Transmitter previously, Pyrus will install the
 ### Manual installation
 The archive includes a version of PEAR2_Net_Transmitter, so if you've downloaded the archive, instead of using the PEAR2 installer, you can just extract the contents of the "src" folder wherever you like. To emulate the PEAR2 installer, you can place the files in a folder that's within your include_path.
 
-If you're installing from the respository, you'll have to also [install PEAR2_Net_Transmitter](pear2/PEAR2_Net_Transmitter/wiki/Getting-started) in one way or another before you can use this package.
+If you're installing from the respository, you'll have to also [install PEAR2_Net_Transmitter](/pear2/PEAR2_Net_Transmitter/wiki/Getting-started) in one way or another before you can use this package.
 ## Usage
 To use this package in a PHP file, you could manually include every required class, but to save yourself some hassle, it's a better idea that you just include the file Autoload.php, like:
 ```php
