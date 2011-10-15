@@ -61,6 +61,7 @@ echo 'OK';
 ```
 
 You can also enter the arguments with a shell syntax at the request construct, but with a few caveats:
+
 1. Nameless arguments are not supported. You have to explicitly specify the argument names. This is optional in shell, but is required here. e.g.
 ```php
 $pingRequest = new Request('/ping 192.168.0.100');
