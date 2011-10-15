@@ -30,6 +30,15 @@ pyrus install /path/to/downloaded/archive.tgz
 ```
 If you haven't installed PEAR_Net_Transmitter previously, Pyrus will install the one at pear2.php.net (not the bundled version, although the two are equivalent at the time of this writing).
 
+### Installation with [PEAR](http://pear.php.net/)
+Like most PEAR2 packages, PEAR2_Net_RouterOS is compatible with the [PEAR installer](http://pear.php.net/manual/en/installation.getting.php). However, you have to first discover the pear2 channel with
+```sh
+pear channel-discover pear2.php.net
+```
+and only then install PEAR2_Net_RouterOS with
+```sh
+pear install pear2/PEAR2_Net_RouterOS-alpha
+```
 ### Manual installation
 The archive includes a version of PEAR2_Net_Transmitter, so if you've downloaded the archive, instead of using the PEAR2 installer, you can just extract the contents of the "src" folder wherever you like. To emulate the PEAR2 installer, you can place the files in a folder that's within your include_path.
 
