@@ -16,7 +16,7 @@ The API service is disabled by default. To enable it, you need to execute
 at a RouterOS terminal. The "address" argument in the command above allows you to limit access to this service only to certain IP addresses. For security's sake, it's better that you limit connections only to the IP address with which PHP will access RouterOS.
 ## Installation
 ### Installation with [Pyrus/PEAR2](http://pear2.php.net/)
-Assuming you have [installed Pyrus](http://pear.php.net/manual/en/installationpyrus.introduction.php), you can install PEAR2_Net_RouterOS from the pear2.php.net channel with
+Assuming you have [installed Pyrus](http://pear.php.net/manual/en/installationpyrus.introduction.php), you can install PEAR2_Net_RouterOS from the PEAR2 channel with
 
 ```sh
 pyrus install PEAR2_Net_RouterOS-alpha
@@ -24,14 +24,14 @@ pyrus install PEAR2_Net_RouterOS-alpha
 
 You might notice that the version number of PEAR2_Net_RouterOS suggests it's a beta, and yet we use "-alpha" in the command above. Well, yes, PEAR2_Net_RouterOS is a beta, but it has a dependency to another package - PEAR2_Net_Transmitter - which is an alpha. To avoid getting errors, you need to use "-alpha" until that package reaches a beta.
 
-If you've decided to not use the pear2.php.net channel, but instead install directly from the archive distributed at the project page, you can use
+If you've decided to not use the PEAR2 channel, but instead install directly from the archive distributed at the project page, you can use
 ```sh
 pyrus install /path/to/downloaded/archive.tgz
 ```
-If you haven't installed PEAR_Net_Transmitter previously, Pyrus will install the one at pear2.php.net (not the bundled version, although the two are equivalent at the time of this writing).
+If you haven't installed PEAR_Net_Transmitter previously, Pyrus will install the one at the PEAR2 channel (not the bundled version, although the two are equivalent at the time of this writing).
 
 ### Installation with [PEAR](http://pear.php.net/)
-Like most PEAR2 packages, PEAR2_Net_RouterOS is compatible with the [PEAR installer](http://pear.php.net/manual/en/installation.getting.php). However, you have to first discover the pear2 channel with
+Like most PEAR2 packages, PEAR2_Net_RouterOS is compatible with the [PEAR installer](http://pear.php.net/manual/en/installation.getting.php). However, you have to first discover the PEAR2 channel with
 ```sh
 pear channel-discover pear2.php.net
 ```
