@@ -77,6 +77,7 @@ To find out the name of a nameless argument, go to a terminal, and type "?" afte
 $printRequest = new Request('/ip arp print detail=""');
 ``
 
+
 ### Asynchronous requests
 You may want to deal with the responses from commands later instead of right after you send them. Or you might only need to deal with one of the responses, and yet you need to send several requests. Or you might want to use a command which returns responses continiously, and is therefore not suitable for Client::sendSync(). Either way, Client::sendAsync() is the method you need. Depending on the way you want to deal with the responses, there are various other methods which you may use along with it.
 
