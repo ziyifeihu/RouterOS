@@ -30,7 +30,7 @@ IP: 192.168.0.101 MAC: 00:00:00:00:00:02
 ?>
 ```
 
-You can also use the syntax from RouterOS's shell (spaces between words instead of "/"), but again - no arguments. Also, the command needs to be absolute (begin with "/"). Examples in the rest of this documentation will use the API syntax.
+You can also use the syntax from RouterOS's shell (spaces between words instead of "/"). Either way, the command needs to be absolute (begin with "/"). Examples in the rest of this documentation will use the API syntax.
 
 ### Requests with arguments
 To add arguments to a command, you need to use the Request::setArgument() method before you send the request. You can reuse the same request object by clearing its arguments and/or setting new values appropriately, as in the following example.
@@ -60,7 +60,7 @@ echo 'OK';
 ?>
 ```
 
-You can also enter the arguments with a shell syntax at the request construct, but with a few caveats:
+You can also enter the arguments with a shell syntax at the request constructor, but with a few caveats:
 
 1. Nameless arguments are not supported. You have to explicitly specify the argument names. This is optional in shell, but is required here. e.g.
 ```php
@@ -70,9 +70,9 @@ becomes
 ```php
 $pingRequest = new Request('/ping address=192.168.0.100');
 ```
-If you want the name of a nameless argument, go to a terminal, and type "?" after the command to see its help. The real names of nameless arguments can be seen in the form "&lt;*argument name*>".
+To find out the name of a nameless argument, go to a terminal, and type "?" after the command to see its help. The real names of nameless arguments can be seen in the form "&lt;*argument name*>".
 2. A double quote is the only escapable character in a double quoted string. Everything else is treated literally.
-3. Arguments without value are supported, but the first argument in your argument list MUST have a value. If you need to use only empty arguments, you can assign an empty string to the argument. e.g.
+3. Arguments without value are supported, but to avoid ambiguities between the command's end and the argument list's start, the first argument in your argument list MUST have a value. If you need to use only empty arguments, you can assign an empty string to the argument, e.g.
 ```php
 $printRequest = new Request('/ip arp print detail=""');
 ``
