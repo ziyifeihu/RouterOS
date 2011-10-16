@@ -72,7 +72,7 @@ $pingRequest = new Request('/ping address=192.168.0.100');
 ```
 To find out the name of a nameless argument, go to a terminal, and type "?" after the command to see its help. The real names of nameless arguments can be seen in the form "&lt;*argument name*>".
 2. A double quote is the only escapable character in a double quoted string. Everything else is treated literally.
-3. Arguments without value are supported, but to avoid ambiguities between the command's end and the argument list's start, the first argument in your argument list MUST have a value. If you need to use only empty arguments, you can assign an empty string to the argument, e.g.
+3. Arguments without value are supported, but to avoid ambiguities between the command's end and the argument list's start, the first argument in the argument list MUST have a value. If you need to use only empty arguments, you can assign an empty string to the argument, e.g.
 ```php
 $printRequest = new Request('/ip arp print detail=""');
 ```
