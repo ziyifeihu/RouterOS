@@ -103,10 +103,10 @@ $client->sendAsync($addRequest);
 ?>
 ```
 
-Note that, as in the example above, different asynchronious requests need to have a different "tag", regardless of whether you care about the responses or not. A "tag" in this context is a RouterOS API specific construct that allows clients like Net_RouterOS to keep track of responses coming from multiple requests, since they don't appear in the order of their execution. You can only reuse a tag once you get its final response.
+Note that, as in the example above, different asynchronious requests need to have a different "tag", regardless of whether you care about the responses or not. A "tag" in this context is a RouterOS API specific construct that allows clients like PEAR2_Net_RouterOS to keep track of responses coming from multiple requests, since they don't appear in the order of their execution. You can only reuse a tag once you get its final response.
 
 #### Loop and extract
-One way to get responses is to let Net_RouterOS process any new ones, and then extract those that interest you. You can start processing with the Client::loop() method. If you've made requests that you know will eventually be finished, you can use Client::loop() without an argument to let processing stop only once all requests have returned their final response. Here's an example that continues from the previous one.
+One way to get responses is to let PEAR2_Net_RouterOS process any new ones, and then extract those that interest you. You can start processing with the Client::loop() method. If you've made requests that you know will eventually be finished, you can use Client::loop() without an argument to let processing stop only once all requests have returned their final response. Here's an example that continues from the previous one.
 
 ```php
 <?php
