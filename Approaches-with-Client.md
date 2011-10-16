@@ -184,7 +184,7 @@ arp2 is done.
 ```
 
 #### Send and complete
-Processing of responses can also be started with Client::completeRequest(). The difference is that Client::loop() ends when a certain timeout is reached, or when all requests are finished, and Client::completeRequest() instead ends when the final response of a specified request has been processed, regardless of the time it takes. The return value is an array of all responses, or an empty array if the request was assigned to a callback.
+Processing of responses can also be started with Client::completeRequest(). The difference is that Client::loop() ends when a certain timeout is reached, or when all requests are finished, and Client::completeRequest() instead ends when the final response of a specified request has been processed, regardless of the time it takes. The return value is an collection of all responses, or an empty collection if the request was assigned to a callback.
 
 ```php
 <?php
