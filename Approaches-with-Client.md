@@ -30,7 +30,7 @@ IP: 192.168.0.101 MAC: 00:00:00:00:00:02
 ?>
 ```
 
-You can also use the syntax from RouterOS's shell (spaces between words instead of "/"). Either way, the command needs to be absolute (begin with "/"). Note also that auto completion is not supported (e.g. "/ip/f/n/p" will NOT be automatically translated to "/ip/firewall/nat/print"). Examples in the rest of this documentation will use the API syntax.
+You can also use the syntax from RouterOS's shell (spaces between words instead of "/"). Either way, the command needs to be absolute (begin with "/"). Note also that auto completion is not supported (e.g. "/ip/f/n/p" will NOT be translated to "/ip/firewall/nat/print"). Examples in the rest of this documentation will use the API syntax.
 
 ### Requests with arguments
 To add arguments to a command, you need to use the Request::setArgument() method before you send the request. You can reuse the same request object by clearing its arguments and/or setting new values appropriately, as in the following example.
