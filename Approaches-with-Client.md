@@ -30,7 +30,7 @@ IP: 192.168.0.101 MAC: 00:00:00:00:00:02
 ?>
 ```
 
-You can also use the syntax from RouterOS's shell (spaces between words instead of "/"). Either way, the command needs to be absolute (begin with "/"). Note also that auto completion is not supported (e.g. "/ip/f/n/p" will NOT be translated to "/ip/firewall/nat/print"). Examples in the rest of this documentation will use the API syntax.
+You can also use the syntax from RouterOS's shell (spaces between words instead of "/"). Either way, the command needs to be absolute (begin with "/"). Note also that auto completion is not supported (e.g. "/ip/f/n/p" will NOT be translated to "/ip/firewall/nat/print", but will instead be passed to RouterOS "as is", which in current versions results in an error). Examples in the rest of this documentation will use the API syntax.
 
 ### Requests with arguments
 To add arguments to a command, you need to use the Request::setArgument() method before you send the request. You can reuse the same request object by clearing its arguments and/or setting new values appropriately, as in the following example.
@@ -70,7 +70,7 @@ becomes
 ```php
 $pingRequest = new Request('/ping address=192.168.0.100');
 ```
-To find out the name of a nameless argument, go to a terminal, and type "?" after the command to see its help. The real names of nameless arguments can be seen in the form "&lt;*argument name*>".
+To find out the name of a nameless argument, go to a terminal, and type "?" after the command to see its help. The real names of nameless arguments can be seen in the form "&lt;_argument name_>".
 2. A double quote is the only escapable character in a double quoted string. Everything else is treated literally.
 3. Arguments without value are supported, but to avoid ambiguities between the command's end and the argument list's start, the first argument in the argument list MUST have a value. If you need to use only empty arguments, you can assign an empty string to the argument, e.g.
 ```php
