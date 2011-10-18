@@ -70,13 +70,21 @@ becomes
 ```php
 $pingRequest = new Request('/ping address=192.168.0.100');
 ```
-To find out the name of a nameless argument, go to a terminal, and type "?" after the command to see its help. The real names of nameless arguments can be seen in the form "&lt;_argument name_>".
+To find out the name of a nameless argument, go to a terminal, and type "?" after the command to see its help. The real names of nameless arguments can be seen in the form "&lt;__argument name__>".
 2. A double quote is the only escapable character in a double quoted string. Everything else is treated literally.
-3. Arguments without value are supported, but to avoid ambiguities between the command's end and the argument list's start, the first argument in the argument list MUST have a value. If you need to use only empty arguments, you can assign an empty string to the argument, e.g.
+3. The "where" argument on "print" doesn't work. [Use queries](Using-queries) instead.
+4. Arguments without value are supported, but to avoid ambiguities between the command's end and the argument list's start, the first argument in the argument list MUST have a value. e.g.
+```php
+$printRequest = new Request('/ip arp print file="ARP list prinout.txt" detail');
+```
+is allowed, but if you write
+```php
+$printRequest = new Request('/ip arp print detail file="ARP list prinout.txt"');
+```
+you'll be calling the *command* "ip/arp/print/detail" with a "file" argument. Because there is no "detail" command, you'll get an error. If you need to use only empty arguments, you can assign an empty string to the argument, e.g.
 ```php
 $printRequest = new Request('/ip arp print detail=""');
 ```
-4. The "where" argument on "print" doesn't work. [Use queries](Using-queries) instead.
 
 ### Asynchronous requests
 You may want to deal with the responses from commands later instead of right after you send them. Or you might only need to deal with one of the responses, and yet you need to send several requests. Or you might want to use a command which returns responses continiously, and is therefore not suitable for Client::sendSync(). Either way, Client::sendAsync() is the method you need. Depending on the way you want to deal with the responses, there are various other methods which you may use along with it.
