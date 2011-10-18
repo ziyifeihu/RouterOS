@@ -72,7 +72,7 @@ $pingRequest = new Request('/ping address=192.168.0.100');
 ```
 To find out the name of a nameless argument, go to a terminal, and type "?" after the command to see its help. The real names of nameless arguments can be seen in the form "&lt;__argument name__>".
 2. A double quote is the only escapable character in a double quoted string. Everything else is treated literally.
-3. The "where" argument on "print" doesn't work. [Use queries](Using-queries) instead.
+3. The "where" argument on "print" doesn't work. [Use queries](Using-queries) instead, as MikroTIk intended.
 4. Arguments without value are supported, but to avoid ambiguities between the command's end and the argument list's start, the first argument in the argument list MUST have a value. e.g.
 ```php
 $printRequest = new Request('/ip arp print file="ARP list prinout.txt" detail');
