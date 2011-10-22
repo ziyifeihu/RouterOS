@@ -93,4 +93,4 @@ $client = new Ros('example.com', 'admin');
 Note that namespace declarations must appear before any includes. They must in fact be the first thing in a PHP file. The rest of the examples in this documentation will be setting PEAR2\Net\RouterOS as the default namespace.
 
 ## Further information
-The [rest of this documentation](..) contains more tutorials and examples on how to use this package. If you have trouble doing a certain thing with RouterOS, the best place to ask for help is [MikroTik's forum on scripting](http://forum.mikrotik.com/viewforum.php?f=9). If you believe you've found a bug in this client or miss a certain feature, don't hesitate to [submit an issue](../../issues/new) for it.
+The [rest of this documentation](../wiki) contains more tutorials and examples on how to use this package. If you have trouble doing a certain thing with RouterOS, the best place to ask for help is [MikroTik's forum on scripting](http://forum.mikrotik.com/viewforum.php?f=9). If you believe you've found a bug in this client or miss a certain feature, don't hesitate to [submit an issue](../issues/new) for it.
