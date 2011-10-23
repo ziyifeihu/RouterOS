@@ -81,7 +81,7 @@ is allowed, but if you write
 ```php
 $printRequest = new Request('/ip arp print detail file="ARP list prinout.txt"');
 ```
-you'll be calling the *command* "ip/arp/print/detail" with a "file" argument. Because there is no "detail" command, you'll get an error. If you need to use only empty arguments, you can assign an empty string to the argument, e.g.
+you'll be calling the *command* "ip/arp/print/detail" with a "file" argument. Because there is no "detail" command, you'll get an error. If you need to use only empty arguments, you can assign an empty string to the first one, e.g.
 ```php
 $printRequest = new Request('/ip arp print detail=""');
 ```
