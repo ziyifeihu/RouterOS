@@ -4,7 +4,7 @@ A brief guide to using queries
 ## Commands handling queries
 Queries are a RouterOS API specific construct that allows you to limit the results returned for a request.
 
-Currently, the "print" command is the only one that handles queries, since version 3.21. PEAR2_Net_RouterOS doesn't check whether the command handles queries, so if future versions of RouterOS have other such commands, you can use queries with them right away.
+Currently, the "print" command is the only one in RouterOS that handles queries, since version 3.21. PEAR2_Net_RouterOS doesn't check whether the command handles queries, so if future versions of RouterOS have other such commands, you can use queries with them right away.
 
 ## Setting a query
 To set a query for a request, you need to either set it as a third argument to a Request's constructor or use the Request::setQuery() method. If later in the script you want to remove the query, you can pass NULL to the Request::setQuery() method. The rest of the examples in this tutorial will assume a script similar to the following, where the $query variable is defined separately:
