@@ -21,8 +21,8 @@ $request = new Request('/ip/arp/print');
 $request->setQuery($query);
 $responses = $client->sendSync($request);
  
-foreach($responses as $response) {
-    foreach($response->getAllArguments() as $name => $value) {
+foreach ($responses as $response) {
+    foreach ($response->getAllArguments() as $name => $value) {
         echo "{$name}: {$value}\n";
     }
     echo "====\n";
