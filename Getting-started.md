@@ -13,7 +13,7 @@ The API service is disabled by default. To enable it, you need to execute
 ```sh
 /ip service set numbers="api" address="0.0.0.0/0" disabled="no"
 ```
-at a RouterOS terminal. The "address" argument in the command above allows you to limit access to this service only to certain IP addresses. For security's sake, it's better that you limit connections only to the IP address with which PHP will access RouterOS.
+at a RouterOS terminal. The "address" argument in the command above allows you to limit access to this service only to certain IP addresses. For security's sake, it's better that you limit connections only to the IP address(es) with which PHP will access RouterOS.
 ## Installation
 ### Installation with [Pyrus/PEAR2](http://pear2.php.net/) (recommended)
 Assuming you have [installed Pyrus](http://pear.php.net/manual/en/installationpyrus.introduction.php), you can install PEAR2_Net_RouterOS from the PEAR2 channel with
