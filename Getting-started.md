@@ -43,7 +43,8 @@ pear install pear2/PEAR2_Net_RouterOS-alpha
 ### Manual installation
 Instead of using the PEAR(2) installer, you can just extract the contents of the "src" folder wherever you like. To emulate the PEAR(2) installer, you can place the files in a folder that's within your include_path. The packaged archive includes a version of PEAR2_Net_Transmitter, so there's nothing to worry about beyond extracting the archive.
 
-If you're installing the unpackaged version (from the respository), you'll have to also [install PEAR2_Net_Transmitter](/pear2/Net_Transmitter/wiki/Getting-started) in one way or another before you can use this package. If you do so, it is reccomended that you use the repository version instead of the packaged one.
+### Installation from the repository
+If you're installing the unpackaged version (from the respository), you'll have to also [install PEAR2_Net_Transmitter](/pear2/Net_Transmitter/wiki/Getting-started) in one way or another before you can use this package. If you do so, it is reccomended that you use the repository version of PEAR2_Net_Transmitter instead of the packaged one.
 
 ## Usage
 To use this package in a PHP file, you could manually include every required class, but to save yourself some hassle, it's a better idea that you just include the file Autoload.php, like:
