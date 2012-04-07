@@ -25,7 +25,7 @@ $mac = $client->sendSync($printRequest)->getArgument('mac-address');
 ```
 
 ## The "numbers" argument
-All commands that require you to use the "numbers" argument to target an entry (enable, disable, set, unset and remove), ironically enough, do not accept numbers as their value. Instead, they accept a list of IDs.  __The IDs you get from API are not the same as the numbers you see in shell/Winbox.__
+All commands that require you to use the "numbers" argument to target an entry (enable, disable, set, unset and remove), ironically enough, do not accept numbers as their value. Instead, they accept a list of IDs.  __The IDs you get from API are NOT the same as the numbers you see in the "#" column in shell/Winbox.__
 
 There is no way of knowing the IDs without doing a "print" of the targeted entry - from the API protocol - at some point. Ideally, you should do it right when you're about to target the entry. When you do that, the ID is available from an API specific argument called ".id".
 
