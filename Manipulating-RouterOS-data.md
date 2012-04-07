@@ -89,7 +89,7 @@ $idList = array();
 foreach ($client->sendSync($printRequest)->getAllOfType(Response::TYPE_DATA) as $entry) {
     $idList[] = $entry->getArgument('.id');
 }
-//$idList now contains an array of all entries' IDs.
+//$idList now contains an array of all targeted entries' IDs.
 
 $removeRequest = new Request('/ip/arp/remove');
 $removeRequest->setArgument('numbers', implode(',', $idList));
