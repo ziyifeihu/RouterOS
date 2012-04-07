@@ -72,7 +72,7 @@ $client->sendSync($setRequest);
 ?>
 ```
 
-Keep in mind we're talking about a list - a comma separated list to be exact. So if you need to, you can have several IDs lined up, like if you had multiple ARP entries for an IP, you can remove them all with something like the following:
+Keep in mind we're talking about a list - a comma separated list to be exact. So if you need to, you can have several IDs lined up, like if you had multiple ARP entries for an IP, you can remove them all at once with something like the following:
 
 ```php
 <?php
