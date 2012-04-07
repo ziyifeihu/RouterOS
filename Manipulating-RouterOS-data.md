@@ -8,6 +8,7 @@ Getting an individual property is not directly possible with the API protocol, b
 A "print" command can take queries, which are described in more detail in [a separate tutorial](Using-queries). Combined with the API specific ".proplist" argument (also described in that tutorial), you can make the print command return just one reply, containing just the one property of the one entry that interests you.
 
 For example, if you were interested in getting the MAC address of a certain "arp" entry you've targeted by its IP address:
+
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
@@ -29,6 +30,7 @@ Every command that requires you to use the "numbers" argument to target an entry
 There is no way of knowing the IDs without doing a "print" of the targeted entry - from the API protocol - at some point. Ideally, you should do it right when you're about to target the entry. When you do that, the ID is available from an API specific argument called ".id".
 
 So for example, to delete an entry in the ARP list that has a comment saying "del", we'd do:
+
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
@@ -47,7 +49,9 @@ $removeRequest->setArgument('numbers', $id);
 $client->sendSync($removeRequest);
 ?>
 ```
+
 or if we wanted to change the comment of that entry, we would do:
+
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
@@ -67,7 +71,9 @@ $setRequest->setArgument('comment', 'new comment');
 $client->sendSync($setRequest);
 ?>
 ```
+
 Keep in mind we're talking about a list - a comma separated list to be exact. So if you need to, you can have several IDs lined up, like if you had multiple ARP entries for an IP, you can remove them all with something like the following:
+
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
