@@ -29,7 +29,9 @@ All commands that require you to use the "numbers" argument to target an entry (
 
 There is no way of knowing the IDs without doing a "print" of the targeted entry - from the API protocol - at some point. Ideally, you should do it right when you're about to target the entry. When you do that, the ID is available from an API specific argument called ".id".
 
-So for example, to delete an entry in the ARP list that has a comment saying "del", we'd do:
+### Examples
+#### Remove
+To delete an entry in the ARP list that has a comment saying "del", we'd do:
 
 ```php
 <?php
@@ -50,7 +52,8 @@ $client->sendSync($removeRequest);
 ?>
 ```
 
-or if we wanted to change the comment of that entry, we would do:
+#### Edit/Set
+If we want to change the comment of an entry, we would do something like:
 
 ```php
 <?php
@@ -72,7 +75,8 @@ $client->sendSync($setRequest);
 ?>
 ```
 
-Keep in mind we're talking about a list - a comma separated list to be exact. So if you need to, you can have several IDs lined up, like if you had multiple ARP entries for an IP, you can remove them all at once with something like the following:
+### Note: It's a list
+Keep in mind the "numbers" argument accepts a list - a comma separated list to be exact. So if you need to, you can have several IDs lined up, like if you had multiple ARP entries for an IP, you can remove them all at once with something like the following:
 
 ```php
 <?php
