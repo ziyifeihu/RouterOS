@@ -94,7 +94,7 @@ $id = $client->sendSync($printRequest)->getArgument('.id');
 
 $unsetRequest = new Request('/ip/arp/unset');
 $unsetRequest->setArgument('numbers', $id);
-$unsetRequest->setArgument('value', 'comment');
+$unsetRequest->setArgument('value-name', 'comment');
 $client->sendSync($unsetRequest);
 ?>
 ```
