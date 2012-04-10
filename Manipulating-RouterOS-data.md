@@ -31,7 +31,7 @@ There is no way of knowing the IDs without doing a "print" of the targeted entry
 
 ### Examples
 #### Remove
-To delete an entry in the ARP list that has a comment saying "del", we'd do:
+To delete an entry in the ARP list that has a comment saying "my", we'd do:
 
 ```php
 <?php
@@ -42,7 +42,7 @@ $client = new Client('192.168.0.1', 'admin');
 
 $printRequest = new Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
-$printRequest->setQuery(Query::where('comment', 'del'));
+$printRequest->setQuery(Query::where('comment', 'my'));
 $id = $client->sendSync($printRequest)->getArgument('.id');
 //$id now contains the ID of the entry we're targeting
 
@@ -64,7 +64,7 @@ $client = new Client('192.168.0.1', 'admin');
 
 $printRequest = new Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
-$printRequest->setQuery(Query::where('comment', 'del'));
+$printRequest->setQuery(Query::where('comment', 'my'));
 $id = $client->sendSync($printRequest)->getArgument('.id');
 //$id now contains the ID of the entry we're targeting
 
@@ -89,7 +89,7 @@ $client = new Client('192.168.0.1', 'admin');
 
 $printRequest = new Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
-$printRequest->setQuery(Query::where('comment', 'del'));
+$printRequest->setQuery(Query::where('comment', 'my'));
 $id = $client->sendSync($printRequest)->getArgument('.id');
 //$id now contains the ID of the entry we're targeting
 
@@ -112,7 +112,7 @@ $client = new Client('192.168.0.1', 'admin');
 
 $printRequest = new Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
-$printRequest->setQuery(Query::where('comment', 'del'));
+$printRequest->setQuery(Query::where('comment', 'my'));
 $id = $client->sendSync($printRequest)->getArgument('.id');
 //$id now contains the ID of the entry we're targeting
 
