@@ -78,6 +78,7 @@ $client->sendSync($setRequest);
 There are some places in RouterOS where it matters whether you have a property with an empty value, or don't have a value for the property at all. In such cases, it is useful to use the "unset" command to remove the property from the entry.
 
 The following example removes the comment from an ARP entry:
+
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
