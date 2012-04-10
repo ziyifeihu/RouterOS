@@ -53,7 +53,7 @@ $client->sendSync($removeRequest);
 ```
 
 #### Edit/Set
-If we want to change the comment of an entry, we would do something like:
+If we wanted to change the comment of an entry, we would do something like:
 
 ```php
 <?php
