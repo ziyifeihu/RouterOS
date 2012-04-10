@@ -74,6 +74,29 @@ $setRequest->setArgument('comment', 'new comment');
 $client->sendSync($setRequest);
 ?>
 ```
+#### Unset
+There are some places in RouterOS where it matters whether you have a property with an empty value, or don't have a value for the property at all. In such cases, it is useful to use the "unset" command to remove the property from the entry.
+
+The following example removes the comment from an ARP entry:
+```php
+<?php
+namespace PEAR2\Net\RouterOS;
+require_once 'PEAR2/Net/RouterOS/Autoload.php';
+ 
+$client = new Client('192.168.0.1', 'admin');
+
+$printRequest = new Request('/ip/arp/print');
+$printRequest->setArgument('.proplist', '.id');
+$printRequest->setQuery(Query::where('comment', 'del'));
+$id = $client->sendSync($printRequest)->getArgument('.id');
+//$id now contains the ID of the entry we're targeting
+
+$unsetRequest = new Request('/ip/arp/unset');
+$unsetRequest->setArgument('numbers', $id);
+$unsetRequest->setArgument('value', 'comment');
+$client->sendSync($unsetRequest);
+?>
+```
 
 ### Note: It's a list
 Keep in mind the "numbers" argument accepts a list - a comma separated list to be exact. So if you need to, you can have several IDs lined up, like if you had multiple ARP entries for an IP, you can remove them all at once with something like the following:
