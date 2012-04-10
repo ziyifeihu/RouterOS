@@ -25,16 +25,20 @@ pyrus install PEAR2_Net_RouterOS-alpha
 You might notice that the version number of PEAR2_Net_RouterOS suggests it's a beta, and yet we use "-alpha" in the command above. Well, yes, PEAR2_Net_RouterOS is a beta, but it has a dependency to another package - PEAR2_Net_Transmitter - which is an alpha. To avoid getting errors, you need to use "-alpha" until that package reaches a beta.
 
 If you've decided to not use the PEAR2 channel, but instead install directly from the archive distributed at the project page, you can use
+
 ```sh
 pyrus install /path/to/downloaded/archive.tgz
 ```
+
 If you haven't installed PEAR_Net_Transmitter previously, Pyrus will install the one at the PEAR2 channel (not the bundled version, although the two are equivalent at the time of this writing).
 
 ### Installation with [PEAR](http://pear.php.net/)
 Like most PEAR2 packages, PEAR2_Net_RouterOS is compatible with the [PEAR installer](http://pear.php.net/manual/en/installation.getting.php). However, you have to first discover the PEAR2 channel with
+
 ```sh
 pear channel-discover pear2.php.net
 ```
+
 and only then install PEAR2_Net_RouterOS with
 ```sh
 pear install pear2/PEAR2_Net_RouterOS-alpha
@@ -48,6 +52,7 @@ If you're installing the unpackaged version (from the respository), you'll have 
 
 ## Usage
 To use this package in a PHP file, you could manually include every required class, but to save yourself some hassle, it's a better idea that you just include the file Autoload.php, like:
+
 ```php
 <?php
 include_once 'PEAR2/Net/RouterOS/Autoload.php';
@@ -58,6 +63,7 @@ include_once 'PEAR2/Net/RouterOS/Autoload.php';
 Like every other PEAR2 package, PEAR2_Net_RouterOS uses namespaces - a feature introduced in PHP 5.3 - for its organization. Among other things, this means that instead of you having to write long class names, you can just declare at the top that you'll be using this namespace, and then just write shorter class names. The possible approaches are as follows:
 
 * Using a fully qualified class name
+
 ```php
 <?php
 include_once 'PEAR2/Net/RouterOS/Autoload.php';
@@ -65,7 +71,8 @@ $client = new \PEAR2\Net\RouterOS\Client('example.com', 'admin');
 // Use the client here
 ?>
 ```
-* Declaring the PEAR2\Net\RouterOS as your default namespace 
+* Declaring the PEAR2\Net\RouterOS as your default namespace
+ 
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
@@ -74,7 +81,8 @@ $client = new Client('example.com', 'admin');
 // Use the client here
 ?>
 ```
-* Declaring the PEAR2\Net\RouterOS as an aliased namespace 
+* Declaring the PEAR2\Net\RouterOS as an aliased namespace
+ 
 ```php
 <?php
 use PEAR2\Net\RouterOS as Ros;
@@ -83,7 +91,8 @@ $client = new Ros\Client('example.com', 'admin');
 // Use the client here
 ?>
 ```
-* Declaring an alias of each class you intend to use directly. 
+* Declaring an alias of each class you intend to use directly.
+
 ```php
 <?php
 use PEAR2\Net\RouterOS\Client as Ros;
