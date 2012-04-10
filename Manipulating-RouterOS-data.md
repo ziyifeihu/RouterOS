@@ -123,7 +123,7 @@ $client->sendSync($disableRequest);
 ```
 
 ### Note: It's a list
-Keep in mind the "numbers" argument accepts a list - a comma separated list to be exact. So if you need to, you can have several IDs lined up, like if you had multiple ARP entries for an IP, you can remove them all at once with something like the following:
+Keep in mind the "numbers" argument accepts a list - a comma separated list to be exact. So if you need to, you can have several IDs lined up, like if you had multiple ARP entries for a MAC address, you can remove them all at once with something like the following:
 
 ```php
 <?php
@@ -134,7 +134,7 @@ $client = new Client('192.168.0.1', 'admin');
 
 $printRequest = new Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
-$printRequest->setQuery(Query::where('address', '192.168.0.100'));
+$printRequest->setQuery(Query::where('mac-address', '00:00:00:00:00:01'));
 
 $idList = array();
 foreach ($client->sendSync($printRequest)->getAllOfType(Response::TYPE_DATA) as $entry) {
