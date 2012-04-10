@@ -74,6 +74,7 @@ $setRequest->setArgument('comment', 'new comment');
 $client->sendSync($setRequest);
 ?>
 ```
+
 #### Unset
 There are some places in RouterOS where it matters whether you have a property with an empty value, or don't have a value for the property at all. In such cases, it is useful to use the "unset" command to remove the property from the entry.
 
@@ -96,6 +97,28 @@ $unsetRequest = new Request('/ip/arp/unset');
 $unsetRequest->setArgument('numbers', $id);
 $unsetRequest->setArgument('value-name', 'comment');
 $client->sendSync($unsetRequest);
+?>
+```
+
+#### Enable/Disable
+The following example uses the "disable" command to disable an ARP entry. Analogously, the "enable" command would enable an entry:
+
+```php
+<?php
+namespace PEAR2\Net\RouterOS;
+require_once 'PEAR2/Net/RouterOS/Autoload.php';
+ 
+$client = new Client('192.168.0.1', 'admin');
+
+$printRequest = new Request('/ip/arp/print');
+$printRequest->setArgument('.proplist', '.id');
+$printRequest->setQuery(Query::where('comment', 'del'));
+$id = $client->sendSync($printRequest)->getArgument('.id');
+//$id now contains the ID of the entry we're targeting
+
+$disableRequest = new Request('/ip/arp/disable');
+$disableRequest->setArgument('numbers', $id);
+$client->sendSync($disableRequest);
 ?>
 ```
 
