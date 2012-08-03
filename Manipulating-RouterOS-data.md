@@ -12,7 +12,7 @@ For example, if you were interested in getting the MAC address of a certain "arp
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
-require_once 'PEAR2/Net/RouterOS/Autoload.php';
+require_once 'PEAR2/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
 
@@ -36,7 +36,7 @@ To delete an entry in the ARP list that has a comment saying "my", we'd do:
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
-require_once 'PEAR2/Net/RouterOS/Autoload.php';
+require_once 'PEAR2/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
 
@@ -58,7 +58,7 @@ If we wanted to change the comment of an entry, we would do something like:
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
-require_once 'PEAR2/Net/RouterOS/Autoload.php';
+require_once 'PEAR2/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
 
@@ -83,7 +83,7 @@ The following example removes the comment from an ARP entry:
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
-require_once 'PEAR2/Net/RouterOS/Autoload.php';
+require_once 'PEAR2/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
 
@@ -106,7 +106,7 @@ The following example uses the "disable" command to disable an ARP entry. Analog
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
-require_once 'PEAR2/Net/RouterOS/Autoload.php';
+require_once 'PEAR2/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
 
@@ -128,7 +128,7 @@ Keep in mind the "numbers" argument accepts a list - a comma separated list to b
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
-require_once 'PEAR2/Net/RouterOS/Autoload.php';
+require_once 'PEAR2/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
 
