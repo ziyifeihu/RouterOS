@@ -7,5 +7,5 @@ Examples
 a.k.a. "equivalent of CLI's 'find' command and print's 'where' argument"
 ## [Manipulating RouterOS data](wiki/Manipulating-RouterOS-data)
 Some protocol "gotcha" stuff you should be aware of
-## [API documentation](http://pear2.github.com/Net_RouterOS/Documentation/1.0.0b3/)
+## [API reference](http://pear2.github.com/Net_RouterOS/Documentation/1.0.0b3/)
 PhpDocumentor generated API documentation
