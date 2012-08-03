@@ -9,6 +9,7 @@ RouterOS is the flag product of the company [MikroTik](http://mikrotik.com) and 
 * [PEAR2_Net_Transmitter](http://pear2.github.com/Net_Transmitter/) (bundled with the PEAR2_Net_RouterOS archive; installed automatically by Pyrus)
 * [optional] The iconv extension (bundled and enabled by default in PHP; required only if you want to use automatic charset convertion)
 * [optional] [PEAR2_Cache_SHM](http://pear2.github.com/Cache_SHM/) (bundled with the archive; needed only if you use persistent connections)
+* [optional] A PSR-0 compliant autoloader (highly recommended; PEAR2_Autoload is one such autoloader that is bundled in the archive and installed by Pyrus if you pass the "-o" flag at installation)
 
 The API service is disabled by default. To enable it, you need to execute 
 ```sh
