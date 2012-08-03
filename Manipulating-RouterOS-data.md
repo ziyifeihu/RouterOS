@@ -29,6 +29,8 @@ All commands that require you to use the "numbers" argument to target an entry (
 
 There is no way of knowing the IDs without doing a "print" of the targeted entry - from the API protocol - at some point. Ideally, you should do it right when you're about to target the entry. When you do that, the ID is available from an API specific argument called ".id".
 
+Side note: When you "add" an entry, it's ID is available in the "ret" argument of the response.
+
 ### Examples
 #### Remove
 To delete an entry in the ARP list that has a comment saying "my", we'd do:
