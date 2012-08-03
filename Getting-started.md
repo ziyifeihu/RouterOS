@@ -23,7 +23,9 @@ Assuming you have [installed Pyrus](http://pear.php.net/manual/en/installationpy
 pyrus install PEAR2_Net_RouterOS-alpha
 ```
 
-You might notice that the version number of PEAR2_Net_RouterOS suggests it's a beta, and yet we use "-alpha" in the command above. Well, yes, PEAR2_Net_RouterOS is a beta, but it has a dependency to another package - PEAR2_Net_Transmitter - which is an alpha. To avoid getting errors, you need to use "-alpha" until that package reaches a beta. __Note also that this package is a "beta" according to the [PEAR2 version standard](https://wiki.php.net/pear/rfc/pear2_versioning_standard_revision), which essentially means that it works, it's documented, has large code coverage (100% in this case), but is still a potential subject to breaking API changes (e.g. the next release could rename methods, add/remove/rename classes, swap arguments, etc.).__
+You might notice that the version number of PEAR2_Net_RouterOS suggests it's a beta, and yet we use "-alpha" in the command above. Well, yes, PEAR2_Net_RouterOS is a beta, but it has a dependency to another package - PEAR2_Net_Transmitter - which is an alpha. To avoid getting errors, you need to use "-alpha" until that package reaches a beta.
+
+__Note also that this package is a "beta" according to the [PEAR2 version standard](https://wiki.php.net/pear/rfc/pear2_versioning_standard_revision), which essentially means that it works, it's documented, has large code coverage (100% in this case), but future versions of it are still a potential subject to breaking API changes (e.g. the next release could rename methods, add/remove/rename classes, swap arguments, etc.) as long as those changes still result in stable, documented and covered code.__
 
 If you've decided to not use the PEAR2 channel, but instead install directly from the archive distributed at the project page, you can use
 
