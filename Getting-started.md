@@ -44,6 +44,14 @@ and only then install PEAR2_Net_RouterOS with
 ```sh
 pear install pear2/PEAR2_Net_RouterOS-alpha
 ```
+### Direct PHAR usage
+If you download the ".phar" archive, instead of using the PEAR(2) installer, you can just include the archive, and be ready to go, like for example:
+
+```php
+<?php
+require_once 'PEAR2_Net_RouterOS-1.0.0b3.phar';
+//Use any PEAR2_Net_RouterOS class
+```
 
 ### Manual installation
 Instead of using the PEAR(2) installer, you can just extract the contents of the "src" folder wherever you like. To emulate the PEAR(2) installer, you can place the files in a folder that's within your include_path. The packaged archive includes a version of PEAR2_Net_Transmitter, so there's nothing to worry about beyond extracting the archive.
@@ -52,13 +60,24 @@ Instead of using the PEAR(2) installer, you can just extract the contents of the
 If you're installing the unpackaged version (from the respository), you'll have to also [install PEAR2_Net_Transmitter](/pear2/Net_Transmitter/wiki/Getting-started) in one way or another before you can use this package. If you do so, it is reccomended that you use the repository version of PEAR2_Net_Transmitter instead of the packaged one.
 
 ## Usage
-To use this package in a PHP file, you could manually include every required class, but to save yourself some hassle, it's a better idea that you just include the file Autoload.php, like:
+If you use the PHAR archive, every class you attempt to use will automatically be auto loaded with the bundled PEAR2_Autoload. In virtually all places of the documentation, the line
+
+```php
+include_once 'PEAR2/Autoload.php';
+```
+
+can be replaced with
+
+```php
+include_once 'PEAR2_Net_RouterOS-1.0.0b3';
+```
+
+With any other method, you need to include any PSR-0 compatible autoloader (the bundled PEAR2_Autoload being just one option), and if necessary, register the folder where the PHP files are located. With PEAR2_Autoload, that's not needed, so the code would look like:
 
 ```php
 <?php
-include_once 'PEAR2/Net/RouterOS/Autoload.php';
+include_once 'PEAR2/Autoload.php';
 //Use any PEAR2_Net_RouterOS class
-?>
 ```
 
 Like every other PEAR2 package, PEAR2_Net_RouterOS uses namespaces - a feature introduced in PHP 5.3 - for its organization. Among other things, this means that instead of you having to write long class names, you can just declare at the top that you'll be using this namespace, and then just write shorter class names. The possible approaches are as follows:
@@ -67,7 +86,7 @@ Like every other PEAR2 package, PEAR2_Net_RouterOS uses namespaces - a feature i
 
 ```php
 <?php
-include_once 'PEAR2/Net/RouterOS/Autoload.php';
+include_once 'PEAR2/Autoload.php';
 $client = new \PEAR2\Net\RouterOS\Client('example.com', 'admin');
 // Use the client here
 ?>
@@ -77,7 +96,7 @@ $client = new \PEAR2\Net\RouterOS\Client('example.com', 'admin');
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
-include_once 'PEAR2/Net/RouterOS/Autoload.php';
+include_once 'PEAR2/Autoload.php';
 $client = new Client('example.com', 'admin');
 // Use the client here
 ?>
@@ -87,7 +106,7 @@ $client = new Client('example.com', 'admin');
 ```php
 <?php
 use PEAR2\Net\RouterOS as Ros;
-include_once 'PEAR2/Net/RouterOS/Autoload.php';
+include_once 'PEAR2/Autoload.php';
 $client = new Ros\Client('example.com', 'admin');
 // Use the client here
 ?>
@@ -97,7 +116,7 @@ $client = new Ros\Client('example.com', 'admin');
 ```php
 <?php
 use PEAR2\Net\RouterOS\Client as Ros;
-include_once 'PEAR2/Net/RouterOS/Autoload.php';
+include_once 'PEAR2/Autoload.php';
 $client = new Ros('example.com', 'admin');
 // Use the client here
 ?>
