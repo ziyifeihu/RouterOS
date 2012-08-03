@@ -9,7 +9,7 @@ If the request you want to send is just a simple command with no arguments, the 
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
-require_once 'PEAR2/Net/RouterOS/Autoload.php';
+require_once 'PEAR2/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
  
@@ -38,7 +38,7 @@ To add arguments to a command, you need to use the Request::setArgument() method
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
-require_once 'PEAR2/Net/RouterOS/Autoload.php';
+require_once 'PEAR2/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
  
@@ -94,7 +94,7 @@ If you don't care about the responses, you can just do something like the follow
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
-require_once 'PEAR2/Net/RouterOS/Autoload.php';
+require_once 'PEAR2/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
  
@@ -122,7 +122,7 @@ One way to get responses is to let PEAR2_Net_RouterOS process any new ones, and 
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
-require_once 'PEAR2/Net/RouterOS/Autoload.php';
+require_once 'PEAR2/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
  
@@ -162,7 +162,7 @@ Instead of extracting responses, you may instead assign responses for a request 
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
-require_once 'PEAR2/Net/RouterOS/Autoload.php';
+require_once 'PEAR2/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
  
@@ -200,7 +200,7 @@ Processing of responses can also be started with Client::completeRequest(). The 
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
-require_once 'PEAR2/Net/RouterOS/Autoload.php';
+require_once 'PEAR2/Autoload.php';
  
 $client = new Client('192.168.0.1', 'admin');
  
