@@ -37,7 +37,7 @@ __Note also that this package is a "beta" according to the [PEAR2 version standa
 If you've decided to not use the PEAR2 channel, but instead install directly from the archive distributed at the project page, you can use
 
 ```sh
-pyrus install /path/to/downloaded/archive.tgz
+php pyrus.phar install /path/to/downloaded/archive.tgz
 ```
 
 If you haven't installed PEAR_Net_Transmitter previously, Pyrus will install the one at the PEAR2 channel (not the bundled version, although the two are equivalent at the time of this writing).
@@ -50,9 +50,19 @@ pear channel-discover pear2.php.net
 ```
 
 and only then install PEAR2_Net_RouterOS with
+
 ```sh
 pear install pear2/PEAR2_Net_RouterOS-alpha
 ```
+
+or
+
+```sh
+pear install -a pear2/PEAR2_Net_RouterOS-alpha
+```
+
+to install optional dependencies as well.
+
 ### Direct PHAR usage
 If you download the ".phar" archive, instead of using the PEAR(2) installer, you can just include the archive, and be ready to go, like for example:
 
