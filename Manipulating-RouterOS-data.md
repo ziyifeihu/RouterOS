@@ -138,14 +138,15 @@ $printRequest = new Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
 $printRequest->setQuery(Query::where('mac-address', '00:00:00:00:00:01'));
 
-$idList = array();
+$idList = '';
 foreach ($client->sendSync($printRequest)->getAllOfType(Response::TYPE_DATA) as $entry) {
-    $idList[] = $entry->getArgument('.id');
+    $idList .= $entry->getArgument('.id') . ',';
 }
-//$idList now contains an array of all targeted entries' IDs.
+$idList = rtrim($idList, ',');
+//$idList now contains a comma separated list of all IDs.
 
 $removeRequest = new Request('/ip/arp/remove');
-$removeRequest->setArgument('numbers', implode(',', $idList));
+$removeRequest->setArgument('numbers', $idList);
 $client->sendSync($removeRequest);
 ?>
 ```
