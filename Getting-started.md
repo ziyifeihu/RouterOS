@@ -69,7 +69,7 @@ include_once 'PEAR2/Autoload.php';
 can be replaced with
 
 ```php
-include_once 'PEAR2_Net_RouterOS-1.0.0b3';
+include_once 'PEAR2_Net_RouterOS-1.0.0b3.phar';
 ```
 
 and then everything should work the same.
