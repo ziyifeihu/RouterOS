@@ -17,10 +17,16 @@ The API service is disabled by default. To enable it, you need to execute
 at a RouterOS terminal. The "address" argument in the command above allows you to limit access to this service only to certain IP addresses. For security's sake, it's better that you limit connections only to the IP address(es) with which PHP will access RouterOS.
 ## Installation
 ### Installation with [Pyrus/PEAR2](http://pear2.php.net/) (recommended)
-Assuming you have [installed Pyrus](http://pear.php.net/manual/en/installationpyrus.introduction.php), you can install PEAR2_Net_RouterOS from the PEAR2 channel with
+Assuming you have [installed Pyrus](http://pear.php.net/manual/en/installationpyrus.introduction.php), you can install PEAR2_Net_RouterOS from the PEAR2 channel with just
 
 ```sh
-pyrus install PEAR2_Net_RouterOS-alpha
+php pyrus.phar install PEAR2_Net_RouterOS-alpha
+```
+
+or, if you want to also get the optional dependencies, you can use
+
+```sh
+php pyrus.phar install -o PEAR2_Net_RouterOS-alpha
 ```
 
 You might notice that the version number of PEAR2_Net_RouterOS suggests it's a beta, and yet we use "-alpha" in the command above. Well, yes, PEAR2_Net_RouterOS is a beta, but it has a dependency to another package - PEAR2_Net_Transmitter - which is an alpha. To avoid getting errors, you need to use "-alpha" until that package reaches a beta.
