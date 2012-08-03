@@ -71,7 +71,7 @@ becomes
 $pingRequest = new Request('/ping address=192.168.0.100');
 ```
 To find out the name of a nameless argument, go to a terminal, and type "?" after the command to see its help. The real names of nameless arguments can be seen in the form "&lt;__argument name__>".
-2. A double quote is the only escapable character in a double quoted string. Everything else is treated literally.
+2. A double quote and a backslash are the only escapable character in a double quoted string. Everything else is treated literally.
 3. The "where" argument on "print" doesn't work. [Use queries](Using-queries) instead, as MikroTik intended.
 4. Arguments without value (a.k.a. "empty arguments") are supported, but to avoid ambiguities between the command's end and the argument list's start, the first argument in the argument list MUST have a value. e.g.
 ```php
@@ -114,7 +114,7 @@ $client->sendAsync($addRequest);
 
 Note that, as in the example above, different asynchronious requests need to have a different "tag", regardless of whether you care about the responses or not. A "tag" in this context is a RouterOS API specific construct that allows clients like PEAR2_Net_RouterOS to keep track of responses coming from multiple requests, since they don't appear in the order of their execution. You can only reuse a tag once you get its final response.
 
-Besides using the Request::setTag() method, you can also set a tag as the second argument of the request's constructor.
+Besides using the Request::setTag() method, you can also set a tag as the third argument of the request's constructor.
 
 #### Loop and extract
 One way to get responses is to let PEAR2_Net_RouterOS process any new ones, and then extract those that interest you. You can start processing with the Client::loop() method. If you've made requests that you know will eventually be finished, you can use Client::loop() without an argument to let processing stop only once all requests have returned their final response. Here's an example that continues from the previous one.
