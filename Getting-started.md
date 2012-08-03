@@ -60,7 +60,7 @@ Instead of using the PEAR(2) installer, you can just extract the contents of the
 If you're installing the unpackaged version (from the respository), you'll have to also [install PEAR2_Net_Transmitter](/pear2/Net_Transmitter/wiki/Getting-started) in one way or another before you can use this package. If you do so, it is reccomended that you use the repository version of PEAR2_Net_Transmitter instead of the packaged one.
 
 ## Usage
-If you use the PHAR archive, every class you attempt to use will automatically be auto loaded with the bundled PEAR2_Autoload. In virtually all places of the documentation, the line
+If you use the PHAR archive, every class you attempt to use will automatically be auto loaded with the bundled PEAR2_Autoload. In virtually all places of this documentation, the line
 
 ```php
 include_once 'PEAR2/Autoload.php';
@@ -71,6 +71,8 @@ can be replaced with
 ```php
 include_once 'PEAR2_Net_RouterOS-1.0.0b3';
 ```
+
+and then everything should work the same.
 
 With any other method, you need to include any PSR-0 compatible autoloader (the bundled PEAR2_Autoload being just one option), and if necessary, register the folder where the PHP files are located. With PEAR2_Autoload, that is only needed when the files are outside the parent folder of Autoload.php's folder, so the code MAY look like:
 
