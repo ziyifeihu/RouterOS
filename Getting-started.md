@@ -72,11 +72,12 @@ can be replaced with
 include_once 'PEAR2_Net_RouterOS-1.0.0b3';
 ```
 
-With any other method, you need to include any PSR-0 compatible autoloader (the bundled PEAR2_Autoload being just one option), and if necessary, register the folder where the PHP files are located. With PEAR2_Autoload, that's not needed, so the code would look like:
+With any other method, you need to include any PSR-0 compatible autoloader (the bundled PEAR2_Autoload being just one option), and if necessary, register the folder where the PHP files are located. With PEAR2_Autoload, that is only needed when the files are outside the parent folder of Autoload.php's folder, so the code MAY look like:
 
 ```php
 <?php
 include_once 'PEAR2/Autoload.php';
+\PEAR2\Autoload::register('/path/to/your/PEAR2/files');
 //Use any PEAR2_Net_RouterOS class
 ```
 
