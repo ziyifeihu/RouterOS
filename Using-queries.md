@@ -12,7 +12,7 @@ To set a query for a request, you need to either set it as a third argument to a
 ```php
 <?php
 namespace PEAR2\Net\RouterOS;
-include_once 'PEAR2/Net/RouterOS/Autoload.php';
+include_once 'PEAR2/Autoload.php';
 $client = new Client('192.168.0.1', 'admin');
  
 $request = new Request('/ip/arp/print');
