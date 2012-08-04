@@ -110,7 +110,8 @@ $client
             ->setArgument('address', '192.168.0.101')
             ->setArgument('mac-address', '00:00:00:00:00:02')
             ->setTag('arp2')
-    )->loop();
+    )
+    ->loop();
 ```
 
 ## \_\_invoke() magic
