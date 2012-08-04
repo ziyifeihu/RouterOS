@@ -115,4 +115,26 @@ $client
 ```
 
 ## \_\_invoke() magic
-Most objects can be invoked as functions, and which point they're like a shorthand for the most common functionality of the object. You can see full details in the API reference, under the \_\_invoke() magic method's description for that object.
+Most objects can be invoked as functions, and which point they're like a shorthand for the most common functionality of the object. You can see full details in the API reference, under the \_\_invoke() magic method's description for that object. Using that, the example above could be written as
+
+```php
+<?php
+namespace PEAR2\Net\RouterOS;
+require_once 'PEAR2/Autoload.php';
+ 
+$client = new Client('192.168.0.1', 'admin');
+ 
+$addRequest = new Request('/ip/arp/add');
+ 
+$addRequest('address', '192.168.0.100');
+$addRequest('mac-address', '00:00:00:00:00:01');
+$addRequest->setTag('arp1');
+$client($addRequest);
+ 
+$addRequest('address', '192.168.0.101');
+$addRequest('mac-address', '00:00:00:00:00:02');
+$addRequest->setTag('arp2');
+$client($addRequest);
+ 
+$client->loop();
+```
