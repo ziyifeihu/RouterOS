@@ -136,5 +136,5 @@ $addRequest('mac-address', '00:00:00:00:00:02');
 $addRequest->setTag('arp2');
 $client($addRequest);
  
-$client->loop();
+$client();
 ```
