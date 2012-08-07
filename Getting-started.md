@@ -20,6 +20,16 @@ The API service in RouterOS is disabled by default. To enable it, you need to ex
 ```
 from a RouterOS terminal. The "address" argument in the command above allows you to limit access to this service only to certain IP addresses. For security's sake, it's better that you limit connections only to the IP address(es) with which PHP will access RouterOS.
 ## Installation
+### Direct PHAR usage
+If you download the ".phar" archive, instead of using the PEAR(2) installer, you can just include the archive, and be ready to go, like for example:
+
+```php
+<?php
+//You may want to include a namespace declaration here
+require_once 'PEAR2_Net_RouterOS-1.0.0b3.phar';
+//Use any PEAR2_Net_RouterOS class from here on
+```
+
 ### Installation with [Pyrus/PEAR2](http://pear2.php.net/) (recommended)
 Assuming you have [installed Pyrus](http://pear.php.net/manual/en/installationpyrus.introduction.php), you can install PEAR2_Net_RouterOS from the PEAR2 channel with just
 
@@ -65,15 +75,6 @@ pear install -a pear2/PEAR2_Net_RouterOS-alpha
 ```
 
 to install optional dependencies as well.
-
-### Direct PHAR usage
-If you download the ".phar" archive, instead of using the PEAR(2) installer, you can just include the archive, and be ready to go, like for example:
-
-```php
-<?php
-require_once 'PEAR2_Net_RouterOS-1.0.0b3.phar';
-//Use any PEAR2_Net_RouterOS class
-```
 
 ### Manual installation
 Instead of using the PEAR(2) installer, you can just download an archive, and extract the contents of the "src" folder wherever you like. To emulate the PEAR(2) installer, you can place the files in a folder that's within your include_path. The packaged archive includes a version of PEAR2_Net_Transmitter, so there's nothing to worry about beyond extracting the archive.
