@@ -2,9 +2,12 @@
 ## Introduction
 RouterOS is the flag product of the company [MikroTik](http://mikrotik.com) and is a powerful router software. One of its many abilities is to allow control over it via an API. This package provides a client for [that API](http://wiki.mikrotik.com/wiki/Manual:API), in turn allowing you to use PHP to control RouterOS hosts.
 ## Requirements
+The requirements to watch out out for are
 * PHP 5.3.0 or later. 
 * A host with RouterOS v3 or later. 
 * Enabled API service on the RouterOS host.
+
+Other requirements are not a problem in most scenarios. For reference, they are:
 * The PCRE and SPL extensions (compiled into PHP by default)
 * [PEAR2_Net_Transmitter](http://pear2.github.com/Net_Transmitter/) (bundled in the archive; installed automatically by Pyrus)
 * [optional] The iconv extension (compiled into PHP by default; required only if you want to use automatic charset convertion)
