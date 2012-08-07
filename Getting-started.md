@@ -6,9 +6,9 @@ RouterOS is the flag product of the company [MikroTik](http://mikrotik.com) and 
 * A host with RouterOS v3 or later. 
 * Enabled API service on the RouterOS host.
 * The PCRE and SPL extensions (compiled into PHP by default)
-* [PEAR2_Net_Transmitter](http://pear2.github.com/Net_Transmitter/) (bundled with the archive; installed automatically by Pyrus)
+* [PEAR2_Net_Transmitter](http://pear2.github.com/Net_Transmitter/) (bundled in the archive; installed automatically by Pyrus)
 * [optional] The iconv extension (compiled into PHP by default; required only if you want to use automatic charset convertion)
-* [optional] [PEAR2_Cache_SHM](http://pear2.github.com/Cache_SHM/) (bundled with the archive; needed only if you use persistent connections; installed by Pyrus if you pass the "-o" flag at installation)
+* [optional] [PEAR2_Cache_SHM](http://pear2.github.com/Cache_SHM/) (bundled in the archive; needed only if you use persistent connections; installed by Pyrus if you pass the "-o" flag at installation)
 * [optional] A PSR-0 compliant autoloader (highly recommended; [PEAR2_Autoload](http://pear2.php.net/PEAR2_Autoload) is one such autoloader that is bundled in the archive and installed by Pyrus if you pass the "-o" flag at installation)
 
 The API service is disabled by default. To enable it, you need to execute 
