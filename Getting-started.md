@@ -21,7 +21,7 @@ The API service in RouterOS is disabled by default. To enable it, you need to ex
 from a RouterOS terminal. The "address" argument in the command above allows you to limit access to this service only to certain IP addresses. For security's sake, it's better that you limit connections only to the IP address(es) with which PHP will access RouterOS.
 ## Installation
 ### Direct PHAR usage
-If you download the ".phar" archive, instead of using the PEAR(2) installer, you can just include the archive, and be ready to go, like for example:
+If you download the ".phar" archive, you can just include the archive, and be ready to go, like for example:
 
 ```php
 <?php
