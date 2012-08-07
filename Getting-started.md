@@ -2,7 +2,7 @@
 ## Introduction
 RouterOS is the flag product of the company [MikroTik](http://mikrotik.com) and is a powerful router software. One of its many abilities is to allow control over it via an API. This package provides a client for [that API](http://wiki.mikrotik.com/wiki/Manual:API), in turn allowing you to use PHP to control RouterOS hosts.
 ## Requirements
-The requirements to watch out out for are
+The requirements to watch out out for are:
 * PHP 5.3.0 or later. 
 * A host with RouterOS v3 or later. 
 * Enabled API service on the RouterOS host.
