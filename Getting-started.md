@@ -14,11 +14,11 @@ Other requirements are not a problem in most scenarios. For reference, they are:
 * [optional] [PEAR2_Cache_SHM](http://pear2.github.com/Cache_SHM/) (bundled in the archive; needed only if you use persistent connections; installed by Pyrus if you pass the "-o" flag at installation)
 * [optional] A PSR-0 compliant autoloader (highly recommended; [PEAR2_Autoload](http://pear2.php.net/PEAR2_Autoload) is one such autoloader that is bundled in the archive and installed by Pyrus if you pass the "-o" flag at installation)
 
-The API service is disabled by default. To enable it, you need to execute 
+The API service in RouterOS is disabled by default. To enable it, you need to execute 
 ```sh
 /ip service set numbers="api" address="0.0.0.0/0" disabled="no"
 ```
-at a RouterOS terminal. The "address" argument in the command above allows you to limit access to this service only to certain IP addresses. For security's sake, it's better that you limit connections only to the IP address(es) with which PHP will access RouterOS.
+from a RouterOS terminal. The "address" argument in the command above allows you to limit access to this service only to certain IP addresses. For security's sake, it's better that you limit connections only to the IP address(es) with which PHP will access RouterOS.
 ## Installation
 ### Installation with [Pyrus/PEAR2](http://pear2.php.net/) (recommended)
 Assuming you have [installed Pyrus](http://pear.php.net/manual/en/installationpyrus.introduction.php), you can install PEAR2_Net_RouterOS from the PEAR2 channel with just
