@@ -5,7 +5,7 @@ RouterOS is the flag product of the company [MikroTik](http://mikrotik.com) and 
 * PHP 5.3.0 or later. 
 * A host with RouterOS v3 or later. 
 * Enabled API service on the RouterOS host.
-* The PCRE and SPL extensions (bundled and enabled by default in PHP; Not sure if you have them? You probably do.)
+* The PCRE and SPL extensions (bundled and enabled by default in PHP; Not sure if you have them? Chances are you do.)
 * [PEAR2_Net_Transmitter](http://pear2.github.com/Net_Transmitter/) (bundled with the PEAR2_Net_RouterOS archive; installed automatically by Pyrus)
 * [optional] The iconv extension (bundled and enabled by default in PHP; required only if you want to use automatic charset convertion)
 * [optional] [PEAR2_Cache_SHM](http://pear2.github.com/Cache_SHM/) (bundled with the archive; needed only if you use persistent connections)
