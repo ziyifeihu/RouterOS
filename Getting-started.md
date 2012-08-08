@@ -111,7 +111,7 @@ With any other method, you need to include any PSR-0 compatible autoloader (the 
 ```php
 <?php
 include_once 'PEAR2/Autoload.php';
-\PEAR2\Autoload::register('/path/to/your/PEAR2/files');
+\PEAR2\Autoload::initialize('/path/to/your/PEAR2/files');
 //Use any PEAR2_Net_RouterOS class
 ```
 
