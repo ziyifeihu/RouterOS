@@ -140,7 +140,7 @@ $client();
 ```
 
 ## I wish...
-There are currently [an RFC about function chaining](https://wiki.php.net/rfc/fcallfcall), with a patch in it. Unfortunately, the patch is not yet implemented in a stock PHP. If this patch is ever implemented (or if you're willing to compile PHP yourself), you'd be able to write some extremely fancy code. The above for example could be rewritten as
+There is currently [an RFC about function chaining](https://wiki.php.net/rfc/fcallfcall), with a patch in it. Unfortunately, the patch is not yet implemented in a stock PHP. If this patch is ever implemented (or if you're willing to compile PHP yourself), you'd be able to write some extremely fancy code. The above for example could be rewritten as
 
 ```php
 <?php
