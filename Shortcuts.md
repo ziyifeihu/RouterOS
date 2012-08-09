@@ -138,3 +138,26 @@ $client($addRequest);
  
 $client();
 ```
+
+## I wish...
+There are currently [an RFC about function chaining](https://wiki.php.net/rfc/fcallfcall), with a patch in it. Unfortunately, the patch is not yet implemented in a stock PHP. If this patch is ever implemented (or if you're willing to compile PHP yourself), you'd be able to write some extremely fancy code. The above for example could be rewritten as
+
+```php
+<?php
+namespace PEAR2\Net\RouterOS;
+require_once 'PEAR2/Autoload.php';
+ 
+(new Client('192.168.0.1', 'admin'))
+    (
+        ($addRequest = new Request('/ip/arp/add'))
+        ('address', '192.168.0.100')
+        ('mac-address', '00:00:00:00:00:01')
+        ->setTag('arp1')
+    )
+    (
+        $addRequest
+        ('address', '192.168.0.101')
+        ('mac-address', '00:00:00:00:00:02');
+        ->setTag('arp2');
+    )
+ ();
