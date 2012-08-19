@@ -16,13 +16,13 @@ Other requirements are not a problem in most scenarios. For reference, they are:
 * [optional] A PSR-0 compliant autoloader (highly recommended; [PEAR2_Autoload](http://pear2.php.net/PEAR2_Autoload) is one such autoloader that is bundled in the archive and installed by Pyrus if you pass the "-o" flag at installation)
 
 ### Notes
-The API service in RouterOS is disabled by default. To enable it, you need to execute 
+* The API service in RouterOS is disabled by default. To enable it, you need to execute 
 ```sh
 /ip service set numbers="api" address="0.0.0.0/0" disabled="no"
 ```
 from a RouterOS terminal. The "address" argument in the command above allows you to limit access to this service only to certain IP addresses. For security's sake, it's better that you limit connections only to the IP address(es) with which PHP will access RouterOS.
 
-Many shared web hosts choose to disable stream_socket_client(), and it's close relative fsockopen() as well. When they don't disable them, they often render them useless by forbidding outgoing connections with the server's firewall. A frequently possible workaround is to use the API service on a different, more popular port, such as 21, 80, or something similar. If even that doesn't work, you need to contact your host. If you're on your own server, and fail to connect, configure your server's firewall so that it enables PHP to make outgoing connections (at least to the ip:port combo of where your router uses the API service).
+* Many shared web hosts choose to disable stream_socket_client(), and it's close relative fsockopen() as well. When they don't disable them, they often render them useless by forbidding outgoing connections with the server's firewall. A frequently possible workaround is to use the API service on a different, more popular port, such as 21, 80, or something similar. If even that doesn't work, you need to contact your host. If you're on your own server, and fail to connect, configure your server's firewall so that it enables PHP to make outgoing connections (at least to the ip:port combo of where your router uses the API service).
 
 ## Installation
 ### Direct PHAR usage
