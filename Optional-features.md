@@ -23,6 +23,8 @@ namespace PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
 //Ensuring our text on screen in UTF-8 too.
+//Note that for this to work, the PHP file itself must also be encoded with UTF-8.
+//If you're using Notepad, you can ensure that from the "Encoding" drop down at the "Save As.." menu.
 header('Content-Type: text/html;charset=UTF-8');
 
 $client = new Client('192.168.0.1', 'admin');
