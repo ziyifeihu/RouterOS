@@ -6,7 +6,7 @@ The requirements to watch out for are:
 * PHP 5.3.0 or later. 
 * A host with RouterOS v3 or later. 
 * Enabled API service on the RouterOS host.
-* Enabled outgoing connections with [stream_socket_client()](http://php.net/stream_socket_client) (the web server's firewall may block PHP, and many shared web hosts choose to disable that function, or render it useless by forbidding outgoing connections with their firewall).
+* Enabled outgoing connections with [stream_socket_client()](http://php.net/stream_socket_client).
 
 Other requirements are not a problem in most scenarios. For reference, they are:
 * The PCRE and SPL extensions (compiled into PHP by default)
@@ -15,11 +15,15 @@ Other requirements are not a problem in most scenarios. For reference, they are:
 * [optional] [PEAR2_Cache_SHM](http://pear2.github.com/Cache_SHM/) (bundled in the archive; needed only if you use persistent connections; installed by Pyrus if you pass the "-o" flag at installation)
 * [optional] A PSR-0 compliant autoloader (highly recommended; [PEAR2_Autoload](http://pear2.php.net/PEAR2_Autoload) is one such autoloader that is bundled in the archive and installed by Pyrus if you pass the "-o" flag at installation)
 
+### Notes
 The API service in RouterOS is disabled by default. To enable it, you need to execute 
 ```sh
 /ip service set numbers="api" address="0.0.0.0/0" disabled="no"
 ```
 from a RouterOS terminal. The "address" argument in the command above allows you to limit access to this service only to certain IP addresses. For security's sake, it's better that you limit connections only to the IP address(es) with which PHP will access RouterOS.
+
+Many shared web hosts choose to disable stream_socket_client(), and it's close relative fsockopen() as well. When they don't disable them, they often render them useless by forbidding outgoing connections with the web server's firewall. A frequently possible workaround is to use the API service on a different, more popular port, such as 21, 80, or something similar. If even that doesn't work, you need to contact your host. If you're on your own server, and fail to connect, enable PHP to make outgoing connections (at least to the ip:port combo of where your router uses the API service).
+
 ## Installation
 ### Direct PHAR usage
 If you download the ".phar" archive, you can just include the archive, and be ready to go, like for example:
