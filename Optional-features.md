@@ -41,7 +41,7 @@ $client->sendSync(new Request('/queue/simple/add name=Йес'));
 
 //Let's assume you already have another queue list entry with the name "ягода"
 echo $client->sendSync(
-    new Request('/queue/simple/print', Query::where('name', 'ягода')
+    new Request('/queue/simple/print', Query::where('name', 'ягода'))
 )->getArgument('name');
 //Shoud output "ягода" in the exact same fashion as you see it here, and in Winbox.
 ```
