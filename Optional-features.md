@@ -53,7 +53,7 @@ PEAR2_Net_RouterOS offers persistent connections, which in essence provides the 
 
 This may reduce the required bandwidth between your web server and your router, and should also take off some of the load from the router.
 
-It's important to note that unlike the MySQLi equivalent, persistent connections come with a penalty of their own. A penalty on the web server. Because multiple requests can come in at the same time, and they're all "meshed", PEAR2_Net_RouterOS needs to marshal the different requests and responses to each Client instance, which is done measurably slower in PHP than in C.
+It's important to note that unlike the MySQLi equivalent, these persistent connections come with a penalty of their own - A penalty on the web server. Because multiple requests can come in at the same time, and they're all "meshed", PEAR2_Net_RouterOS needs to marshal the different requests and responses to each Client instance, which is done measurably slower in PHP than in C.
 
 If you have a powerful enough web server (as in, you're happy with the web server's performance of non-persistent connections), and a not-so-powerful router (as is typically the case), this trade off is probably well worth it.
 
