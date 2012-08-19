@@ -15,7 +15,7 @@ On UNIX, you can use ```nl_langinfo(CODESET);``` to get the charset of your curr
 
 Your best bet on Windows is to create an empty HTML file, without any meta tags, and run it locally, without an HTTP server, using IE. Right click, and go to "Encoding", and you should see your regional settings' charset being the one selected with a radio button. You may not see the exact charset though, but you'll at least see its family (ISO, Windows, KOIR, etc.), which should narrow down your search to one of the [common character encodings](http://en.wikipedia.org/wiki/Character_encoding#Common_character_encodings).
 
-Let's say that we find our charset pair. In the example below, we'll assume what the investigation (using the above instructions) revealed "windows-1251", which is what we would specify. If you're experienced enough developer, you're probably writing your application using "UTF-8", so that's what we'll use as our web server's charset. This is done like so:
+Let's say that we find our charset pair. In the example below, we'll assume that what the investigation (using the above instructions) revealed was "windows-1251", which is what we would specify as the charset our content is stored in. If you're experienced enough developer, you're probably writing your application using "UTF-8", so that's what we'll use as our web server's charset. This is done like so:
 
 ```php
 <?php
