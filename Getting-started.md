@@ -98,6 +98,7 @@ __Note: If you plan to contribute to this project, please use GitHub's "fork" fe
 
 ## Usage
 If you use the PHAR archive, every class you attempt to use will automatically be auto loaded with the bundled PEAR2_Autoload. In virtually all places of this documentation, the line
+
 ```php
 include_once 'PEAR2/Autoload.php';
 ```
