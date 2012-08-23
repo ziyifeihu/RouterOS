@@ -98,7 +98,6 @@ __Note: If you plan to contribute to this project, please use GitHub's "fork" fe
 
 ## Usage
 If you use the PHAR archive, every class you attempt to use will automatically be auto loaded with the bundled PEAR2_Autoload. In virtually all places of this documentation, the line
-
 ```php
 include_once 'PEAR2/Autoload.php';
 ```
@@ -170,4 +169,4 @@ If the package doesn't work, you can download the "phar" file (maybe rename it f
 When you do that, you should see the version of the package, along with some messages indicating if you're missing any of the requirements. If all requirements are present, you'll see suggestions as to what may go wrong when connecting to a RouterOS host, and suggestions on how to fix it.
 
 ## Further information
-The [rest of this documentation](../wiki) contains more tutorials and examples on how to use this package. If you have trouble doing a certain thing with the RouterOS API, the best place to ask for help is [MikroTik's forum on scripting](http://forum.mikrotik.com/viewforum.php?f=9). If you believe you've found a bug in this package or miss a certain feature, don't hesitate to [submit an issue](../issues/new) for it. 
+The [rest of this documentation](../wiki) contains more tutorials and examples on how to use this package. If you have trouble doing a certain thing with the RouterOS API, the best place to ask for help is [MikroTik's forum on scripting](http://forum.mikrotik.com/viewforum.php?f=9). If you believe you've found a bug in this package or miss a certain feature, don't hesitate to [submit an issue](../issues/new) for it.
