@@ -7,7 +7,7 @@ You were probably tempted to write in your native language from within Winbox. Y
 
 All of this is because the charsets are different in all of these environments - Winbox uses your regional settings' charset, the terminal shows non ANSI characters with their code points, and the API gets the raw data (without any charset directions).
 
-PEAR2_Net_RouterOS allows you to tell it the charset your content is stored in, and the charset that your web server content is in. After you specify those, the conversion between those two is done automatically.
+PEAR2_Net_RouterOS allows you to tell it the charset your content is stored in, and the charset that your web server content is in. After you specify those two, the conversions between them are done automatically.
 
 But what charset pair to use? Unfortunately, that may be difficult to answer, making this the hardest obstacle for this feature.
 
