@@ -15,7 +15,7 @@ $client = new Client('192.168.0.1', 'admin');
  
 $responses = $client->sendSync(new Request('/ip/arp/print'));
  
-foreach($responses as $response) {
+foreach ($responses as $response) {
     if ($response->getType() === Response::TYPE_DATA) {
         echo 'IP: ', $response->getArgument('address'),
             ' MAC: ', $response->getArgument('mac-address'),
@@ -141,10 +141,10 @@ $client->sendAsync($addRequest);
 $client->loop();
  
 $responses = $client->extractNewResponses();
-foreach($responses as $response) {
+foreach ($responses as $response) {
     if ($responses->getType() !== Response::TYPE_FINAL) {
         echo "Error with {$response->getTag()}!\n";
-    }else {
+    } else {
         echo "OK with {$response->getTag()}!\n";
     }
 }
@@ -216,13 +216,13 @@ $addRequest->setArgument('mac-address', '00:00:00:00:00:02');
 $addRequest->setTag('arp2');
 $client->sendAsync($addRequest);
  
-foreach($client->completeRequest('arp1') as $response) {
+foreach ($client->completeRequest('arp1') as $response) {
     if ($response->getType() === Response::TYPE_ERROR) {
         echo "Error response for 'arp1'!\n";
     }
 }
  
-foreach($client->completeRequest('arp2') as $response) {
+foreach ($client->completeRequest('arp2') as $response) {
     if ($response->getType() === Response::TYPE_ERROR) {
         echo "Error response for 'arp2'!\n";
     }
