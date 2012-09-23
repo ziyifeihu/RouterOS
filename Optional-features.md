@@ -45,15 +45,15 @@ $client->sendSync(new Request('/queue/simple/add name=Йес'));
 echo $client->sendSync(
     new Request('/queue/simple/print', Query::where('name', 'ягода'))
 )->getArgument('name');
-//Shoud output "ягода" in the exact same fashion as you see it here, and in Winbox.
+//Should output "ягода" in the exact same fashion as you see it here, and in Winbox.
 ```
 
 ## Persistent connections
-PEAR2_Net_RouterOS offers persistent connections, which in essence provides the exact same thing as the [MySQLi equivalent](http://php.net/manual/en/mysqli.persistconns.php) - all of your PHP requests to the same username:password@hostname:port combo will share the same TCP connection to the router.
+PEAR2_Net_RouterOS offers persistent connections, which in essence provides the exact same thing as the [database equivalent](http://php.net/manual/en/features.persistent-connections.php) - all of your PHP requests to the same username:password@hostname:port combo will share the same TCP connection to the router.
 
 This may reduce the required bandwidth between your web server and your router, and should also take off some of the load from the router.
 
-It's important to note that unlike the MySQLi equivalent, these persistent connections come with a penalty of their own - A penalty on the web server. Because multiple requests can come in at the same time, and they're all "meshed", PEAR2_Net_RouterOS needs to marshal the different requests and responses to each Client instance, which is done measurably slower in PHP than in C. How much slower? About a few microseconds per router message (i.e. API sentence). A negligible penalty for the amount of work done during a single PHP request, but accumulated when you have lots of simultanious PHP requests, which is when you'd consider using persistent connections to begin with.
+It's important to note that unlike the database equivalent, these persistent connections come with a penalty of their own - A penalty on the web server. Because multiple requests can come in at the same time, and they're all "meshed", PEAR2_Net_RouterOS needs to marshal the different requests and responses to each Client instance, which is done measurably slower in PHP than in C. How much slower? About a few microseconds per router message (i.e. API sentence). A negligible penalty for the amount of work done during a single PHP request, but accumulated when you have lots of simultaneous PHP requests, which is when you'd consider using persistent connections to begin with.
 
 If you have a powerful enough web server (as in, you're happy with the web server's performance of non-persistent connections), and a not-so-powerful router (e.g. a cheap x86 PC or a weaker RouterBOARD), this trade off is probably well worth it. In other scenarios, YMMV.
 
