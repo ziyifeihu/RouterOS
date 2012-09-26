@@ -49,7 +49,7 @@ echo $client->sendSync(
 ```
 
 ## Persistent connections
-PEAR2_Net_RouterOS offers persistent connections, which in essence provides the exact same thing as the [database equivalent](http://php.net/manual/en/features.persistent-connections.php) - all of your PHP requests to the same username:password@hostname:port combo will share the same TCP connection to the router.
+PEAR2_Net_RouterOS offers persistent connections, which in essence provides the exact same thing as the [database equivalent](http://php.net/manual/en/features.persistent-connections.php) - all PHP requests during the PHP process' life cycle will share the same TCP connection for each username:password@hostname:port combo.
 
 This may reduce the required bandwidth between your web server and your router, and should also take off some of the load from the router.
 
