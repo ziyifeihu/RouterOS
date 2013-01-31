@@ -162,7 +162,9 @@ $client = new Ros('example.com', 'admin');
 ?>
 ```
 
-Note that namespace declarations must appear before any includes. They must in fact be the first thing in a PHP file. The rest of the examples in this documentation will be setting PEAR2\Net\RouterOS as the default namespace.
+Note that namespace declarations must appear before any includes. They must in fact be the first thing in a PHP file.
+
+The rest of the examples in this documentation will be "use"-ing the PEAR2\Net\RouterOS namespace.
 
 ## Troubleshooting
 If the package doesn't work, you can download the "phar" file (maybe rename it from ".phar" to ".php"), and run it in your browser or command line.
