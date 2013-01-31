@@ -8,22 +8,22 @@ The setArgument(), setTag() and setQuery() from the Request object all return th
 
 ```php
 <?php
-namespace PEAR2\Net\RouterOS;
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.0.1', 'admin');
  
-$addRequest = new Request('/ip/arp/add');
+$addRequest = new RouterOS\Request('/ip/arp/add');
  
 $addRequest->setArgument('address', '192.168.0.100');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:01');
-if ($client->sendSync($addRequest)->getType() !== Response::TYPE_FINAL) {
+if ($client->sendSync($addRequest)->getType() !== RouterOS\Response::TYPE_FINAL) {
     die("Error when creating ARP entry for '192.168.0.100'");
 }
  
 $addRequest->setArgument('address', '192.168.0.101');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:02');
-if ($client->sendSync($addRequest)->getType() !== Response::TYPE_FINAL) {
+if ($client->sendSync($addRequest)->getType() !== RouterOS\Response::TYPE_FINAL) {
     die("Error when creating ARP entry for '192.168.0.101'");
 }
  
@@ -35,18 +35,18 @@ as
 
 ```php
 <?php
-namespace PEAR2\Net\RouterOS;
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.0.1', 'admin');
  
-$addRequest = new Request('/ip/arp/add');
+$addRequest = new RouterOS\Request('/ip/arp/add');
 
 if ($client->sendSync(
     $addRequest
         ->setArgument('address', '192.168.0.100')
         ->setArgument('mac-address', '00:00:00:00:00:01')
-    )->getType() !== Response::TYPE_FINAL
+    )->getType() !== RouterOS\Response::TYPE_FINAL
 ) {
     die("Error when creating ARP entry for '192.168.0.100'");
 }
@@ -55,7 +55,7 @@ if ($client->sendSync(
     $addRequest
         ->setArgument('address', '192.168.0.101')
         ->setArgument('mac-address', '00:00:00:00:00:02')
-    )->getType() !== Response::TYPE_FINAL
+    )->getType() !== RouterOS\Response::TYPE_FINAL
 ) {
     die("Error when creating ARP entry for '192.168.0.101'");
 }
@@ -68,12 +68,12 @@ In addition to those, the removeAllArguments() returns the request object too. C
 
 ```php
 <?php
-namespace PEAR2\Net\RouterOS;
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.0.1', 'admin');
  
-$addRequest = new Request('/ip/arp/add');
+$addRequest = new RouterOS\Request('/ip/arp/add');
  
 $addRequest->setArgument('address', '192.168.0.100');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:01');
@@ -91,12 +91,12 @@ could be written as
 
 ```php
 <?php
-namespace PEAR2\Net\RouterOS;
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.0.1', 'admin');
  
-$addRequest = new Request('/ip/arp/add');
+$addRequest = new RouterOS\Request('/ip/arp/add');
 
 $client
     ->sendAsync(
@@ -119,12 +119,12 @@ Most objects can be invoked as functions, and which point they're like a shortha
 
 ```php
 <?php
-namespace PEAR2\Net\RouterOS;
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.0.1', 'admin');
  
-$addRequest = new Request('/ip/arp/add');
+$addRequest = new RouterOS\Request('/ip/arp/add');
  
 $addRequest('address', '192.168.0.100');
 $addRequest('mac-address', '00:00:00:00:00:01');
@@ -144,12 +144,12 @@ There is currently [an RFC about function chaining](https://wiki.php.net/rfc/fca
 
 ```php
 <?php
-namespace PEAR2\Net\RouterOS;
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-(new Client('192.168.0.1', 'admin'))
+(new RouterOS\Client('192.168.0.1', 'admin'))
     (
-        ($addRequest = new Request('/ip/arp/add'))
+        ($addRequest = new RouterOS\Request('/ip/arp/add'))
         ('address', '192.168.0.100')
         ('mac-address', '00:00:00:00:00:01')
         ->setTag('arp1')
