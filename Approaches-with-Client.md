@@ -8,15 +8,15 @@ The easiest approach in using PEAR2_Net_RouterOS is to connect, send a request, 
 If the request you want to send is just a simple command with no arguments, the easiest way is to pass it right there at the Client::sendSync() method, like this:
 ```php
 <?php
-namespace PEAR2\Net\RouterOS;
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.0.1', 'admin');
  
-$responses = $client->sendSync(new Request('/ip/arp/print'));
+$responses = $client->sendSync(new RouterOS\Request('/ip/arp/print'));
  
 foreach ($responses as $response) {
-    if ($response->getType() === Response::TYPE_DATA) {
+    if ($response->getType() === RouterOS\Response::TYPE_DATA) {
         echo 'IP: ', $response->getArgument('address'),
             ' MAC: ', $response->getArgument('mac-address'),
             "\n";
@@ -37,22 +37,22 @@ To add arguments to a command, you need to use the Request::setArgument() method
 
 ```php
 <?php
-namespace PEAR2\Net\RouterOS;
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.0.1', 'admin');
  
-$addRequest = new Request('/ip/arp/add');
+$addRequest = new RouterOS\Request('/ip/arp/add');
  
 $addRequest->setArgument('address', '192.168.0.100');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:01');
-if ($client->sendSync($addRequest)->getType() !== Response::TYPE_FINAL) {
+if ($client->sendSync($addRequest)->getType() !== RouterOS\Response::TYPE_FINAL) {
     die("Error when creating ARP entry for '192.168.0.100'");
 }
  
 $addRequest->setArgument('address', '192.168.0.101');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:02');
-if ($client->sendSync($addRequest)->getType() !== Response::TYPE_FINAL) {
+if ($client->sendSync($addRequest)->getType() !== RouterOS\Response::TYPE_FINAL) {
     die("Error when creating ARP entry for '192.168.0.101'");
 }
  
@@ -64,26 +64,26 @@ You can also enter the arguments with a shell syntax at the request constructor,
 
 1. Nameless arguments are not supported. You have to explicitly specify the argument names. This is optional in shell, but is required by the API protocol. e.g.
 ```php
-$pingRequest = new Request('/ping 192.168.0.100');
+$pingRequest = new RouterOS\Request('/ping 192.168.0.100');
 ```
 becomes
 ```php
-$pingRequest = new Request('/ping address=192.168.0.100');
+$pingRequest = new RouterOS\Request('/ping address=192.168.0.100');
 ```
 To find out the name of a nameless argument, go to a terminal, and type "?" after the command to see its help. The real names of nameless arguments can be seen in the form "&lt; __argument name__ >".
 2. A double quote and a backslash are the only escapable characters in a double quoted string. Everything else is treated literally.
 3. The "where" argument on "print" doesn't work. [Use queries](Using-queries) instead, as MikroTik intended.
 4. Arguments without value (a.k.a. "empty arguments") are supported, but to avoid ambiguities between the command's end and the argument list's start, the first argument in the argument list MUST have a value. e.g.
 ```php
-$printRequest = new Request('/ip arp print file="ARP list prinout.txt" detail');
+$printRequest = new RouterOS\Request('/ip arp print file="ARP list prinout.txt" detail');
 ```
 is allowed, but if you write
 ```php
-$printRequest = new Request('/ip arp print detail file="ARP list prinout.txt"');
+$printRequest = new RouterOS\Request('/ip arp print detail file="ARP list prinout.txt"');
 ```
 you'll be calling the *command* "ip/arp/print/detail" with a "file" argument. Because there is no "detail" command, you'll get an error. If you need to use only empty arguments, you can assign an empty string to the first one, e.g.
 ```php
-$printRequest = new Request('/ip arp print detail=""');
+$printRequest = new RouterOS\Request('/ip arp print detail=""');
 ```
 
 ### Asynchronous requests
@@ -93,12 +93,12 @@ You may want to deal with the responses from commands later instead of right aft
 If you don't care about the responses, you can just do something like the following
 ```php
 <?php
-namespace PEAR2\Net\RouterOS;
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.0.1', 'admin');
  
-$addRequest = new Request('/ip/arp/add');
+$addRequest = new RouterOS\Request('/ip/arp/add');
  
 $addRequest->setArgument('address', '192.168.0.100');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:01');
@@ -121,12 +121,12 @@ One way to get responses is to let PEAR2_Net_RouterOS process any new ones, and 
 
 ```php
 <?php
-namespace PEAR2\Net\RouterOS;
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.0.1', 'admin');
  
-$addRequest = new Request('/ip/arp/add');
+$addRequest = new RouterOS\Request('/ip/arp/add');
  
 $addRequest->setArgument('address', '192.168.0.100');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:01');
@@ -142,7 +142,7 @@ $client->loop();
  
 $responses = $client->extractNewResponses();
 foreach ($responses as $response) {
-    if ($responses->getType() !== Response::TYPE_FINAL) {
+    if ($responses->getType() !== RouterOS\Response::TYPE_FINAL) {
         echo "Error with {$response->getTag()}!\n";
     } else {
         echo "OK with {$response->getTag()}!\n";
@@ -161,10 +161,10 @@ Instead of extracting responses, you may instead assign responses for a request 
 
 ```php
 <?php
-namespace PEAR2\Net\RouterOS;
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.0.1', 'admin');
  
 //Custom function, defined specifically for the example
 function responseHandler($response) {
@@ -173,7 +173,7 @@ function responseHandler($response) {
     }
 }
  
-$addRequest = new Request('/ip/arp/add');
+$addRequest = new RouterOS\Request('/ip/arp/add');
  
 $addRequest->setArgument('address', '192.168.0.100');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:01');
@@ -199,12 +199,12 @@ Processing of responses can also be started with Client::completeRequest(). The 
 
 ```php
 <?php
-namespace PEAR2\Net\RouterOS;
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.0.1', 'admin');
  
-$addRequest = new Request('/ip/arp/add');
+$addRequest = new RouterOS\Request('/ip/arp/add');
  
 $addRequest->setArgument('address', '192.168.0.100');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:01');
@@ -217,13 +217,13 @@ $addRequest->setTag('arp2');
 $client->sendAsync($addRequest);
  
 foreach ($client->completeRequest('arp1') as $response) {
-    if ($response->getType() === Response::TYPE_ERROR) {
+    if ($response->getType() === RouterOS\Response::TYPE_ERROR) {
         echo "Error response for 'arp1'!\n";
     }
 }
  
 foreach ($client->completeRequest('arp2') as $response) {
-    if ($response->getType() === Response::TYPE_ERROR) {
+    if ($response->getType() === RouterOS\Response::TYPE_ERROR) {
         echo "Error response for 'arp2'!\n";
     }
 }
