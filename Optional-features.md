@@ -19,7 +19,7 @@ Let's say that we find our charset pair. In the example below, we'll assume that
 
 ```php
 <?php
-namespace PEAR2\Net\RouterOS;
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
 //Ensuring our text on screen in UTF-8 too.
@@ -27,13 +27,13 @@ require_once 'PEAR2/Autoload.php';
 //If you're using Notepad, you can ensure that from the "Encoding" drop down at the "Save As..." dialog.
 header('Content-Type: text/html;charset=UTF-8');
 
-$client = new Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.0.1', 'admin');
 
 //Here's where we specify the charset pair.
 $client->setCharset(
     array(
-        Communicator::CHARSET_REMOTE => 'windows-1251',
-        Communicator::CHARSET_LOCAL  => 'UTF-8'
+        RouterOS\Communicator::CHARSET_REMOTE => 'windows-1251',
+        RouterOS\Communicator::CHARSET_LOCAL  => 'UTF-8'
     )
 );
 
@@ -43,7 +43,7 @@ $client->sendSync(new Request('/queue/simple/add name=Йес'));
 
 //Let's assume you already have another queue list entry with the name "ягода"
 echo $client->sendSync(
-    new Request('/queue/simple/print', Query::where('name', 'ягода'))
+    new RRouterOS\equest('/queue/simple/print', RouterOS\Query::where('name', 'ягода'))
 )->getArgument('name');
 //Should output "ягода" in the exact same fashion as you see it here, and in Winbox.
 ```
