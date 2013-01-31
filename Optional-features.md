@@ -37,13 +37,13 @@ $client->setCharset(
     )
 );
 
-$client->sendSync(new Request('/queue/simple/add name=Йес'));
+$client->sendSync(new RouterOS\Request('/queue/simple/add name=Йес'));
 //"Йес" should appear in the exact same way in Winbox now,
 //assuming your Windows' regional settings use this charset.
 
 //Let's assume you already have another queue list entry with the name "ягода"
 echo $client->sendSync(
-    new RRouterOS\equest('/queue/simple/print', RouterOS\Query::where('name', 'ягода'))
+    new RouterOS\Request('/queue/simple/print', RouterOS\Query::where('name', 'ягода'))
 )->getArgument('name');
 //Should output "ягода" in the exact same fashion as you see it here, and in Winbox.
 ```
