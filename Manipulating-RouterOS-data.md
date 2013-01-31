@@ -11,14 +11,14 @@ For example, if you were interested in getting the MAC address of a certain "arp
 
 ```php
 <?php
-namespace PEAR2\Net\RouterOS;
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.0.1', 'admin');
 
-$printRequest = new Request('/ip/arp/print');
+$printRequest = new RouterOS\Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', 'mac-address');
-$printRequest->setQuery(Query::where('address', '192.168.0.100'));
+$printRequest->setQuery(RouterOS\Query::where('address', '192.168.0.100'));
 $mac = $client->sendSync($printRequest)->getArgument('mac-address');
 //$mac now conains the MAC address for the IP 192.168.0.100
 ?>
@@ -37,18 +37,18 @@ To delete an entry in the ARP list that has a comment saying "my", we'd do:
 
 ```php
 <?php
-namespace PEAR2\Net\RouterOS;
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.0.1', 'admin');
 
-$printRequest = new Request('/ip/arp/print');
+$printRequest = new RouterOS\Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
-$printRequest->setQuery(Query::where('comment', 'my'));
+$printRequest->setQuery(RouterOS\Query::where('comment', 'my'));
 $id = $client->sendSync($printRequest)->getArgument('.id');
 //$id now contains the ID of the entry we're targeting
 
-$removeRequest = new Request('/ip/arp/remove');
+$removeRequest = new RouterOS\Request('/ip/arp/remove');
 $removeRequest->setArgument('numbers', $id);
 $client->sendSync($removeRequest);
 ?>
@@ -59,18 +59,18 @@ If we wanted to change the comment of an entry, we would do something like:
 
 ```php
 <?php
-namespace PEAR2\Net\RouterOS;
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.0.1', 'admin');
 
-$printRequest = new Request('/ip/arp/print');
+$printRequest = new RouterOS\Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
-$printRequest->setQuery(Query::where('comment', 'my'));
+$printRequest->setQuery(RouterOS\Query::where('comment', 'my'));
 $id = $client->sendSync($printRequest)->getArgument('.id');
 //$id now contains the ID of the entry we're targeting
 
-$setRequest = new Request('/ip/arp/set');
+$setRequest = new RouterOS\Request('/ip/arp/set');
 $setRequest->setArgument('numbers', $id);
 $setRequest->setArgument('comment', 'new comment');
 $client->sendSync($setRequest);
@@ -84,18 +84,18 @@ The following example removes the comment from an ARP entry:
 
 ```php
 <?php
-namespace PEAR2\Net\RouterOS;
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.0.1', 'admin');
 
-$printRequest = new Request('/ip/arp/print');
+$printRequest = new RouterOS\Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
-$printRequest->setQuery(Query::where('comment', 'my'));
+$printRequest->setQuery(RouterOS\Query::where('comment', 'my'));
 $id = $client->sendSync($printRequest)->getArgument('.id');
 //$id now contains the ID of the entry we're targeting
 
-$unsetRequest = new Request('/ip/arp/unset');
+$unsetRequest = new RouterOS\Request('/ip/arp/unset');
 $unsetRequest->setArgument('numbers', $id);
 $unsetRequest->setArgument('value-name', 'comment');
 $client->sendSync($unsetRequest);
@@ -107,18 +107,18 @@ The following example uses the "disable" command to disable an ARP entry. Analog
 
 ```php
 <?php
-namespace PEAR2\Net\RouterOS;
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.0.1', 'admin');
 
-$printRequest = new Request('/ip/arp/print');
+$printRequest = new RouterOS\Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
-$printRequest->setQuery(Query::where('comment', 'my'));
+$printRequest->setQuery(RouterOS\Query::where('comment', 'my'));
 $id = $client->sendSync($printRequest)->getArgument('.id');
 //$id now contains the ID of the entry we're targeting
 
-$disableRequest = new Request('/ip/arp/disable');
+$disableRequest = new RouterOS\Request('/ip/arp/disable');
 $disableRequest->setArgument('numbers', $id);
 $client->sendSync($disableRequest);
 ?>
@@ -129,23 +129,23 @@ Keep in mind the "numbers" argument accepts a list - a comma separated list to b
 
 ```php
 <?php
-namespace PEAR2\Net\RouterOS;
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.0.1', 'admin');
 
-$printRequest = new Request('/ip/arp/print');
+$printRequest = new RouterOS\Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
-$printRequest->setQuery(Query::where('mac-address', '00:00:00:00:00:01'));
+$printRequest->setQuery(RouterOS\Query::where('mac-address', '00:00:00:00:00:01'));
 
 $idList = '';
-foreach ($client->sendSync($printRequest)->getAllOfType(Response::TYPE_DATA) as $entry) {
+foreach ($client->sendSync($printRequest)->getAllOfType(RouterOS\Response::TYPE_DATA) as $entry) {
     $idList .= $entry->getArgument('.id') . ',';
 }
 $idList = rtrim($idList, ',');
 //$idList now contains a comma separated list of all IDs.
 
-$removeRequest = new Request('/ip/arp/remove');
+$removeRequest = new RouterOS\Request('/ip/arp/remove');
 $removeRequest->setArgument('numbers', $idList);
 $client->sendSync($removeRequest);
 ?>
