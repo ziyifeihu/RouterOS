@@ -11,7 +11,7 @@ PEAR2_Net_RouterOS allows you to tell it the charset your content is stored in, 
 
 But what charset pair to use?
 
-On UNIX, you can use ```nl_langinfo(CODESET);``` to get the charset of your current locale settings, but you can't do the same on Windows, and there's no easily accessible place in the Windows GUI where you can view your current charset either.
+On UNIX, you can use ```nl_langinfo(CODESET);``` from PHP to get the charset of your current locale settings, but you can't do the same on Windows, and there's no easily accessible place in the Windows GUI where you can view your current charset either.
 
 For Windows, check out "Control Panel > Region (and Language Settings) > Administrative > Language for non-Unicode programs". Then find that language in [this table](http://msdn.microsoft.com/en-us/goglobal/bb896001.aspx). The "ANSI codepage" column is the charset you're looking for. That is, the charset is "windows-XXXX" where "XXXX" is what that column says.
 
