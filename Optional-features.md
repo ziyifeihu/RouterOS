@@ -9,11 +9,11 @@ All of this is because the charsets are different in all of these environments -
 
 PEAR2_Net_RouterOS allows you to tell it the charset your content is stored in, and the charset that your web server content is in. After you specify those two, the conversions between them are done automatically.
 
-But what charset pair to use? Unfortunately, that may be difficult to answer, making this the hardest obstacle for this feature.
+But what charset pair to use?
 
 On UNIX, you can use ```nl_langinfo(CODESET);``` to get the charset of your current locale settings, but you can't do the same on Windows, and there's no easily accessible place in the Windows GUI where you can view your current charset either.
 
-Your best bet on Windows is to create an empty HTML file, without any meta tags, and run it locally, without an HTTP server, using IE. Right click, and go to "Encoding", and you should see your regional settings' charset being the one selected with a radio button. You may not see the exact charset though, but you'll at least see its family (ISO, Windows, KOIR, etc.), which should narrow down your search to one of the [common character encodings](http://en.wikipedia.org/wiki/Character_encoding#Common_character_encodings).
+For Windows, check out "Control Panel > Region (and Language Settings) > Administrative > Language for non-Unicode programs". Then find that language in [this table](http://msdn.microsoft.com/en-us/goglobal/bb896001.aspx). The "ANSI codepage" column is the charset you're looking for. That is, the charset is "windows-XXXX" where "XXXX" is what that column says.
 
 Let's say that we find our charset pair. In the example below, we'll assume that what the investigation revealed (using the above instructions) was "windows-1251", which is what we would specify as the charset our content is stored in. If you're experienced enough developer, you're probably writing your application using "UTF-8", so that's what we'll use as our web server's charset. This is done like so:
 
