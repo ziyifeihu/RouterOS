@@ -16,7 +16,7 @@ Other requirements are not a problem in most scenarios. For reference, they are:
 * [optional] A PSR-0 compliant autoloader (highly recommended; [PEAR2_Autoload](http://pear2.php.net/PEAR2_Autoload) is one such autoloader that is bundled in the archive and installed by Pyrus if you pass the "-o" flag at installation)
 
 ### Notes
-* The API service in RouterOS is disabled by default. To enable it, you need to execute 
+* The API service in RouterOS is disabled by default in versions prior to 6.0. To enable it, you need to execute 
 ```sh
 /ip service set numbers="api" address="0.0.0.0/0" disabled="no"
 ```
