@@ -31,7 +31,7 @@ If you download the ".phar" archive, you can just include the archive, and be re
 ```php
 <?php
 //You may want to include a namespace declaration here
-require_once 'PEAR2_Net_RouterOS-1.0.0b3.phar';
+require_once 'PEAR2_Net_RouterOS-1.0.0b4.phar';
 //Use any PEAR2_Net_RouterOS class from here on
 ```
 
