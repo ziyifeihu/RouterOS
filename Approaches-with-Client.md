@@ -86,6 +86,31 @@ you'll be calling the *command* "ip/arp/print/detail" with a "file" argument. Be
 $printRequest = new RouterOS\Request('/ip arp print detail=""');
 ```
 
+Here's the last example, rewritten with the aforementioned abilities in mind:
+```php
+<?php
+use PEAR2\Net\RouterOS;
+require_once 'PEAR2/Autoload.php';
+ 
+$client = new RouterOS\Client('192.168.0.1', 'admin');
+ 
+$addRequest = new RouterOS\Request('/ip arp add address=192.168.0.100 mac-address=00:00:00:00:00:01');
+ 
+if ($client->sendSync($addRequest)->getType() !== RouterOS\Response::TYPE_FINAL) {
+    die("Error when creating ARP entry for '192.168.0.100'");
+}
+ 
+$addRequest->setArgument('address', '192.168.0.101');
+$addRequest->setArgument('mac-address', '00:00:00:00:00:02');
+if ($client->sendSync($addRequest)->getType() !== RouterOS\Response::TYPE_FINAL) {
+    die("Error when creating ARP entry for '192.168.0.101'");
+}
+ 
+echo 'OK';
+```
+
+Note that using the request constructor is not recommended when you're dealing with user input, as there's the potential of code injection. A literal like the above is of course completely safe and recommended.
+
 ### Asynchronous requests
 You may want to deal with the responses from commands later instead of right after you send them. Or you might only need to deal with one of the responses, and yet you need to send several requests. Or you might want to use a command which returns responses continiously, and is therefore not suitable for Client::sendSync(). Either way, Client::sendAsync() is the method you need. Depending on the way you want to deal with the responses, there are various other methods which you may use along with it.
 
@@ -109,6 +134,8 @@ $addRequest->setArgument('address', '192.168.0.101');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:02');
 $addRequest->setTag('arp2');
 $client->sendAsync($addRequest);
+
+$client->loop();
 ?>
 ```
 
