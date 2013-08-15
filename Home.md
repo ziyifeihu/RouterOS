@@ -11,5 +11,5 @@ Some protocol "gotcha" stuff you should be aware of.
 Some reccomendations for more elegant code.
 ## [Optional features](wiki/Optional-features)
 All about charset conversion and persistent connections.
-## [API reference](http://pear2.github.com/Net_RouterOS/Documentation/1.0.0b3/)
+## [API reference](http://pear2.github.com/Net_RouterOS/Documentation/1.0.0b4/)
 PhpDocumentor generated API documentation.
