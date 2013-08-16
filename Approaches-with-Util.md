@@ -90,7 +90,7 @@ echo $util->find(0, 1);//Outputs something similar to "*4de,*16a", since we targ
 
 Note that most other methods below also accept **at least** a single criteria, which can be a number, so if you're targeting just one entry, you don't need to use this method directly. They'll call it automatically.
 
-The find() method can also accept a Query object. The ID of any entry matching the query will be part of the result. See [this tutorial](../Using-queries) for details on working with queries.
+The find() method can also accept a Query object. The ID of any entry matching the query will be part of the result. See [this tutorial](Using-queries) for details on working with queries.
 
 In addition to accepting plain queries and numbers, find() can also accepts callback as criteria, which can let you match entries fitting a custom criteria of yours. This can be particularly useful when you're targeting stuff that can't be easily matched by a Query, such regular expressions. Each callback receives an entry as an argument, and if it returns a "truthy" value (```true```, ```1```, etc.), the entry's ID will be included in the results:
 ```php
