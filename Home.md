@@ -3,6 +3,8 @@
 installation and the like.
 ## [Approaches with Client](wiki/Approaches-with-Client)
 Examples.
+## [Approaches with Client](wiki/Approaches-with-Util)
+a.k.a. Manipulating RouterOS data using Util
 ## [Using queries](wiki/Using-queries)
 a.k.a. "equivalent of CLI's 'find' command and print's 'where' argument".
 ## [Manipulating RouterOS data using Client](wiki/Manipulating-RouterOS-data-using-Client)
