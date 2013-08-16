@@ -92,7 +92,9 @@ Note that most other methods below also accept **at least** a single criteria, w
 
 The find() method can also accept a Query object. The ID of any entry matching the query will be part of the result. See [this tutorial](Using-queries) for details on working with queries.
 
-In addition to accepting queries and numbers, find() can also accepts callback as criteria, which can let you match entries fitting other criteria. This can be particularly useful when you're targeting stuff that can't be easily matched by a Query, such as regular expression matches. Each callback receives an entry as an argument, and if it returns a "truthy" value (```true```, ```1```, etc.), the entry's ID will be included in the results:
+In addition to accepting queries and numbers, find() can also accepts callback as criteria, which can let you match entries fitting other criteria. This can be particularly useful when you're targeting stuff that can't be easily matched by a Query, such as regular expression matches. Each callback receives an entry as an argument, and if it returns a "truthy" value (```true```, ```1```, etc.), the entry's ID will be included in the results.
+
+Here's an example:
 ```php
 <?php
 use PEAR2\Net\RouterOS;
