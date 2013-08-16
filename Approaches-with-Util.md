@@ -74,4 +74,4 @@ $util->add(
 );
 ```
 
-Note that add() returns the IDs of the new entries, so if you're interested in later targeting those entries, you may want to store these.
+Note that add() returns the IDs of the new entries, so if you're interested in later targeting them, you may want to store their IDs.
