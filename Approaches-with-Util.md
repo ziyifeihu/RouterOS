@@ -48,7 +48,7 @@ $util->changeMenu('.. addresses');//We're now at the "/ip addresses" menu.
 ```
 
 # CRUD operations
-Util has an add(), get(), set(), move(), remove(), enable() and disable() methods, and you can probably already figure out what each one of them does. The important thing to keep in mind that _in addition_ to accepting IDs to target, each of these methods can also accept numbers, just like in terminal. This is implemented ON TOP of the API protocol, which doesn't support this natively. This is in fact Util's main super power compared to a plain Client.
+Util has an add(), find(), get(), set(), edit(), move(), remove(), enable() and disable() methods, and you can probably already figure out what each one of them does. The important thing to keep in mind that _in addition_ to accepting IDs to target, each of these methods can also accept numbers, just like in terminal. This is implemented ON TOP of the API protocol, which doesn't support this natively. This is in fact Util's main super power compared to a plain Client.
 
 Let's look at some examples...
 ## add()
@@ -76,6 +76,20 @@ $util->add(
 
 Note that add() returns the IDs of the new entries, so if you're interested in later targeting them, you may want to store their IDs.
 
+## find()
+The find() method is by far the most important method in the whole class, as it's what separates it form Client. You can specify zero or more arguments of entries you'll be targeting, and get their IDs for use in all of the methods below (as well as plain Client use). Zero arguments will give you the IDs of all entries in the current menu, which is probably not much useful. What's more interesting is when you specify numbers, e.g.:
+```php
+<?php
+use PEAR2\Net\RouterOS;
+require_once 'PEAR2/Autoload.php';
+
+$util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
+$util->changeMenu('/ip arp');
+echo $util->find(0, 1);//Outputs something similar to "*4de,*16a", since we targeted two entries - the one in position 0 and position 1. 
+```
+
+Note that most other methods below also accept **at least** a single criteria, which can be a number, so if you're targeting just one entry, you don't need to use this method directly. They'll call it automatically.
+
 ## get()
 In most menus, you just target an entry, and the property name you want to get, e.g.:
 ```php
@@ -98,3 +112,4 @@ $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'))
 $util->changeMenu('/system identity');
 echo $util->get(null, 'name');//echoes "MikroTik", assuming you've never altered your router's identity.
 ```
+
