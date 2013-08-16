@@ -99,7 +99,7 @@ to your project's composer.json file. Due to the way composer works, you need to
 ```
 
 ### Manual installation
-Instead of using the PEAR(2) installer, you can just download a packaged archive, and extract the contents of the "src" folder wherever you like. To emulate the PEAR(2) installer, you can place the files in a folder that's within your include_path. The packaged archive includes a version of PEAR2_Net_Transmitter (and even PEAR2_Cache_SHM), so there's nothing to worry about beyond extracting the archive.
+Instead of using the PEAR(2) installer or Composer, you can just download a packaged archive, and extract the contents of the "src" folder wherever you like. To emulate the PEAR(2) installer, you can place the files in a folder that's within your include_path. The packaged archive includes a version of PEAR2_Net_Transmitter (and even PEAR2_Cache_SHM), so there's nothing to worry about beyond extracting the archive.
 
 ### Installation from the repository (with [Git](http://git-scm.com/)
 If you want to get the "cutting edge", unpackaged version of PEAR2_Net_RouterOS, you'll need to have Git. Once you have it, create a folder to place the package and its dependencies in, navigate to it from the command line, and execute the following commands:
