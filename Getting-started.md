@@ -82,7 +82,7 @@ pear install -a pear2/PEAR2_Net_RouterOS-alpha
 
 to install optional dependencies as well.
 
-### Installation with [Composer](http://getcomposer.org/))
+### Installation with [Composer](http://getcomposer.org/)
 This package is [available from packagist.org](https://packagist.org/packages/pear2/net_routeros), so all you have to do is add
 ```json
 "require": {
