@@ -48,7 +48,7 @@ $util->changeMenu('.. addresses');//We're now at the "/ip addresses" menu.
 ```
 
 # CRUD operations
-Util has an add(), find(), get(), set(), edit(), move(), remove(), enable() and disable() methods, and you can probably already figure out what each one of them does. The important thing to keep in mind that _in addition_ to accepting IDs to target, each of these methods can also accept numbers, just like in terminal. This is implemented ON TOP of the API protocol, which doesn't support this natively. This is in fact Util's main super power compared to a plain Client.
+Util has an add(), find(), get(), unsetValue(), set(), edit(), remove(), enable(), disable() and move() methods, and you can probably already figure out what each one of them does. The important thing to keep in mind that _in addition_ to accepting IDs to target, each of these methods can also accept numbers, just like in terminal. This is implemented ON TOP of the API protocol, which doesn't support this natively. This is in fact Util's main super power compared to a plain Client.
 
 Let's look at some examples...
 ## add()
@@ -170,6 +170,9 @@ $util->set(
         'address' => '192.168.0.103'
     );
 ```
+
+## unsetValue()
+In some menus on RouterOS, there's a difference between unsetting a value and setting it to an empty string. This method allows you to unset a specified property from an entry. It works in exactly the same way as get(), except that instead of returning the value, it unsets it.
 
 ## remove(), enable() and disable()
 These methods work EXACTLY like find(), except that instead of returning the IDs of matching entries, they remove/enable/disable them, respectively. Yes, this means calling remove() without arguments will remove all entries in the current menu, so be careful with that one.
