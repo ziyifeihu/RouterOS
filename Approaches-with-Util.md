@@ -77,7 +77,7 @@ $util->add(
 Note that add() returns the IDs of the new entries, so if you're interested in later targeting them, you may want to store their IDs.
 
 ## find()
-The find() method is by far the most important method in the whole class, as it's what separates it form Client. You can specify zero or more arguments of entries you'll be targeting, and get their IDs for use in all of the methods below (as well as plain Client use). Zero arguments will give you the IDs of all entries in the current menu, which is probably not much useful. What's more interesting is when you specify numbers, e.g.:
+The find() method is by far the most important method in the whole class, as it's what separates it form Client. You can specify zero or more arguments of entries you'll be targeting, and get their IDs in a comma separated list for use in all of the methods below (as well as plain Client use). Zero arguments will give you the IDs of all entries in the current menu, which is probably not much useful. What's more interesting is when you specify numbers, e.g.:
 ```php
 <?php
 use PEAR2\Net\RouterOS;
@@ -88,11 +88,11 @@ $util->changeMenu('/ip arp');
 echo $util->find(0, 1);//Outputs something similar to "*4de,*16a", since we targeted two entries - the one in position 0 and position 1. 
 ```
 
-Note that most other methods below also accept **at least** a single criteria, which can be a number, so if you're targeting just one entry, you don't need to use this method directly. They'll call it automatically.
+Note that most other methods below also accept at least one of these criteria, including numbers, so if you're targeting just one entry, you don't need to use this method directly. They'll call it automatically.
 
 The find() method can also accept a Query object. The ID of any entry matching the query will be part of the result. See [this tutorial](Using-queries) for details on working with queries.
 
-In addition to accepting queries and numbers, find() can also accepts callback as criteria, which can let you match entries fitting other criteria. This can be particularly useful when you're targeting stuff that can't be easily matched by a Query, such as regular expression matches. Each callback receives an entry as an argument, and if it returns a "truthy" value (```true```, ```1```, etc.), the entry's ID will be included in the results.
+In addition to accepting queries and numbers, find() can also accepts callback as criteria, which can let you match entries fitting other criteria. This can be particularly useful when you're targeting stuff that can't be easily matched by a Query, such as regular expression matches. Each callback receives an entry (a Response object) as an argument, and if it returns a "truthy" value (```true```, ```1```, etc.), the entry's ID will be included in the results.
 
 Here's an example:
 ```php
@@ -129,5 +129,7 @@ $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'))
 $util->changeMenu('/system identity');
 echo $util->get(null, 'name');//echoes "MikroTik", assuming you've never altered your router's identity.
 ```
+
+You could theoretically also specify ```null``` to get the first entry in other menus, but this is not recommended, as PEAR2_Net_RouterOS will get ALL entries before showing you the first entry's property.
 
 //TODO
