@@ -5,7 +5,7 @@ installation and the like.
 Examples.
 ## [Using queries](wiki/Using-queries)
 a.k.a. "equivalent of CLI's 'find' command and print's 'where' argument".
-## [Manipulating RouterOS data (using Client) ](wiki/Manipulating-RouterOS-data-(using-Client))
+## [Manipulating RouterOS data](wiki/Manipulating-RouterOS-data-(using-Client))
 Some protocol "gotcha" stuff you should be aware of.
 ## [Shortcuts](wiki/Shortcuts)
 Some reccomendations for more elegant code.
