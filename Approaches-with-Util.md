@@ -132,4 +132,41 @@ echo $util->get(null, 'name');//echoes "MikroTik", assuming you've never altered
 
 You could theoretically also specify ```null``` to get the first entry in other menus, but this is not recommended, as PEAR2_Net_RouterOS will get ALL entries before showing you the first entry's property.
 
+## set() and edit()
+To alter properties of an existing entry, you can use the set() method. The edit() method is just an alias for set(), created just for the sake of closeness with terminal.
+
+To use the set() method, as a first argument you must specify criteria for the entry or entries you want to edit, and then as a second argument, an array with the modified properties as key names, and their respective values as array values. Naturally, other properties will remain unmodified.
+
+As already mentioned with regards to find(), if you have just a single criteria, you can specify it directly, e.g.:
+```php
+<?php
+use PEAR2\Net\RouterOS;
+require_once 'PEAR2/Autoload.php';
+
+$util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
+$util->changeMenu('/ip arp');
+$util->set(0, array(
+    'address' => '192.168.0.103'
+);
+```
+
+or if you want to modify more entries at once, you can specify the result of find() as the first argument, e.g.:
+```php
+<?php
+use PEAR2\Net\RouterOS;
+require_once 'PEAR2/Autoload.php';
+
+$util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
+$util->changeMenu('/ip arp');
+$util->set(
+    $util->find(
+        function ($response) {
+            return preg_match('/^\d\d/', $response->getArgument('comment'));//Matches any entry who's comment starts with two digits
+        }
+    ),
+    array(
+        'address' => '192.168.0.103'
+    );
+```
+
 //TODO
