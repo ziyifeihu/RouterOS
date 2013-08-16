@@ -1,4 +1,4 @@
-# Manipulating RouterOS data
+# Manipulating RouterOS data (using Client)
 
 ## Getting individual properties
 If you try to use shell's "get" command with the API protocol, you'll find it doesn't really work. It returns just a single empty response, as if only to confirm the command's existence.
