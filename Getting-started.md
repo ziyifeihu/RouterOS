@@ -90,7 +90,9 @@ This package is [available from packagist.org](https://packagist.org/packages/pe
 }
 ```
 
-to your project's composer.json file. Due to the way composer works, you need to add optional dependencies manually. So for example, if you want to use persistent connections, your file would have to look more like:
+to your project's composer.json file.
+
+Due to the way composer works, you need to add optional dependencies manually. So for example, if you want to use persistent connections, your file would have to look more like:
 ```json
 "require": {
     "pear2/net_routeros": ">=1.0.0b4",
