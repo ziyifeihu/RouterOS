@@ -107,6 +107,8 @@ echo $util->find(function ($response) {
 });
 ```
 
+If there are no matches, an empty string will be returned. This is a valid value, as an empty string is interpreted by other functions as meaning "apply on nothing at all", as opposed to no argument at all which is instead read as "apply to everything".
+
 ## get()
 In most menus, you just target an entry, and the property name you want to get, e.g.:
 ```php
@@ -167,6 +169,22 @@ $util->set(
     array(
         'address' => '192.168.0.103'
     );
+```
+
+## remove(), enable() and disable()
+These methods work EXACTLY like find(), except that instead of returning the IDs of matching entries, they remove/enable/disable them, respectively. Yes, this means calling remove() without arguments will remove all entries in the current menu, so be careful with that one.
+
+Here's a simple example for illustrative purposes:
+```php
+<?php
+use PEAR2\Net\RouterOS;
+require_once 'PEAR2/Autoload.php';
+
+$util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
+$util->changeMenu('/ip arp');
+$util->remove(0);
+$util->disable(Query::where('comment', 'DISABLE ME'));
+$util->enable(1);
 ```
 
 //TODO
