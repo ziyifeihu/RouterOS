@@ -60,3 +60,41 @@ If you have a powerful enough web server (as in, you're happy with the web serve
 You can create a persistent connection by specifying ```true``` at the 5th argument of the Client constructor (the 4th being the API port).
 
 __There is no difference in terms of "features" between persistent and non-persistent connections. If you find a difference, you've found a bug. The only difference is in performance.__
+
+## Encrypted connections
+Since RouterOS 6.1, the API protocol supports encrypting the connection using TLS, and can do so with and without a certificate. PEAR2_Net_RouterOS also supports this in both modes.
+
+To establish an encrypted connection, you need to enable it at the 7th constructor argument (the 6th being a timeout for the connection). You may want to add a "use" for "PEAR2\Net\Transmitter\NetworkTransmitter", because the value of that argument needs to be a constant from that class.
+
+In particular, to establish an encrypted connection without a certificate, all you need to do is:
+```php
+<?php
+use PEAR2\Net\RouterOS;
+use PEAR2\Net\Transmitter\NetworkStream;
+require_once 'PEAR2/Autoload.php';
+
+$client = new RouterOS\Client('192.168.0.1', 'admin', 'password', null, false, null, NetworkStream::CRYPTO_TLS);
+```
+
+Notice that we left the port (the 4th argument) to ```null```. The port is automatically chosen between 8728 and 8729 depending on whether we don't or do have an encrypted connection, respectively. If you want to use a different port, set it at both the 4th argument, and at "/ip service" under the "api-ssl" service.
+
+BTW, the reason we use a class constant is in case MikroTik and PHP later support additional encryption methods - this would allow you to easily switch to them.
+
+If you need to use a certificate, you could leave it like that, but while you're at it, you'll probably want to check the certificate - to do that, you need to supply a stream context argument as the 8th argument. The stream context needs to contain a CA file (or a folder with such file(s)) that will verify RouterOS' certificate. For example:
+```php
+<?php
+use PEAR2\Net\RouterOS;
+use PEAR2\Net\Transmitter\NetworkStream;
+require_once 'PEAR2/Autoload.php';
+
+$context = stream_context_create(
+    array(
+        'ssl' => array(
+            'verify_peer' => true,
+            'cafile' => 'myca.cer'
+        )
+    )
+);
+
+$client = new RouterOS\Client('192.168.0.1', 'admin', 'password', null, false, null, NetworkStream::CRYPTO_TLS, $context);
+```
