@@ -75,3 +75,26 @@ $util->add(
 ```
 
 Note that add() returns the IDs of the new entries, so if you're interested in later targeting them, you may want to store their IDs.
+
+## get()
+In most menus, you just target an entry, and the property name you want to get, e.g.:
+```php
+<?php
+use PEAR2\Net\RouterOS;
+require_once 'PEAR2/Autoload.php';
+
+$util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
+$util->changeMenu('/ip arp');
+echo $util->get(0, 'address');//echoes "192.168.0.1", assuming we had the previous example executed under an empty ARP list
+```
+
+There are some menus on which there are no entries, but there are properties to get non the less, such as "/system identity" for example, where you have the "name" property. In those menus, you need to specify ```null``` as the first argument, e.g.:
+```php
+<?php
+use PEAR2\Net\RouterOS;
+require_once 'PEAR2/Autoload.php';
+
+$util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
+$util->changeMenu('/system identity');
+echo $util->get(null, 'name');//echoes "MikroTik", assuming you've never altered your router's identity.
+```
