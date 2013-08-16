@@ -85,14 +85,14 @@ to install optional dependencies as well.
 ### Installation with [Composer](http://getcomposer.org/))
 This package is [available from packagist.org](https://packagist.org/packages/pear2/net_routeros), so all you have to do is add
 ```json
-"require" : {
+"require": {
     "pear2/net_routeros": ">=1.0.0b4"
 }
 ```
 
 to your project's composer.json file. Due to the way composer works, you need to add optional dependencies manually. So for example, if you want to use persistent connections, your file would have to look more like:
 ```json
-"require" : {
+"require": {
     "pear2/net_routeros": ">=1.0.0b4",
     "pear2/cache_shm": ">=0.1.2"
 }
