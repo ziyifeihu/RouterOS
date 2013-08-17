@@ -97,3 +97,40 @@ $util->exec(
 ```
 
 With the policy being specified as "read,write", the script could do lots of damage, but at least it won't be able to read/write sensitive information like passwords for hotspots, wifi, and RouterOS (because that requires the "sensitive" permission)... and it also won't be able to forcefully reboot your router (because that requires the "reboot" permission), which combined with the write permission can prove fatal if a startup script is made to again reboot the router... And it can't sniff the rest of your network (which requires the "sniff" permission). With all of those restrictions, you'll be able to easily recover form any damage that the remote script could possibly do, assuming you have backup of course, and no one else would know.
+
+# File transfer
+The Util class makes it easy to do transfer of files over the API protocol. Keep in mind however, that since the API protocol was not designed for that, the larger the files you're dealing with, the higher the chance you'll break RouterOS. Limit yourself to KBs of data, if possible.
+
+## Reading files
+Regardless of the menu you're at, you can use Util's fileGetContents() method to get the contents of a file at the "/file" menu. Once you have the contents, it's up to you to save them locally if you need to, or just use them.
+
+An example:
+```php
+<?php
+use PEAR2\Net\RouterOS;
+require_once 'PEAR2/Autoload.php';
+
+$util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
+
+$filename = 'backup.rsc';
+file_put_contents($filename, $util->fileGetContents($filename));
+```
+
+Note that due to the way this is implemented (a temporary script being created, that writes the contents into itself, with PHP then retrieving the script), the username you're logging in with needs to have writing permissions for reading files.
+
+## Writing files
+Regardless of the menu you're at, you can use Util's filePutContents() method to place a file in RouterOS' "/file" menu. The prototype is similar to that of PHP's own file_put_contents() - filename first, contents for it second. As a third argument however, you have a flag saying whether to replace the file. If false, writing will fail, and if true, the file will be overwritten. There's no append option, though you could manually do that by getting the contents first.
+
+It's important to note that **this method is VERY VERY VERY slow**. It takes around 4 seconds per file, most of which are in sleep, waiting for RouterOS to write the data to disk - 2 for the initial file creation, another 2 for the content itself. If you want an efficient file transfer, use (T)FTP.
+
+For the sake of example:
+```php
+<?php
+use PEAR2\Net\RouterOS;
+require_once 'PEAR2/Autoload.php';
+
+$util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
+
+$filename = 'backup.auto.rsc';
+$util->filePutContents($filename, file_get_contents($filename));
+```
