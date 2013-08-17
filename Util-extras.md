@@ -155,7 +155,7 @@ require_once 'PEAR2/Autoload.php';
 $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
 
 $util->changeMenu('/system resource');
-$uptime = $util->get(null, 'uptime');
+$uptime = Util::parseValue($util->get(null, 'uptime'));
 
 $now = new DateTime;
 
