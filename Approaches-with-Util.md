@@ -190,4 +190,17 @@ $util->disable(Query::where('comment', 'DISABLE ME'));
 $util->enable(1);
 ```
 
-//TODO
+## move()
+The move() method is applicable only in menus where the order of entries has significance, such as in the firewall or queues. As a first argument, it accepts an entry or entries to be moved, and as a second argument, it accepts a single entry above which matched entries will be placed. Note that PEAR2_Net_RouterOS doesn't check if the menu you're at has a move command.
+
+Example:
+```php
+<?php
+use PEAR2\Net\RouterOS;
+require_once 'PEAR2/Autoload.php';
+
+$util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
+$util->changeMenu('/queue simple');
+$util->move(2, 0);//Place the queue at position 2 above the queue at position 0
+$util->move($util->find(3,4), 0);//Place the queues at positions 3 and 4 above the queue at position 0 (the same one that a line ago was at position 2)
+```
