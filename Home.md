@@ -3,7 +3,7 @@
 installation and the like.
 ## [Approaches with Client](wiki/Approaches-with-Client)
 Examples.
-## [Approaches with Util](wiki/Approaches-with-Util)
+## [Util basics](wiki/Util-basics)
 a.k.a. Manipulating RouterOS data using Util
 ## [Using queries](wiki/Using-queries)
 a.k.a. "equivalent of CLI's 'find' command and print's 'where' argument".
