@@ -14,8 +14,8 @@ $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'))
 $util->changeMenu('/ip arp');
 
 $util->exec('
-add address=192.168.0.100 mac-address=00:00:00:00:00:01
-add address=192.168.0.101 mac-address=00:00:00:00:00:02
+add address=192.168.0.100 mac-address=00:00:00:00:00:01 comment=customer_1
+add address=192.168.0.101 mac-address=00:00:00:00:00:02 comment=customer_2
 /tool
 fetch url="http://example.com/?name=customer_1"
 fetch url="http://example.com/?name=customer_2"
