@@ -134,3 +134,31 @@ $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'))
 $filename = 'backup.auto.rsc';
 $util->filePutContents($filename, file_get_contents($filename));
 ```
+
+# parseValue()
+The Util class has methods not just for converting values from PHP to RouterOS, but also backwards - it can convert a RouterOS value into a PHP value, based on how RouterOS would interpret that value. In particular, consider a line in scripting like
+
+```
+:local variable VALUE
+```
+
+What will happen if you replace ```VALUE``` with something else? Like ```1d00:01:02```? Scripting would recognize that as a value of type "time". Util's parseValue() method will in turn convert such a value into a DateInterval object. Similarly for arrays and scalar values (though that's probably less interesting).
+
+These conversions can be particularly useful when you're reading out data that RouterOS stores as such a data type.
+
+For example:
+```php
+<?php
+use PEAR2\Net\RouterOS;
+require_once 'PEAR2/Autoload.php';
+
+$util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
+
+$util->changeMenu('/system resource');
+$uptime = $util->get(null, 'uptime');
+
+$now = new DateTime;
+
+//Will output something akin to 'The router has been in operation since Sunday, 18 Aug 2013 14:03:01'
+echo 'The router has been in operation since ' . $now->sub($uptime)->format(DateTime::COOKIE);
+```
