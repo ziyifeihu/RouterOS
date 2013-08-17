@@ -144,6 +144,8 @@ The Util class has methods not just for converting values from PHP to RouterOS, 
 
 What will happen if you replace ```VALUE``` with something else? Like ```1d00:01:02```? Scripting would recognize that as a value of type "time". Util's static parseValue() method will in turn convert such a value into a DateInterval object. Similarly for arrays and scalar values (though that's probably less interesting).
 
+Keep in mind that only constant values are supported. Expressions will be treated as part of whatever surrounds them (or an unquoted string, if not surrounded).
+
 These conversions can be particularly useful when you're reading out data that RouterOS stores as such a data type.
 
 For example:
