@@ -61,6 +61,8 @@ $util->exec(
 
 Note also that PEAR2_Net_RouterOS is smart enough to convert native PHP types into equivalent RouterOS types. While this may not sound much interesting and/or useful for scalar values (string, boolean, (int/double)/number), consider fancier types like arrays, which are processed recursively for all of their values, and made available in the script as an array you can then ":pick" apart. Even more interestingly - PHP's DateInterval objects are converted into a RouterOS "time" typed value, and a PHP DateTime object is converted into a "time" object relative to the UNIX epoch time.
 
+**IMPORANT NOTE: Watch out for PHP's double quotes and HEREDOC notation. They both accept PHP variables, and since both they and RouterOS variables are accessed with "$" in front of the name, you may end up writing a literal value when you meant to address a supplied variable. To be certain, make sure you're using either single quotes or NEWDOC notation.**
+
 ## Restricting script access
 OK, so let's say that you use the above approach, and yet you're still somewhat paranoid about the values being escaped properly, or maybe your script is depending on untrusted data that's not supplied by PHP itself (e.g. a fetch of a script that's then being "/import"-ed). How do you make sure the script doesn't do anything too damaging? Lucky, MikroTik already have the solution, and PEAR2_Net_RouterOS supports it - you can simply set a policy on the script, which would contain the minimum permissions needed for it to work properly. In the case of a code injection or otherwise "normal" execution, the script will fail as soon as it tried to violate its granted permissions.
 
