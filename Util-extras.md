@@ -146,7 +146,7 @@ What will happen if you replace ```VALUE``` with something else? Like ```1d00:01
 
 Keep in mind that only constant values are supported. Expressions will be treated as part of whatever surrounds them (or an unquoted string, if not surrounded).
 
-These conversions can be particularly useful when you're reading out data that RouterOS stores as such a data type.
+These conversions can be particularly useful when you're reading out data that RouterOS stores as such data type.
 
 For example:
 ```php
