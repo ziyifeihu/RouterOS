@@ -1,5 +1,5 @@
 # What is Util?
-Util is a class which wraps around a Client object to make frequent tasks easier. It doesn't give you full control however, which is why you may still find yourself using Client from time to time, even if you're using Util most of the time.
+Util is a class which wraps around a Client object to make frequent tasks easier. It doesn't give you full control however, which is why you may still find yourself using Client from time to time, even if you're using mostly Util.
 
 # Basic setup
 ## New instance
