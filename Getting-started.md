@@ -112,7 +112,7 @@ git clone https://github.com/pear2/Net_Transmitter.git Net_Transmitter.git
 git clone https://github.com/pear2/Cache_SHM.git Cache_SHM.git
 ```
 
-__Note: If you plan to contribute to this project, please use GitHub's "fork" feature instead, and then apply "git clone" on *it*, instead of the original repository.__
+__Note: If you plan to contribute to this project, please use GitHub's "fork" feature instead, and then apply "git clone" on *it*, instead of the original repository. This will then allow you to easily make pull requests from your fork.__
 
 ## Usage
 If you use the PHAR archive, every class you attempt to use will automatically be auto loaded with the bundled PEAR2_Autoload. In virtually all places of this documentation, the line
