@@ -27,6 +27,7 @@ from a RouterOS terminal. The "address" argument in the command above allows you
     - If PHP is running as an Apache module, then Apache's executable ("httpd") is the one you need to whitelist.
     - If PHP is running as (F)CGI, the "php-cgi" executable is the one you need to whitelist.
     - If PHP is running from the command line, the "php" executable is the one you need to whitelist.
+
 ## Installation
 ### Direct PHAR usage
 If you download the ".phar" archive, you can just include the archive, and be ready to go, like for example:
