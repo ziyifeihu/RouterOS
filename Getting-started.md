@@ -29,8 +29,11 @@ from a RouterOS terminal. The "address" argument in the command above allows you
         <tr>
             <th>PHP running as (SAPI)</th>
             <th>Executable folder</th>
-            <th>UNIX executable to whitelist</th>
-            <th>Windows executable to whitelist</th>
+            <th colspan="2">Executable file to whitelist</th>
+        </tr>
+        <tr>
+            <th>UNIX</th>
+            <th>Windows</th>
         </tr>
     </thead>
     <tbody>
