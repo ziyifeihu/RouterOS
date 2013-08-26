@@ -27,8 +27,8 @@ from a RouterOS terminal. The "address" argument in the command above allows you
 <table>
     <thead>
         <tr>
-            <th>PHP running as (SAPI)</th>
-            <th>Executable folder</th>
+            <th rowspan="2">PHP running as (SAPI)</th>
+            <th rowspan="2">Executable folder</th>
             <th colspan="2">Executable file to whitelist</th>
         </tr>
         <tr>
