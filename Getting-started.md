@@ -23,8 +23,10 @@ Other requirements are not a problem in most scenarios. For reference, they are:
 ```
 from a RouterOS terminal. The "address" argument in the command above allows you to limit access to this service only to certain client IP addresses. For security's sake, it's better that you limit connections only to the IP address(es) of the server(s) from which PHP will access RouterOS.
 
-* Many shared web hosts choose to disable stream_socket_client(), and it's close relative fsockopen() as well. When they don't disable them, they often render them useless by forbidding outgoing connections with the server's firewall. A frequently possible workaround is to use the API service on a different, more popular port, such as 21, 80, 443, or something similar. If even that doesn't work, you need to contact your host. If you're on your own server, and fail to connect, configure your server's firewall so that it enables PHP to make outgoing connections (at least to the ip:port combo of where your router uses the API service). If PHP is running as an Apache module, then Apache is the executable you need to whitelist.
-
+* Many shared web hosts choose to disable stream_socket_client(), and it's close relative fsockopen() as well. When they don't disable them, they often render them useless by forbidding outgoing connections with the server's firewall. A frequently possible workaround is to use the API service on a different, more popular port, such as 21, 80, 443, or something similar. If even that doesn't work, you need to contact your host. If you're on your own server, and fail to connect, configure your server's firewall so that it enables PHP to make outgoing connections (at least to the ip:port combo of where your router uses the API service).
+    - If PHP is running as an Apache module, then Apache is the executable you need to whitelist.
+    - If PHP is running as (F)CGI, the "php-cgi" executable is the one you need to whitelist.
+    - If PHP is running from the command line, the "php" executable is the one you need to whitelist.
 ## Installation
 ### Direct PHAR usage
 If you download the ".phar" archive, you can just include the archive, and be ready to go, like for example:
