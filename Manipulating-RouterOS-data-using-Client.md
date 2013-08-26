@@ -1,3 +1,5 @@
+The following is for when you're not using the Util class, but are instead working directly with the Client class. The Util class hides this under the hood for you.
+
 ## Getting individual properties
 If you try to use shell's "get" command with the API protocol, you'll find it doesn't really work. It returns just a single empty response, as if only to confirm the command's existence.
 
