@@ -86,7 +86,7 @@ you'll be calling the *command* "ip/arp/print/detail" with a "file" argument. Be
 $printRequest = new RouterOS\Request('/ip arp print detail=""');
 ```
 
-Here's the last example, rewritten with the aforementioned abilities in mind:
+Here's the last example, rewritten with the aforementioned abilities in mind (though without reusing the request):
 ```php
 <?php
 use PEAR2\Net\RouterOS;
@@ -100,8 +100,7 @@ if ($client->sendSync($addRequest)->getType() !== RouterOS\Response::TYPE_FINAL)
     die("Error when creating ARP entry for '192.168.0.100'");
 }
  
-$addRequest->setArgument('address', '192.168.0.101');
-$addRequest->setArgument('mac-address', '00:00:00:00:00:02');
+$addRequest = new RouterOS\Request('/ip arp add address=192.168.0.101 mac-address=00:00:00:00:00:02');
 if ($client->sendSync($addRequest)->getType() !== RouterOS\Response::TYPE_FINAL) {
     die("Error when creating ARP entry for '192.168.0.101'");
 }
