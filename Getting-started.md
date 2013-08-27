@@ -10,7 +10,7 @@ The requirements to watch out for are:
 
 Other requirements are not a problem in most scenarios. For reference, they are:
 * The PCRE and SPL extensions (compiled into PHP by default)
-* [PEAR2_Net_Transmitter](http://pear2.github.com/Net_Transmitter/) (bundled in the archive; installed automatically by Pyrus)
+* [PEAR2_Net_Transmitter](http://pear2.github.com/Net_Transmitter/) (bundled in the archive; installed automatically by Pyrus and Composer)
 * [optional] The iconv extension (compiled into PHP by default; required only if you want to use [automatic charset conversion](Optional-features#automatic-charset-conversion))
 * [optional] The OpenSSL extension (bundled with PHP by default; needs to be enabled in php.ini or during compilation; required only if you want to use [encrypted connections](Optional-features#encrypted-connections))
 * [optional] [PEAR2_Cache_SHM](http://pear2.github.com/Cache_SHM/) (bundled in the archive; needed only if you use [persistent connections](Optional-features#persistent-connections); installed by Pyrus if you pass the "-o" flag at installation)
