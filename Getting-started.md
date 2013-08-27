@@ -173,6 +173,13 @@ include_once 'PEAR2/Autoload.php';
 //Use any PEAR2_Net_RouterOS class
 ```
 
+If you've used Composer, then you should be able to access the generated autoloader with
+```php
+<?php
+include_once 'vendor/autoload.php';
+//Use any PEAR2_Net_RouterOS class
+```
+
 Like every other PEAR2 package, PEAR2_Net_RouterOS uses namespaces - a feature introduced in PHP 5.3 - for its organization. Among other things, this means that instead of you having to write long class names, you can just declare at the top that you'll be using this namespace, and then just write shorter class names. The possible approaches are as follows:
 
 * Using a fully qualified class name
