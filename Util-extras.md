@@ -81,7 +81,7 @@ require_once 'PEAR2/Autoload.php';
 $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
 $util->changeMenu('/tool');
 
-$url = $_GET['url'];//assume $_GET['url'] contains something akin to "http://example.com/geoip.rsc"
+$url = $_GET['url'];//assume $_GET['url'] contains something akin to "http://example.com/geoip.rsc"...
 
 $source = '
 fetch url=$db keep-result=yes dst-path=$filename
@@ -93,7 +93,7 @@ $util->exec(
     $source,
     array(
         'db' => $url
-        'filename' => pathinfo(parse_url($url, PHP_URL_PATH), PATHINFO_FILENAME)
+        'filename' => pathinfo(parse_url($url, PHP_URL_PATH), PATHINFO_FILENAME)//... then this would contain "geoip.rsc"
     ),
     'read,write'
 );
