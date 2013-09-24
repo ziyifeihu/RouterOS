@@ -124,7 +124,7 @@ Note that due to the way this is implemented (a temporary script being created, 
 ## Writing files
 Regardless of the menu you're at, you can use Util's filePutContents() method to place a file in RouterOS' "/file" menu. The prototype is similar to that of PHP's own file_put_contents() - filename first, contents for it second. As a third argument however, you have a flag saying whether to replace the file. If false, writing will fail, and if true, the file will be overwritten. There's no append option, though you could manually do that by getting the contents first.
 
-It's important to note that **this method is VERY VERY VERY slow**. It takes around 4 seconds per file, most of which are in sleep, waiting for RouterOS to write the data to disk - 2 for the initial file creation, another 2 for the content itself. If you want an efficient file transfer, use (T)FTP.
+It's important to note that **this method is VERY VERY VERY slow**. It takes a little over 4 seconds per file, most of which are in sleep, waiting for RouterOS to write the data to disk - 2 for the initial file creation, another 2 for the content itself. If you want an efficient file transfer, use (T)FTP.
 
 For the sake of example:
 ```php
