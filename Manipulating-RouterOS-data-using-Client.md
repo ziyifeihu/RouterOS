@@ -1,7 +1,27 @@
-The following is for when you're not using the Util class, but are instead working directly with the Client class. The Util class hides this under the hood for you.
+**NOTE: The following is for when you're not using the Util class, but are instead working directly with the Client class. The Util class hides this under the hood for you.**
 
 ## Getting individual properties
-If you try to use shell's "get" command with the API protocol, you'll find it doesn't really work. It returns just a single empty response, as if only to confirm the command's existence.
+### In RouterOS 6 and later
+Getting an individual item property is as easy as in shell, but a little more explicit. The value is in a property called "ret". For example:
+```php
+<?php
+use PEAR2\Net\RouterOS;
+require_once 'PEAR2/Autoload.php';
+ 
+$client = new RouterOS\Client('192.168.0.1', 'admin');
+
+$getRequest = new RouterOS\Request('/interface/get');
+$getRequest->setArgument('value-name', 'type');
+$getRequest->setArgument('number', 'ether1');
+$type = $client->sendSync($getRequest)->getArgument('ret');
+//$type now contains the "type" of the interface "ether1"
+?>
+```
+
+On menus where items are not identified with a unique name (e.g. "/ip arp", "/ip firewall", etc.), it's best that you use the same approach as for RouterOS versions before 6.0, as IDs may change from one connection to the next, and numbers are not natively supported by the protocol (see below).
+
+### Prior to RouterOS v6.0
+If you try to use shell's "get" command with the API protocol on older RouterOS versions, you'll find it doesn't really work. It returns just a single empty response, as if only to confirm the command's existence.
 
 Getting an individual property is not directly possible with the API protocol, but it can be closely emulated by the use of the "print" command.
 
