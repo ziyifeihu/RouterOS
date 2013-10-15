@@ -1,7 +1,7 @@
 **NOTE: The following is for when you're not using the Util class, but are instead working directly with the Client class. The Util class hides this under the hood for you.**
 
 ## Getting individual properties
-### In RouterOS 6 and later
+### In RouterOS v6.0 and later
 Getting an individual item property is as easy as in shell, but a little more explicit. The value is in a property called "ret". For example:
 ```php
 <?php
