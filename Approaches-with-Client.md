@@ -11,7 +11,11 @@ If the request you want to send is just a simple command with no arguments, the 
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+try {
+    $client = new RouterOS\Client('192.168.0.1', 'admin');
+} catch (Exception $e) {
+    die('Unable to connect to the router.');
+}
  
 $responses = $client->sendSync(new RouterOS\Request('/ip/arp/print'));
  
@@ -40,7 +44,11 @@ To add arguments to a command, you need to use the Request::setArgument() method
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+try {
+    $client = new RouterOS\Client('192.168.0.1', 'admin');
+} catch (Exception $e) {
+    die('Unable to connect to the router.');
+}
  
 $addRequest = new RouterOS\Request('/ip/arp/add');
  
@@ -92,7 +100,11 @@ Here's the last example, rewritten with the aforementioned abilities in mind (th
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+try {
+    $client = new RouterOS\Client('192.168.0.1', 'admin');
+} catch (Exception $e) {
+    die('Unable to connect to the router.');
+}
  
 $addRequest = new RouterOS\Request('/ip arp add address=192.168.0.100 mac-address=00:00:00:00:00:01');
  
@@ -119,8 +131,12 @@ If you don't care about the responses, you can just do something like the follow
 <?php
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
- 
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+
+try {
+    $client = new RouterOS\Client('192.168.0.1', 'admin');
+} catch (Exception $e) {
+    die('Unable to connect to the router.');
+}
  
 $addRequest = new RouterOS\Request('/ip/arp/add');
  
@@ -149,8 +165,12 @@ One way to get responses is to let PEAR2_Net_RouterOS process any new ones, and 
 <?php
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
- 
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+
+try {
+    $client = new RouterOS\Client('192.168.0.1', 'admin');
+} catch (Exception $e) {
+    die('Unable to connect to the router.');
+}
  
 $addRequest = new RouterOS\Request('/ip/arp/add');
  
@@ -189,8 +209,12 @@ Instead of extracting responses, you may instead assign responses for a request 
 <?php
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
- 
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+
+try {
+    $client = new RouterOS\Client('192.168.0.1', 'admin');
+} catch (Exception $e) {
+    die('Unable to connect to the router.');
+}
  
 //Custom function, defined specifically for the example
 function responseHandler($response) {
@@ -227,8 +251,12 @@ Processing of responses can also be started with Client::completeRequest(). The 
 <?php
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
- 
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+
+try {
+    $client = new RouterOS\Client('192.168.0.1', 'admin');
+} catch (Exception $e) {
+    die('Unable to connect to the router.');
+}
  
 $addRequest = new RouterOS\Request('/ip/arp/add');
  
