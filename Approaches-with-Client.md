@@ -15,6 +15,7 @@ try {
     $client = new RouterOS\Client('192.168.0.1', 'admin');
 } catch (Exception $e) {
     die('Unable to connect to the router.');
+    //Inspect $e if you want to know details about the failure.
 }
  
 $responses = $client->sendSync(new RouterOS\Request('/ip/arp/print'));
