@@ -48,7 +48,7 @@ $util->changeMenu('.. addresses');//We're now at the "/ip addresses" menu.
 ```
 
 # CRUD operations
-Util has an add(), find(), get(), unsetValue(), set(), edit(), remove(), enable(), disable() and move() methods, and you can probably already figure out what each one of them does. The important thing to keep in mind that _in addition_ to accepting IDs to target, each of these methods can also accept numbers, just like in terminal. This is implemented ON TOP of the API protocol, which doesn't support this natively. This is in fact Util's main super power compared to a plain Client.
+Util has an add(), find(), get(), unsetValue(), set(), edit(), remove(), enable(), disable() and move() methods, and you can probably already figure out what each one of them does. The important thing to keep in mind that __in addition__ to accepting IDs to target, each of these methods can also accept numbers, just like in terminal. This is implemented ON TOP of the API protocol, which doesn't support this natively. This is in fact Util's main super power compared to a plain Client.
 
 Let's look at some examples...
 ## add()
