@@ -76,6 +76,7 @@ You can also enter the arguments with a shell syntax at the request constructor,
 $pingRequest = new RouterOS\Request('/ping 192.168.0.100');
     ```
     becomes
+    
     ```php
 $pingRequest = new RouterOS\Request('/ping address=192.168.0.100');
     ```
@@ -88,6 +89,7 @@ $pingRequest = new RouterOS\Request('/ping address=192.168.0.100');
 $printRequest = new RouterOS\Request('/ip arp print file="ARP list prinout.txt" detail');
     ```
     is allowed, but if you write
+    
     ```php
 $printRequest = new RouterOS\Request('/ip arp print detail file="ARP list prinout.txt"');
     ```
