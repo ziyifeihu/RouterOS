@@ -130,7 +130,12 @@ echo 'OK';
 Note that using the request constructor is not recommended when you're dealing with user input, as there's the potential of code injection. A literal like the above is of course completely safe and recommended.
 
 ### Asynchronous requests
-You may want to deal with the responses from commands later instead of right after you send them. Or you might only need to deal with one of the responses, and yet you need to send several requests. Or you might want to use a command which returns responses continiously, and is therefore not suitable for Client::sendSync(). Either way, Client::sendAsync() is the method you need. Depending on the way you want to deal with the responses, there are various other methods which you may use along with it.
+When you don't want the script to immediately wait for all responses to a request, you can make the request asynchronous, using the Client::sendAsync() method. This is useful when
+* You want to deal with the responses from commands later instead of right after you send them (for timing reasons, let's say).
+* You might only need to deal with one of the responses, and yet you need to send several requests at the same time.
+* You want to use a command which returns responses continiously, i.e. it never finishes on its own, until you explicitly stop it yourlsef.
+
+Depending on the way you want to deal with the responses, there are various other methods which you may use along with Client::sendAsync().
 
 #### Send and forget
 If you don't care about the responses, you can just do something like the following
