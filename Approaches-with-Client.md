@@ -84,7 +84,7 @@ $pingRequest = new RouterOS\Request('/ping address=192.168.0.100');
 2. Only literal values are allowed. No operators of any kind.
     * Arithmetic and logic operators can be done using PHP instead (i.e. you just pass the resulting value).
     * To emulate the subcommand operator (the "[" and "]"), you must execute the other command separately beforehand (with another Request object), and take its result.
-    * To use a global RouterOS variable's value, you can it by making a get or print request to the "/system script environment" menu.
+    * To use a global RouterOS variable's value, you can make a get or print request to the "/system script environment" menu.
 3. A double quote and a backslash are the only escapable characters in a double quoted string. Everything else is treated literally.
 4. The "where" argument on "print" doesn't work. [Use queries](Using-queries) instead, as MikroTik intended.
 5. Arguments without value (a.k.a. "empty arguments") are supported, but to avoid ambiguities between the command's end and the argument list's start, the first argument in the argument list MUST have a value. e.g.
