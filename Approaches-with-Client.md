@@ -71,30 +71,30 @@ echo 'OK';
 
 You can also enter the arguments with a shell syntax at the request constructor, but with a few caveats:
 
-* Nameless arguments are not supported. You have to explicitly specify the argument names. This is optional in shell, but is required by the API protocol. e.g.
-```php
+1. Nameless arguments are not supported. You have to explicitly specify the argument names. This is optional in shell, but is required by the API protocol. e.g.
+    ```php
 $pingRequest = new RouterOS\Request('/ping 192.168.0.100');
-```
-becomes
-```php
+    ```
+    becomes
+    ```php
 $pingRequest = new RouterOS\Request('/ping address=192.168.0.100');
-```
-To find out the name of a nameless argument, go to a terminal, and type "?" after the command to see its help. The real names of nameless arguments can be seen in the form "&lt; __argument name__ >".
-
-* A double quote and a backslash are the only escapable characters in a double quoted string. Everything else is treated literally.
-* The "where" argument on "print" doesn't work. [Use queries](Using-queries) instead, as MikroTik intended.
-* Arguments without value (a.k.a. "empty arguments") are supported, but to avoid ambiguities between the command's end and the argument list's start, the first argument in the argument list MUST have a value. e.g.
-```php
+    ```
+    To find out the name of a nameless argument, go to a terminal, and type "?" after the command to see its help. The real names of nameless arguments can be seen in the form "&lt; __argument name__ >".
+2. Only literal values are allowed. No operators of any kind. Most notably, the (the "[" and "]") operator is not allowed in a value. To use the result of another command as a value, you must execute the other command separately beforehand.
+3. A double quote and a backslash are the only escapable characters in a double quoted string. Everything else is treated literally.
+4. The "where" argument on "print" doesn't work. [Use queries](Using-queries) instead, as MikroTik intended.
+5. Arguments without value (a.k.a. "empty arguments") are supported, but to avoid ambiguities between the command's end and the argument list's start, the first argument in the argument list MUST have a value. e.g.
+    ```php
 $printRequest = new RouterOS\Request('/ip arp print file="ARP list prinout.txt" detail');
-```
-is allowed, but if you write
-```php
+    ```
+    is allowed, but if you write
+    ```php
 $printRequest = new RouterOS\Request('/ip arp print detail file="ARP list prinout.txt"');
-```
-you'll be calling the *command* "ip/arp/print/detail" with a "file" argument. Because there is no "detail" command, you'll get an error. If you need to use only empty arguments, you can assign an empty string to the first one, e.g.
-```php
+    ```
+    you'll be calling the *command* "ip/arp/print/detail" with a "file" argument. Because there is no "detail" command, you'll get an error. If you need to use only empty arguments, you can assign an empty string to the first one, e.g.
+    ```php
 $printRequest = new RouterOS\Request('/ip arp print detail=""');
-```
+    ```
 
 Here's the last example, rewritten with the aforementioned abilities in mind (though without reusing the request):
 ```php
