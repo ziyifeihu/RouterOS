@@ -133,7 +133,7 @@ Note that using the request constructor is not recommended when you're dealing w
 When you don't want the script to immediately wait for all responses to a request, you can make the request asynchronous, using the Client::sendAsync() method. This is useful when
 * You want to deal with the responses from commands later down in the script, instead of right after you send them (for the sake of neatness, let's say).
 * You only need to deal with one of the responses, and yet you need to send several requests at about the same time.
-* You want to use a command which returns responses continiously, i.e. it never finishes on its own, until you explicitly cancel it yourlsef.
+* You want to use a command which returns responses continuously, i.e. it never finishes on its own, until you explicitly cancel it yourself.
 
 Depending on the way you want to deal with the responses, there are various other methods which you may use along with Client::sendAsync().
 
@@ -166,7 +166,7 @@ $client->loop();
 ?>
 ```
 
-Note that, as in the example above, different asynchronious requests need to have a different "tag", regardless of whether you care about the responses or not. A "tag" in this context is a RouterOS API specific construct that allows clients like PEAR2_Net_RouterOS to keep track of responses coming from multiple requests, since they don't appear in the order of their execution. You can only reuse a tag once you get its final response.
+Note that, as in the example above, different asynchronous requests need to have a different "tag", regardless of whether you care about the responses or not. A "tag" in this context is a RouterOS API specific construct that allows clients like PEAR2_Net_RouterOS to keep track of responses coming from multiple requests, since they don't appear in the order of their execution. You can only reuse a tag once you get its final response.
 
 Besides using the Request::setTag() method, you can also set a tag as the third argument of the request's constructor.
 
