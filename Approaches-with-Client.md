@@ -81,7 +81,7 @@ $pingRequest = new RouterOS\Request('/ping 192.168.0.100');
 $pingRequest = new RouterOS\Request('/ping address=192.168.0.100');
     ```
     To find out the name of a nameless argument, go to a terminal, and type "?" after the command to see its help. The real names of nameless arguments can be seen in the form "&lt; __argument name__ >".
-2. Only literal values are allowed. No operators of any kind. Most notably, the subcommand operator (the "[" and "]") is not allowed in a value. To use the result of another command as a value, you must execute the other command separately beforehand.
+2. Only literal values are allowed. No operators of any kind. Arithmetic and logic operators can be done using PHP instead (i.e. you just pass the resulting value). As for the subcommand operator (the "[" and "]"), you must execute the other command separately beforehand (with another Request object), and take its result.
 3. A double quote and a backslash are the only escapable characters in a double quoted string. Everything else is treated literally.
 4. The "where" argument on "print" doesn't work. [Use queries](Using-queries) instead, as MikroTik intended.
 5. Arguments without value (a.k.a. "empty arguments") are supported, but to avoid ambiguities between the command's end and the argument list's start, the first argument in the argument list MUST have a value. e.g.
