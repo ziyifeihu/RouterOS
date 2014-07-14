@@ -131,9 +131,9 @@ Note that using the request constructor is not recommended when you're dealing w
 
 ### Asynchronous requests
 When you don't want the script to immediately wait for all responses to a request, you can make the request asynchronous, using the Client::sendAsync() method. This is useful when
-* You want to deal with the responses from commands later instead of right after you send them (for timing reasons, let's say).
-* You might only need to deal with one of the responses, and yet you need to send several requests at the same time.
-* You want to use a command which returns responses continiously, i.e. it never finishes on its own, until you explicitly stop it yourlsef.
+* You want to deal with the responses from commands later down in the script, instead of right after you send them (for the sake of neatness, let's say).
+* You only need to deal with one of the responses, and yet you need to send several requests at about the same time.
+* You want to use a command which returns responses continiously, i.e. it never finishes on its own, until you explicitly cancel it yourlsef.
 
 Depending on the way you want to deal with the responses, there are various other methods which you may use along with Client::sendAsync().
 
