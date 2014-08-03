@@ -70,7 +70,7 @@ You can set permissions as the third argument of exec(). Without this argument, 
 ```sh
 /system script add policy=?
 ```
-from a terminal.
+from a terminal, or better yet, see [this page in the MikroTik wiki](http://wiki.mikrotik.com/wiki/Manual:Router_AAA#Properties) about a detailed description of each policy.
 
 Here's one example:
 ```php
