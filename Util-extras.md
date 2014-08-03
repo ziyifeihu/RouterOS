@@ -66,7 +66,7 @@ Note also that PEAR2_Net_RouterOS is smart enough to convert native PHP types in
 ## Restricting script access
 OK, so let's say that you use the above approach, and yet you're still somewhat paranoid about the values being escaped properly, or maybe your script is depending on untrusted data that's not supplied by PHP itself (e.g. a fetch of a script that's then being "/import"-ed). How do you make sure the script doesn't do anything too damaging? Lucky, MikroTik already have the solution, and PEAR2_Net_RouterOS supports it - you can simply set a policy on the script, which would contain the minimum permissions needed for it to work properly. In the case of a code injection or otherwise "normal" execution, the script will fail as soon as it tried to violate its granted permissions.
 
-You can set permissions as the third argument of exec(). Without this argument, full permissions are assumed. You can see the acceptable values by typing
+You can set permissions as the third argument of exec(). Without this argument, all permissions of the current RouterOS user are assumed. You can see the acceptable values by typing
 ```sh
 /system script add policy=?
 ```
@@ -99,7 +99,7 @@ $util->exec(
 );
 ```
 
-With the policy being specified as "read,write", the script could do lots of damage, but at least it won't be able to read/write sensitive information like passwords for hotspots, wifi, and RouterOS (because that requires the "sensitive" permission)... and it also won't be able to forcefully reboot your router (because that requires the "reboot" permission), which combined with the write permission can prove fatal if a startup script is made to again reboot the router... And it can't sniff the rest of your network (which requires the "test" and/or "sniff" permission, depending on the tools we're talking about). With all of those restrictions, you'll be able to easily recover form any damage that the remote script could possibly do, assuming you have backup of course, and no one else would know.
+With the policy being specified as "read,write", the script could do lots of damage, but at least it won't be able to readsensitive information like passwords for hotspots, wifi, and RouterOS (because that requires the "sensitive" permission) or change them (because that requires the "password" permission)... and it also won't be able to forcefully reboot your router (because that requires the "reboot" permission), which combined with the write permission can prove fatal if a startup script is made to again reboot the router... And it can't sniff the rest of your network (which requires the "test" and/or "sniff" permission, depending on the tools we're talking about). With all of those restrictions, you'll be able to easily recover form any damage that the remote script could possibly do, assuming you have backup of course, and no one else would know.
 
 # File transfer
 The Util class makes it easy to do transfer of files over the API protocol. Keep in mind however, that since the API protocol was not designed for that, the larger the files you're dealing with, the higher the chance you'll break RouterOS. Limit yourself to KBs of data, if possible.
