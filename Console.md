@@ -6,83 +6,135 @@ You can use the console to quickly test for connectivity, login and API protocol
 (Strictly speaking, it's more of a [REPL](http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) shell)
 
 ## Arguments
-You can get a list of all arguments by either running the "roscon" executable without arguments, or running the PHAR with the "--help" argument. You should see the following:
+You can get a list of all arguments by either running the "roscon" executable without arguments, or running the PHAR with the "--help" argument.
 
-```
-RouterOS API console.
+Here's a more nicely formatted version of what you'd see:
 
-Usage:
-  roscon.php [options] hostname [username] [password]
+### Options
 
-Options:
-  -p portNum, --port=portNum  Port to connect to. Default is either 8728 or
-                              8729, depending on whether an encryption is
-                              specified.
-  --cTimeout=conTime          Time in seconds to wait for the connection to
-                              be estabilished. If "--timeout" is specified,
-                              its value will be used when this option is
-                              not specified.
-                              Defaults to PHP's default_socket_timeout ini
-                              option.
-  --enc=crypto                Encryption to use, if at all. Currently,
-                              RouterOS supports only "TLS".
-                              (Default: "")
-  --ca=caPath                 Optional path to a file or folder to use for
-                              certification authority, when using
-                              encryption. Ignored when not using encryption
-                              or using ADH cipher.
-  -t time, --timeout=time     Time in seconds to wait when receiving. If
-                              this time passes without data awaiting,
-                              control is passed back for further input.
-                              (Default: 3)
-  -v, --verbose               Turn on verbose output.
-  --colors=isColored          Choose whether to color output (requires
-                              PEAR2_Console_Color). Possible values:
-                              "auto" - color is always enabled, except on
-                              Windows, where ANSICON must be installed
-                              (detected via the ANSICON_VER environment
-                              variable).
-                              "yes"  - force colored output.
-                              "no"   - force no coloring of output.
-                              (Default: "auto")
-  -w size, --width=size       Width of console screen. Used in verbose mode
-                              to wrap output in this length.
-                              (Default: 80)
-  --command-mode=commandMode  Mode to send commands in. Can be one of:
-                              "w" - send every word as soon as it is
-                              entered
-                              "s" - wait for a sentence to be formed, and
-                              send all its words then
-                              "e" - wait for an empty sentence, and send
-                              all previous sentences then. You can send an
-                              empty sentence by sending two consecutive
-                              empty words.
-                              (Default: "s")
-  --reply-mode=replyMode      Mode to get replies in. Can be one of:
-                              "w" - after every send, try to get a word
-                              "s" - after every send, try to get a sentence
-                              "e" - after every send, try to get all
-                              sentences until a timeout.
-                              (Default: "s")
-  -m, --multiline             Turn on multiline mode. Without this mode,
-                              every line of input is considered a word.
-                              With it, every line is a line within the
-                              word, and the end of the word is marked
-                              instead by an "end of text" character as the
-                              only character on a line. To write out such a
-                              character, you can use ALT+Numpad3. If you
-                              want to write this character as part of the
-                              word, you can write two such characters on a
-                              line.
-  -h, --help                  show this help message and exit
-  --version                   show the program version and exit
+<table>
+    <thead>
+        <tr>
+            <th>Option</th>
+            <th>Short option</th>
+            <th>Default</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>--port</td>
+            <td>-p</td>
+            <td></td>
+            <td>Port to connect to. Default is either 8728 or 8729, depending on whether an encryption is specified.</td>
+        </tr>
+        <tr>
+            <td>--cTimeout</td>
+            <td></td>
+            <td></td>
+            <td>Time in seconds to wait for the connection to be estabilished. If "--timeout" is specified, its value will be used when this option is not specified.
+                Defaults to PHP's default_socket_timeout ini option.</td>
+        </tr>
+        <tr>
+            <td>--enc</td>
+            <td></td>
+            <td></td>
+            <td>Encryption to use, if at all. Currently, RouterOS supports only "TLS".
+                (Default: "")</td>
+        </tr>
+        <tr>
+            <td>--ca</td>
+            <td></td>
+            <td></td>
+            <td>Optional path to a file or folder to use for certification authority, when using encryption. Ignored when not using encryption or using ADH cipher.</td>
+        </tr>
+        <tr>
+            <td>--timeout</td>
+            <td>-t</td>
+            <td></td>
+            <td>Time in seconds to wait when receiving. If this time passes without data awaiting, control is passed back for further input.
+                (Default: 3)</td>
+        </tr>
+        <tr>
+            <td>--verbose</td>
+            <td>-v</td>
+            <td></td>
+            <td>Turn on verbose output.</td>
+        </tr>
+        <tr>
+            <td>--colors</td>
+            <td></td>
+            <td>auto</td>
+            <td>Choose whether to color output (requires PEAR2_Console_Color). Possible values:
+                "auto" - color is always enabled, except on Windows, where ANSICON must be installed (detected via the ANSICON_VER environment variable).
+                "yes"  - force colored output.
+                "no"   - force no coloring of output.
+                (Default: "auto")</td>
+        </tr>
+        <tr>
+            <td>--width</td>
+            <td>-w</td>
+            <td>80</td>
+            <td>Width of console screen. Used in verbose mode to wrap output in this length.
+                (Default: 80)</td>
+        </tr>
+        <tr>
+            <td>--command-mode</td>
+            <td></td>
+            <td>s</td>
+            <td>Mode to send commands in. Can be one of:
+                "w" - send every word as soon as it is entered
+                "s" - wait for a sentence to be formed, and send all its words then
+                "e" - wait for an empty sentence, and send all previous sentences then. You can send an empty sentence by sending two consecutive empty words.
+                (Default: "s")</td>
+        </tr>
+        <tr>
+            <td>--reply-mode</td>
+            <td></td>
+            <td>s</td>
+            <td>Mode to get replies in. Can be one of:
+                "w" - after every send, try to get a word
+                "s" - after every send, try to get a sentence
+                "e" - after every send, try to get all sentences until a timeout.
+                (Default: "s")</td>
+        </tr>
+        <tr>
+            <td>--multiline</td>
+            <td>-m</td>
+            <td></td>
+            <td>Turn on multiline mode. Without this mode, every line of input is considered a word. With it, every line is a line within the word, and the end of the word is marked instead by an "end of text" character as the only character on a line. To write out such a character, you can use ALT+Numpad3. If you want to write this character as part of the word, you can write two such characters on a line.</td>
+        </tr>
+    </tbody>
+</table>
 
-Arguments:
-  hostname  Hostname of the RouterOS to connect to.
-  username  Username to log in with. If left empty, no login will be
-            performed.
-  password  Password to log in with.
-```
+### Arguments
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Required</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>hostname</td>
+            <td>Yes</td>
+            <td>Hostname of the RouterOS to connect to.</td>
+        </tr>
+        <tr>
+            <td>username</td>
+            <td>No</td>
+            <td>Username to log in with. If left empty, no login will be performed.</td>
+        </tr>
+        <tr>
+            <td>password</td>
+            <td>No</td>
+            <td>Password to log in with.</td>
+        </tr>
+    </tbody>
+</table>
 
 ## Example command lines
 1. Connecting to RouterOS at 192.168.0.1 without credentials over the default API port (8728):
