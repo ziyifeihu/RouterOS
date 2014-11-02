@@ -23,7 +23,7 @@ $request->setQuery($query);
 $responses = $client->sendSync($request);
  
 foreach ($responses as $response) {
-    foreach ($response->getAllArguments() as $name => $value) {
+    foreach ($response as $name => $value) {
         echo "{$name}: {$value}\n";
     }
     echo "====\n";
@@ -38,10 +38,10 @@ You can create a query by calling the static Query::where() method, along with t
 $query = RouterOS\Query::where('address', '192.168.0.100');
 ```
 
-Using the optional third parameter, you can specify exactly what do you want to do with the value. Possible values are the Query::ACTION_* constants. For example, if you wanted to get all addresses greather than 192.168.0.100, you can use:
+Using the optional third parameter, you can specify exactly what do you want to do with the value. Possible values are the Query::OP_* constants. For example, if you wanted to get all addresses greather than 192.168.0.100, you can use:
 
 ```php
-$query = RouterOS\Query::where('address', '192.168.0.100', RouterOS\Query::ACTION_GREATHER_THAN);
+$query = RouterOS\Query::where('address', '192.168.0.100', RouterOS\Query::OP_GT);
 ```
 
 ## Chaining conditions
@@ -49,7 +49,7 @@ The Query class uses a "fluent" interface, i.e. it always returns the query obje
 
 ```php
 $query = RouterOS\Query::where(
-    'address', '192.168.0.100', RouterOS\Query::ACTION_GREATHER_THAN
+    'address', '192.168.0.100', RouterOS\Query::OP_GT
 )->orWhere('address', '192.168.0.100');
 ```
 
