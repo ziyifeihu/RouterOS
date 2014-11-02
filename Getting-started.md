@@ -13,8 +13,10 @@ Other requirements are not a problem in most scenarios. For reference, they are:
 * [PEAR2_Net_Transmitter](http://pear2.github.com/Net_Transmitter/) (bundled in the archive; installed automatically by Pyrus and Composer)
 * [optional] The iconv extension (compiled into PHP by default; required only if you want to use [automatic charset conversion](Optional-features#wiki-automatic-charset-conversion))
 * [optional] The OpenSSL extension (bundled with PHP by default; needs to be enabled in php.ini or during compilation; required only if you want to use [encrypted connections](Optional-features#wiki-encrypted-connections))
-* [optional] [PEAR2_Cache_SHM](http://pear2.github.com/Cache_SHM/) (bundled in the archive; needed only if you use [persistent connections](Optional-features#wiki-persistent-connections); installed by Pyrus if you pass the "-o" flag at installation)
-* [optional] A PSR-0 compliant autoloader (highly recommended; [PEAR2_Autoload](http://pear2.php.net/PEAR2_Autoload) is one such autoloader that is bundled in the archive and installed by Pyrus if you pass the "-o" flag at installation)
+* [optional] [PEAR2_Cache_SHM](http://pear2.github.com/Cache_SHM/) (bundled in the archive; needed only if you use [persistent connections](Optional-features#wiki-persistent-connections))
+* [optional] [PEAR2_Console_CommandLine](https://github.com/pear2/Console_CommandLine) (bundled in the archive; needed only when using the API console)
+* [optional] [PEAR2_Console_Color](https://github.com/pear2/Console_Color) (bundled in the archive; needed only if you'd like to have colors in the API console)
+* [optional] A PSR-0 or PSR-4 compliant autoloader (highly recommended; [PEAR2_Autoload](http://pear2.php.net/PEAR2_Autoload) is one PSR-0 autoloader that is bundled in the archive)
 
 ### Notes
 * The API service in RouterOS is disabled by default in versions prior to 6.0. To enable it, you need to execute
@@ -64,8 +66,8 @@ If you download the ".phar" archive, you can just include the archive, and be re
 
 ```php
 <?php
-//You may want to include a namespace declaration here
-require_once 'PEAR2_Net_RouterOS-1.0.0b4.phar';
+//You may want to include a namespace/use declaration here
+require_once 'PEAR2_Net_RouterOS-1.0.0b5.phar';
 //Use any PEAR2_Net_RouterOS class from here on
 ```
 
@@ -76,7 +78,7 @@ Assuming you have [installed Pyrus](http://pear.php.net/manual/en/installationpy
 php pyrus.phar install PEAR2_Net_RouterOS-alpha
 ```
 
-or, if you want to also get the optional dependencies, you can use
+or, if you want to also get the optional dependencies (see above), you can use
 
 ```sh
 php pyrus.phar install -o PEAR2_Net_RouterOS-alpha
@@ -116,27 +118,24 @@ pear install -a pear2/PEAR2_Net_RouterOS-alpha
 to install optional dependencies as well.
 
 ### Installation with [Composer](http://getcomposer.org/)
-This package is [available from packagist.org](https://packagist.org/packages/pear2/net_routeros), so all you have to have the following as part of your composer.json file:
-```json
-{
-    "require": {
-        "pear2/net_routeros": ">=1.0.0b4"
-    }
-}
+This package is [available from packagist.org](https://packagist.org/packages/pear2/net_routeros), so all you have to do is to go to your project's directory (where your composer.json is), and run
+```sh
+composer require pear2/net_routeros
 ```
 
-Due to the way composer works, you need to add optional dependencies manually. So for example, if you want to use persistent connections, your file would have to look more like:
-```json
-{
-    "require": {
-        "pear2/net_routeros": ">=1.0.0b4",
-        "pear2/cache_shm": ">=0.1.2"
-    }
-}
+Due to the way composer works, you need to add each optional dependency manually. So for example, if you want to use persistent connections, you'd also need to execute
+```sh
+composer require pear2/cache_shm
+```
+
+and if you want to use the API console
+```sh
+composer require pear2/console_commandline
+composer require pear2/console_color
 ```
 
 ### Manual installation
-Instead of using the PEAR(2) installer or Composer, you can just download a packaged archive, and extract the contents of the "src" folder wherever you like. To emulate the PEAR(2) installer, you can place the files in a folder that's within your include_path. The packaged archive includes a version of PEAR2_Net_Transmitter (and even PEAR2_Cache_SHM), so there's nothing to worry about beyond extracting the archive.
+Instead of using the PEAR(2) installer or Composer, you can just download a packaged archive, and extract its contents. To emulate the PEAR(2) installer, you can place the files from the "src" folder at a folder that's within your include_path. The packaged archive includes a version of PEAR2_Net_Transmitter (as well as all optional dependencies), so there's nothing to worry about beyond extracting the archive.
 
 ### Installation from the repository (with [Git](http://git-scm.com/))
 If you want to get the "cutting edge", unpackaged version of PEAR2_Net_RouterOS, you'll need to have Git. Once you have it, create a folder to place the package and its dependencies in, navigate to it from the command line, and execute the following commands:
@@ -159,7 +158,7 @@ include_once 'PEAR2/Autoload.php';
 can be replaced with
 
 ```php
-include_once 'PEAR2_Net_RouterOS-1.0.0b4.phar';
+include_once 'PEAR2_Net_RouterOS-1.0.0b5.phar';
 ```
 
 and then everything should work the same.
@@ -184,43 +183,40 @@ Like every other PEAR2 package, PEAR2_Net_RouterOS uses namespaces - a feature i
 
 * Using a fully qualified class name
 
-```php
-<?php
-include_once 'PEAR2/Autoload.php';
-$client = new \PEAR2\Net\RouterOS\Client('example.com', 'admin');
-// Use the client here
-?>
-```
+    ```php
+    <?php
+    include_once 'PEAR2/Autoload.php';
+    $client = new \PEAR2\Net\RouterOS\Client('example.com', 'admin');
+    // Use the client here
+    ?>
+    ```
 * Declaring the PEAR2\Net\RouterOS as your default namespace
- 
-```php
-<?php
-namespace PEAR2\Net\RouterOS;
-include_once 'PEAR2/Autoload.php';
-$client = new Client('example.com', 'admin');
-// Use the client here
-?>
-```
+    ```php
+    <?php
+    namespace PEAR2\Net\RouterOS;
+    include_once 'PEAR2/Autoload.php';
+    $client = new Client('example.com', 'admin');
+    // Use the client here
+    ?>
+    ```
 * Declaring the PEAR2\Net\RouterOS as an aliased namespace
- 
-```php
-<?php
-use PEAR2\Net\RouterOS as Ros;
-include_once 'PEAR2/Autoload.php';
-$client = new Ros\Client('example.com', 'admin');
-// Use the client here
-?>
-```
+    ```php
+    <?php
+    use PEAR2\Net\RouterOS as Ros;
+    include_once 'PEAR2/Autoload.php';
+    $client = new Ros\Client('example.com', 'admin');
+    // Use the client here
+    ?>
+    ```
 * Declaring an alias of each class you intend to use directly.
-
-```php
-<?php
-use PEAR2\Net\RouterOS\Client as Ros;
-include_once 'PEAR2/Autoload.php';
-$client = new Ros('example.com', 'admin');
-// Use the client here
-?>
-```
+    ```php
+    <?php
+    use PEAR2\Net\RouterOS\Client as Ros;
+    include_once 'PEAR2/Autoload.php';
+    $client = new Ros('example.com', 'admin');
+    // Use the client here
+    ?>
+    ```
 
 Note that namespace declarations must appear before any includes. They must in fact be the first thing in a PHP file.
 
