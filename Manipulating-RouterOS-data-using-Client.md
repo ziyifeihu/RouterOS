@@ -13,7 +13,7 @@ $client = new RouterOS\Client('192.168.0.1', 'admin');
 $getRequest = new RouterOS\Request('/interface/get');
 $getRequest->setArgument('value-name', 'type');
 $getRequest->setArgument('number', 'ether1');
-$type = $client->sendSync($getRequest)->getArgument('ret');
+$type = $client->sendSync($getRequest)->getProperty('ret');
 //$type now contains the "type" of the interface "ether1"
 ?>
 ```
@@ -39,7 +39,7 @@ $client = new RouterOS\Client('192.168.0.1', 'admin');
 $printRequest = new RouterOS\Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', 'mac-address');
 $printRequest->setQuery(RouterOS\Query::where('address', '192.168.0.100'));
-$mac = $client->sendSync($printRequest)->getArgument('mac-address');
+$mac = $client->sendSync($printRequest)->getProperty('mac-address');
 //$mac now conains the MAC address for the IP 192.168.0.100
 ?>
 ```
@@ -65,7 +65,7 @@ $client = new RouterOS\Client('192.168.0.1', 'admin');
 $printRequest = new RouterOS\Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
 $printRequest->setQuery(RouterOS\Query::where('comment', 'my'));
-$id = $client->sendSync($printRequest)->getArgument('.id');
+$id = $client->sendSync($printRequest)->getProperty('.id');
 //$id now contains the ID of the entry we're targeting
 
 $removeRequest = new RouterOS\Request('/ip/arp/remove');
@@ -87,7 +87,7 @@ $client = new RouterOS\Client('192.168.0.1', 'admin');
 $printRequest = new RouterOS\Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
 $printRequest->setQuery(RouterOS\Query::where('comment', 'my'));
-$id = $client->sendSync($printRequest)->getArgument('.id');
+$id = $client->sendSync($printRequest)->getProperty('.id');
 //$id now contains the ID of the entry we're targeting
 
 $setRequest = new RouterOS\Request('/ip/arp/set');
@@ -112,7 +112,7 @@ $client = new RouterOS\Client('192.168.0.1', 'admin');
 $printRequest = new RouterOS\Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
 $printRequest->setQuery(RouterOS\Query::where('comment', 'my'));
-$id = $client->sendSync($printRequest)->getArgument('.id');
+$id = $client->sendSync($printRequest)->getProperty('.id');
 //$id now contains the ID of the entry we're targeting
 
 $unsetRequest = new RouterOS\Request('/ip/arp/unset');
@@ -135,7 +135,7 @@ $client = new RouterOS\Client('192.168.0.1', 'admin');
 $printRequest = new RouterOS\Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
 $printRequest->setQuery(RouterOS\Query::where('comment', 'my'));
-$id = $client->sendSync($printRequest)->getArgument('.id');
+$id = $client->sendSync($printRequest)->getProperty('.id');
 //$id now contains the ID of the entry we're targeting
 
 $disableRequest = new RouterOS\Request('/ip/arp/disable');
@@ -160,7 +160,7 @@ $printRequest->setQuery(RouterOS\Query::where('mac-address', '00:00:00:00:00:01'
 
 $idList = '';
 foreach ($client->sendSync($printRequest)->getAllOfType(RouterOS\Response::TYPE_DATA) as $item) {
-    $idList .= ',' . $item->getArgument('.id');
+    $idList .= ',' . $item->getProperty('.id');
 }
 $idList = substr($idList, 1);
 //$idList now contains a comma separated list of all IDs.
