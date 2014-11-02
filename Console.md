@@ -86,8 +86,27 @@ Arguments:
 
 ## Example command lines
 
-1. To connect to RouterOS at 192.168.0.1 with the username "admin" and no password (as other examples in this documentation) over the default API port (8728):
+1. Connecting to RouterOS at 192.168.0.1 with the username "admin" and no password over the default API port (8728):
 
     ```sh
     roscon 192.168.0.1 admin
     ```
+2. Connecting to RouterOS at 192.168.0.1 with the username "admin" and the password "password" over the default API port (8728):
+
+    ```sh
+    roscon 192.168.0.1 admin password
+    ```
+3. Same as above, but on port 80 instead of port 8728:
+
+    ```sh
+    roscon -p 80 192.168.0.1 admin password
+    ```
+
+## Flow
+As mentioned in the beginning, the console is a REPL shell, and as such, it follows that flow. In other words, after a connection is established (and perhaps you're logged in):
+
+1. You write a word.
+2. At some point (defined by the --command-mode option; By default, as soon as you form an API sentence, i.e. when you write an empty word), no more reading is done, and all collected input is sent to RouterOS. The console goes back to step 1 if that point is not yet reached.
+3. The console waits for data up to the time defined by --timeout, and once a word is received or the time is up, it prints on screen what's been received.
+4. Up to a certain point (defined by the --reply-mode option), the console keeps repeating step 3.
+5. After reading is done, if the connection is still alive, things go back to step 1. Otherwise, connection is terminated, and the console exits.
