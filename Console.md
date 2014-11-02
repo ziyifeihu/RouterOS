@@ -176,7 +176,7 @@ Using the command line
 roscon -v "192.168.0.1" "admin" "password"
 ```
 
-Here's the output from "/system/package/print" on RouterOS 6.19:
+Here's the output from "/system/package/print" on RouterOS 6.19, followed by a "/quit" after its completion:
 ```
 MODE |   LENGTH    |    LENGTH    |  CONTENTS
      |  (decoded)  |  (encoded)   | 
