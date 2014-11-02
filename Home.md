@@ -16,6 +16,6 @@ Some reccomendations for more elegant code.
 ## [Optional features](wiki/Optional-features)
 All about charset conversion, persistent connections and encrypted connections.
 ## [Console](wiki/Console)
-All about the bundled REPL application.
+All about the bundled API protocol console.
 ## [API reference](http://pear2.github.com/Net_RouterOS/Documentation/1.0.0b5/)
 Doxygen generated API documentation.
