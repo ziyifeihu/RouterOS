@@ -11,6 +11,7 @@ You can get a list of all command line options and arguments by either running t
 Here's a more nicely formatted version of what you'd see:
 
 ### Options
+
 <table>
     <thead>
         <tr>
@@ -25,83 +26,83 @@ Here's a more nicely formatted version of what you'd see:
             <td><pre>--port</pre></td>
             <td>-p</td>
             <td></td>
-            <td><pre>Port to connect to. Default is either 8728 or 8729, depending on whether an encryption is specified.</pre></td>
+            <td style="white-space:pre-line;">Port to connect to. Default is either 8728 or 8729, depending on whether an encryption is specified.</td>
         </tr>
         <tr>
             <td><pre>--cTimeout</pre></td>
             <td></td>
             <td></td>
-            <td><pre>Time in seconds to wait for the connection to be estabilished. If "--timeout" is specified, its value will be used when this option is not specified.
-Defaults to PHP's default_socket_timeout ini option.</pre></td>
+            <td style="white-space:pre-line;">Time in seconds to wait for the connection to be estabilished. If "--timeout" is specified, its value will be used when this option is not specified.
+                Defaults to PHP's default_socket_timeout ini option.</td>
         </tr>
         <tr>
             <td><pre>--enc</pre></td>
             <td></td>
             <td></td>
-            <td><pre>Encryption to use, if at all. Currently, RouterOS supports only "TLS".
-(Default: "")</pre></td>
+            <td style="white-space:pre-line;">Encryption to use, if at all. Currently, RouterOS supports only "TLS".
+                (Default: "")</td>
         </tr>
         <tr>
             <td><pre>--ca</pre></td>
             <td></td>
             <td></td>
-            <td><pre>Optional path to a file or folder to use for certification authority, when using encryption. Ignored when not using encryption or using ADH cipher.</pre></td>
+            <td style="white-space:pre-line;">Optional path to a file or folder to use for certification authority, when using encryption. Ignored when not using encryption or using ADH cipher.</td>
         </tr>
         <tr>
             <td><pre>--timeout</pre></td>
             <td>-t</td>
             <td></td>
-            <td><pre>Time in seconds to wait when receiving. If this time passes without data awaiting, control is passed back for further input.
-(Default: 3)</pre></td>
+            <td style="white-space:pre-line;">Time in seconds to wait when receiving. If this time passes without data awaiting, control is passed back for further input.
+                (Default: 3)</td>
         </tr>
         <tr>
             <td><pre>--verbose</pre></td>
             <td>-v</td>
             <td></td>
-            <td><pre>Turn on verbose output.</pre></td>
+            <td style="white-space:pre-line;">Turn on verbose output.</td>
         </tr>
         <tr>
             <td><pre>--colors</pre></td>
             <td></td>
             <td>auto</td>
-            <td><pre>Choose whether to color output (requires PEAR2_Console_Color). Possible values:
-"auto" - color is always enabled, except on Windows, where ANSICON must be installed (detected via the ANSICON_VER environment variable).
-"yes"  - force colored output.
-"no"   - force no coloring of output.
-(Default: "auto")</pre></td>
+            <td style="white-space:pre-line;">Choose whether to color output (requires PEAR2_Console_Color). Possible values:
+                "auto" - color is always enabled, except on Windows, where ANSICON must be installed (detected via the ANSICON_VER environment variable).
+                "yes"  - force colored output.
+                "no"   - force no coloring of output.
+                (Default: "auto")</td>
         </tr>
         <tr>
             <td><pre>--width</pre></td>
             <td>-w</td>
             <td>80</td>
-            <td><pre>Width of console screen. Used in verbose mode to wrap output in this length.
-(Default: 80)</pre></td>
+            <td style="white-space:pre-line;">Width of console screen. Used in verbose mode to wrap output in this length.
+                (Default: 80)</td>
         </tr>
         <tr>
             <td><pre>--command-mode</pre></td>
             <td></td>
             <td>s</td>
-            <td><pre>Mode to send commands in. Can be one of:
-"w" - send every word as soon as it is entered
-"s" - wait for a sentence to be formed, and send all its words then
-"e" - wait for an empty sentence, and send all previous sentences then. You can send an empty sentence by sending two consecutive empty words.
-(Default: "s")</pre></td>
+            <td style="white-space:pre-line;">Mode to send commands in. Can be one of:
+                "w" - send every word as soon as it is entered
+                "s" - wait for a sentence to be formed, and send all its words then
+                "e" - wait for an empty sentence, and send all previous sentences then. You can send an empty sentence by sending two consecutive empty words.
+                (Default: "s")</td>
         </tr>
         <tr>
             <td><pre>--reply-mode</pre></td>
             <td></td>
             <td>s</td>
-            <td><pre>Mode to get replies in. Can be one of:
-"w" - after every send, try to get a word
-"s" - after every send, try to get a sentence
-"e" - after every send, try to get all sentences until a timeout.
-(Default: "s")</pre></td>
+            <td style="white-space:pre-line;">Mode to get replies in. Can be one of:
+                "w" - after every send, try to get a word
+                "s" - after every send, try to get a sentence
+                "e" - after every send, try to get all sentences until a timeout.
+                (Default: "s")</td>
         </tr>
         <tr>
             <td><pre>--multiline</pre></td>
             <td>-m</td>
             <td></td>
-            <td><pre>Turn on multiline mode. Without this mode, every line of input is considered a word. With it, every line is a line within the word, and the end of the word is marked instead by an "end of text" character as the only character on a line. To write out such a character, you can use ALT+Numpad3. If you want to write this character as part of the word, you can write two such characters on a line.</pre></td>
+            <td style="white-space:pre-line;">Turn on multiline mode. Without this mode, every line of input is considered a word. With it, every line is a line within the word, and the end of the word is marked instead by an "end of text" character as the only character on a line. To write out such a character, you can use ALT+Numpad3. If you want to write this character as part of the word, you can write two such characters on a line.</td>
         </tr>
     </tbody>
 </table>
