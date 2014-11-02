@@ -85,8 +85,14 @@ Arguments:
 ```
 
 ## Example command lines
+1. Connecting to RouterOS at 192.168.0.1 without credentials over the default API port (8728):
 
-1. Connecting to RouterOS at 192.168.0.1 with the username "admin" and no password over the default API port (8728):
+    ```sh
+    roscon "192.168.0.1"
+    ```
+    this mode allows you to diagnose issues during the login procedure itself or with commands that may otherwise be issued anonymously.
+
+1. Same as above, but with username "admin" and no password (as all other examples in this wiki):
 
     ```sh
     roscon "192.168.0.1" "admin"
@@ -101,7 +107,6 @@ Arguments:
     ```sh
     roscon -p 80 "192.168.0.1" "admin" "password"
     ```
-
 ## Flow
 As mentioned in the beginning, the console is a REPL shell, and as such, it follows that flow. In other words, after a connection is established (and perhaps you're logged in):
 
