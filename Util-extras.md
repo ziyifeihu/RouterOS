@@ -11,7 +11,7 @@ use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
 $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
-$util->changeMenu('/ip arp');
+$util->setMenu('/ip arp');
 
 $util->exec('
 add address=192.168.0.100 mac-address=00:00:00:00:00:01 comment=customer_1
@@ -34,7 +34,7 @@ use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
 $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
-$util->changeMenu('/ip arp');
+$util->setMenu('/ip arp');
 
 $source = '
 add address="192.168.0.$ip" mac-address="00:00:00:00:00:$mac" comment=$name
@@ -79,7 +79,7 @@ use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
 $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
-$util->changeMenu('/tool');
+$util->setMenu('/tool');
 
 $url = $_GET['url'];//assume $_GET['url'] equals something akin to "http://example.com/geoip.rsc?filter=all"...
 
@@ -159,7 +159,7 @@ require_once 'PEAR2/Autoload.php';
 
 $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
 
-$util->changeMenu('/system resource');
+$util->setMenu('/system resource');
 $uptime = RouterOS\Util::parseValue($util->get(null, 'uptime'));
 
 $now = new DateTime;
