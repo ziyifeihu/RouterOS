@@ -24,14 +24,14 @@ $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'))
 ```
 
 ## Navigating around
-Before executing a command with Util, you must first navigate to the menu you'll perform operations on. You do that with the changeMenu() method. Without arguments, it will give you the current menu. With an argument, you switch to a specified menu, and the method returns the previous menu you were on. By default you're at the root menu "/". If, for example, you want to edit ARP entries, you'd do:
+Before executing a command with Util, you must first navigate to the menu you'll perform operations on. You do that with the setMenu() method. By default you're at the root menu "/". If, for example, you want to edit ARP items, you'd do:
 ```php
 <?php
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
 $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
-$util->changeMenu('/ip arp');
+$util->setMenu('/ip arp');
 //Target entries in the "/ip arp" menu from here on
 ```
 
@@ -42,13 +42,13 @@ use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
 $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
-$util->changeMenu('/ip arp');//We're now at "/ip arp"
-$util->changeMenu('.. addresses');//We're now at the "/ip addresses" menu.
+$util->setMenu('/ip arp');//We're now at "/ip arp"
+$util->setMenu('.. addresses');//We're now at the "/ip addresses" menu.
 //Target entries in the "/ip addresses'" menu from here on
 ```
 
 # CRUD operations
-Util has an add(), find(), get(), unsetValue(), set(), edit(), remove(), enable(), disable() and move() methods, and you can probably already figure out what each one of them does. The important thing to keep in mind that __in addition__ to accepting IDs to target, each of these methods can also accept numbers, just like in terminal. This is implemented ON TOP of the API protocol, which doesn't support this natively. This is in fact Util's main super power compared to a plain Client.
+Util has an add(), count(), find(), get(), getAll(), unsetValue(), set(), edit(), remove(), enable(), disable() and move() methods, and you can probably already figure out what each one of them does. The important thing to keep in mind that __in addition__ to accepting IDs to target, each of these methods can also accept numbers, just like in terminal. This is implemented ON TOP of the API protocol, which doesn't support this natively. This is in fact Util's main super power compared to a plain Client.
 
 Let's look at some examples...
 ## add()
@@ -61,7 +61,7 @@ use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
 $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
-$util->changeMenu('/ip arp');
+$util->setMenu('/ip arp');
 $util->add(
     array(
         'address' => '192.168.0.100',
@@ -84,7 +84,7 @@ use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
 $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
-$util->changeMenu('/ip arp');
+$util->setMenu('/ip arp');
 echo $util->find(0, 1);//Outputs something similar to "*4de,*16a", since we targeted two entries - the one in position 0 and position 1. 
 ```
 
@@ -117,7 +117,7 @@ use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
 $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
-$util->changeMenu('/ip arp');
+$util->setMenu('/ip arp');
 echo $util->get(0, 'address');//echoes "192.168.0.1", assuming we had the previous example executed under an empty ARP list
 ```
 
@@ -128,7 +128,7 @@ use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
 $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
-$util->changeMenu('/system identity');
+$util->setMenu('/system identity');
 echo $util->get(null, 'name');//echoes "MikroTik", assuming you've never altered your router's identity.
 ```
 
@@ -146,7 +146,7 @@ use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
 $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
-$util->changeMenu('/ip arp');
+$util->setMenu('/ip arp');
 $util->set(0, array(
     'address' => '192.168.0.103'
 );
@@ -159,7 +159,7 @@ use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
 $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
-$util->changeMenu('/ip arp');
+$util->setMenu('/ip arp');
 $util->set(
     $util->find(
         function ($response) {
@@ -184,7 +184,7 @@ use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
 $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
-$util->changeMenu('/ip arp');
+$util->setMenu('/ip arp');
 $util->remove(0);
 $util->disable(Query::where('comment', 'DISABLE ME'));
 $util->enable(1);
@@ -200,7 +200,7 @@ use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
 $util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
-$util->changeMenu('/queue simple');
+$util->setMenu('/queue simple');
 $util->move(2, 0);//Place the queue at position 2 above the queue at position 0
 $util->move($util->find(3,4), 0);//Place the queues at positions 3 and 4 above the queue at position 0 (the same one that a line ago was at position 2)
 ```
