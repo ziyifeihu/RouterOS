@@ -44,7 +44,7 @@ $client->sendSync(new RouterOS\Request('/queue/simple/add name=Йес'));
 //Let's assume you already have another queue list entry with the name "ягода"
 echo $client->sendSync(
     new RouterOS\Request('/queue/simple/print', RouterOS\Query::where('name', 'ягода'))
-)->getArgument('name');
+)->getProperty('name');
 //Should output "ягода" in the exact same fashion as you see it here, and in Winbox.
 ```
 
