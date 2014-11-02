@@ -90,19 +90,19 @@ Arguments:
     ```sh
     roscon "192.168.0.1"
     ```
-    this mode allows you to diagnose issues during the login procedure itself or with commands that may otherwise be issued anonymously.
+    This mode allows you to diagnose issues during the login procedure itself or with commands that may otherwise be issued anonymously.
 
-1. Same as above, but with username "admin" and no password (as all other examples in this wiki):
+2. Same as above, but with username "admin" and no password (as all other examples in this wiki):
 
     ```sh
     roscon "192.168.0.1" "admin"
     ```
-2. Connecting to RouterOS at 192.168.0.1 with the username "admin" and the password "password" over the default API port (8728):
+3. Same as above, but with "password" being used as the password for "admin".
 
     ```sh
     roscon "192.168.0.1" "admin" "password"
     ```
-3. Same as above, but on port 80 instead of port 8728:
+4. Same as above, but on port 80 instead of port 8728:
 
     ```sh
     roscon -p 80 "192.168.0.1" "admin" "password"
