@@ -76,6 +76,53 @@ $util->add(
 
 Note that add() returns the IDs of the new entries, so if you're interested in later targeting them, you may want to store their IDs.
 
+## count()
+The count() method returns the number of items in the current menu. Optionally, only those that match a Query.  See [this tutorial](Using-queries) for details on working with queries.
+
+With this method, the Util class implements PHP's Countable interface, so if you want to get the count of all items, instead of calling the count() method, you can just give the object to PHP's count() function.
+
+In order to be compatible with Countable, the Query is specified as a second argument. The first is normally the counting mode, which can be COUNT_NORMAL or COUNT_RECURSIVE, but Util's count() method currently ignores it, because it doesn't make sense in this context, nor is there an alternative counting mode that could be employed.
+
+Example:
+```php
+<?php
+use PEAR2\Net\RouterOS;
+require_once 'PEAR2/Autoload.php';
+
+$util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
+$util->setMenu('/ip arp');
+
+//With function
+echo count($util) . "\n";
+
+//With method call
+echo $util->count() . "\n";
+
+//Count only disabled ARP items
+echo $util->count(COUNT_NORMAL, RouterOS\Query::where('disabled', 'true')) . "\n";
+```
+
+## getAll()
+The getAll() method is almost equivalent to issuing a "print" request in a menu - it gets all items at the current menu. "Almost", because unlike a "print" request with Client, this method automatically strips the !done reply, which normally signals the end of the request. This makes this method perfect for simply getting all items at a menu.
+
+Additional arguments are accepted as an array, given in the first argument, and you can filter responses with a Query at the second argument.
+
+Here's the very first example from Approaches with Client, written with getAll() instead:
+```php
+<?php
+use PEAR2\Net\RouterOS;
+require_once 'PEAR2/Autoload.php';
+
+$util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
+$util->setMenu('/ip arp');
+
+foreach($util->getAll() as $item) {
+    echo 'IP: ', $item->getProperty('address'),
+         ' MAC: ', $item->getProperty('mac-address'),
+         "\n";
+}
+```
+
 ## find()
 The find() method is by far the most important method in the whole class, as it's what separates it form Client. You can specify zero or more arguments of entries you'll be targeting, and get their IDs in a comma separated list for use in all of the methods below (as well as plain Client use). Zero arguments will give you the IDs of all entries in the current menu, which is probably not much useful. What's more interesting is when you specify numbers, e.g.:
 ```php
