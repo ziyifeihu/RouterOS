@@ -168,3 +168,231 @@ As mentioned in the beginning, the console is a REPL application, and as such, i
 3. The console waits for data up to the time defined by --timeout, and once a word is received or the time is up, it prints on screen what's been received.
 4. Up to a certain point (defined by the --reply-mode option), the console keeps repeating step 3.
 5. After reading is done, if the connection is still alive, things go back to step 1. Otherwise, connection is terminated, and the console exits.
+
+### Example session
+Using the command line
+
+```sh
+roscon -v "192.168.0.1" "admin" "password"
+```
+
+Here's the output from "/system/package/print" on RouterOS 6.19:
+```
+MODE |   LENGTH    |    LENGTH    |  CONTENTS
+     |  (decoded)  |  (encoded)   | 
+-----|-------------|--------------|--------------------------------------------
+SEND |    <prompt> |     <prompt> | 
+SEND |    <prompt> |     <prompt> | 
+SENT |          21 |         0x15 | /system/package/print
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           7 |         0x07 | =.id=*1
+RECV |          10 |         0x0A | =name=ipv6
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          15 |         0x0F | =disabled=false
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           7 |         0x07 | =.id=*2
+RECV |          17 |         0x11 | =name=wireless-fp
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          15 |         0x0F | =disabled=false
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           7 |         0x07 | =.id=*3
+RECV |          14 |         0x0E | =name=wireless
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          14 |         0x0E | =disabled=true
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           7 |         0x07 | =.id=*4
+RECV |          20 |         0x14 | =name=advanced-tools
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          15 |         0x0F | =disabled=false
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           7 |         0x07 | =.id=*5
+RECV |          10 |         0x0A | =name=dhcp
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          15 |         0x0F | =disabled=false
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           7 |         0x07 | =.id=*6
+RECV |          11 |         0x0B | =name=calea
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          15 |         0x0F | =disabled=false
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           7 |         0x07 | =.id=*7
+RECV |          13 |         0x0D | =name=hotspot
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          15 |         0x0F | =disabled=false
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           7 |         0x07 | =.id=*8
+RECV |          14 |         0x0E | =name=security
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          15 |         0x0F | =disabled=false
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           7 |         0x07 | =.id=*9
+RECV |           9 |         0x09 | =name=gps
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          15 |         0x0F | =disabled=false
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           7 |         0x07 | =.id=*A
+RECV |           9 |         0x09 | =name=ups
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          15 |         0x0F | =disabled=false
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           7 |         0x07 | =.id=*B
+RECV |          12 |         0x0C | =name=system
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          15 |         0x0F | =disabled=false
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           7 |         0x07 | =.id=*C
+RECV |          18 |         0x12 | =name=user-manager
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          15 |         0x0F | =disabled=false
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           7 |         0x07 | =.id=*D
+RECV |           9 |         0x09 | =name=kvm
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          15 |         0x0F | =disabled=false
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           7 |         0x07 | =.id=*E
+RECV |           9 |         0x09 | =name=ppp
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          15 |         0x0F | =disabled=false
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           7 |         0x07 | =.id=*F
+RECV |          13 |         0x0D | =name=routing
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          15 |         0x0F | =disabled=false
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           8 |         0x08 | =.id=*10
+RECV |           9 |         0x09 | =name=ntp
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          15 |         0x0F | =disabled=false
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           8 |         0x08 | =.id=*11
+RECV |          10 |         0x0A | =name=isdn
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          15 |         0x0F | =disabled=false
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           8 |         0x08 | =.id=*12
+RECV |           9 |         0x09 | =name=lcd
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          15 |         0x0F | =disabled=false
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           8 |         0x08 | =.id=*13
+RECV |          15 |         0x0F | =name=multicast
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          15 |         0x0F | =disabled=false
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           3 |         0x03 | !re
+RECV |           8 |         0x08 | =.id=*14
+RECV |          10 |         0x0A | =name=mpls
+RECV |          13 |         0x0D | =version=6.19
+RECV |          32 |         0x20 | =build-time=aug/26/2014 14:05:51
+RECV |          11 |         0x0B | =scheduled=
+RECV |          15 |         0x0F | =disabled=false
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           0 |         0x00 | 
+RECV |           5 |         0x05 | !done
+RECV |           0 |         0x00 | 
+SEND |    <prompt> |     <prompt> | 
+SEND |    <prompt> |     <prompt> | 
+SENT |           5 |         0x05 | /quit
+SENT |           0 |         0x00 | 
+RECV |           6 |         0x06 | !fatal
+RECV |          29 |         0x1D | session terminated on request
+RECV |           0 |         0x00 | 
+NOTE |   Connection terminated    | 
+```
