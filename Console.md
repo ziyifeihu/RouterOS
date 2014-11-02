@@ -3,7 +3,7 @@ The PHAR file is also an executable, that is a console. Running the PHAR file wi
 
 You can use the console to quickly test for connectivity, login and API protocol related issues, making sure that certain errors are ultimately due to RouterOS and/or configuration, and not due to a bug in PEAR2_Net_RouterOS or your code.
 
-(Strictly speaking, it's more of a [REPL](http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) shell)
+(Strictly speaking, it's more of a [REPL](http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) application)
 
 ## Options and arguments
 You can get a list of all command line options and arguments by either running the "roscon" executable without arguments, or running the PHAR with the "--help" option.
@@ -161,7 +161,7 @@ Here's a more nicely formatted version of what you'd see:
     ```
 
 ## Flow
-As mentioned in the beginning, the console is a REPL shell, and as such, it follows that flow. In other words, after a connection is established (and perhaps you're logged in):
+As mentioned in the beginning, the console is a REPL application, and as such, it follows that flow. In other words, after a connection is established (and perhaps after you're logged in):
 
 1. You write a word.
 2. At some point (defined by the --command-mode option; By default, as soon as you form an API sentence, i.e. when you write an empty word), no more reading is done, and all collected input is sent to RouterOS. The console goes back to step 1 if that point is not yet reached.
