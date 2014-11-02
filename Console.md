@@ -3,6 +3,8 @@ The PHAR file is also an executable, that is a console. Running the PHAR file wi
 
 You can use the console to quickly test for connectivity, login and API protocol related issues, making sure that certain errors are ultimately due to RouterOS and/or configuration, and not due to a bug in PEAR2_Net_RouterOS or your code.
 
+(Strictly speaking, it's more of a [REPL](http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) shell)
+
 ## Arguments
 You can get a list of all arguments by either running the "roscon" executable without arguments, or running the PHAR with the "--help" argument. You should see the following:
 
@@ -81,3 +83,11 @@ Arguments:
             performed.
   password  Password to log in with.
 ```
+
+## Example command lines
+
+1. To connect to RouterOS at 192.168.0.1 with the username "admin" and no password (as other examples in this documentation) over the default API port (8728):
+
+    ```sh
+    roscon 192.168.0.1 admin
+    ```
