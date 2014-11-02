@@ -6,7 +6,7 @@ You can use the console to quickly test for connectivity, login and API protocol
 (Strictly speaking, it's more of a [REPL](http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) shell)
 
 ## Options and arguments
-You can get a list of all arguments by either running the "roscon" executable without arguments, or running the PHAR with the "--help" argument.
+You can get a list of all command line options and arguments by either running the "roscon" executable without arguments, or running the PHAR with the "--help" option.
 
 Here's a more nicely formatted version of what you'd see:
 
