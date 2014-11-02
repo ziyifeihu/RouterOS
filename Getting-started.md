@@ -191,6 +191,7 @@ Like every other PEAR2 package, PEAR2_Net_RouterOS uses namespaces - a feature i
     ?>
     ```
 * Declaring the PEAR2\Net\RouterOS as your default namespace
+
     ```php
     <?php
     namespace PEAR2\Net\RouterOS;
@@ -200,6 +201,7 @@ Like every other PEAR2 package, PEAR2_Net_RouterOS uses namespaces - a feature i
     ?>
     ```
 * Declaring the PEAR2\Net\RouterOS as an aliased namespace
+
     ```php
     <?php
     use PEAR2\Net\RouterOS as Ros;
@@ -209,6 +211,7 @@ Like every other PEAR2 package, PEAR2_Net_RouterOS uses namespaces - a feature i
     ?>
     ```
 * Declaring an alias of each class you intend to use directly.
+
     ```php
     <?php
     use PEAR2\Net\RouterOS\Client as Ros;
