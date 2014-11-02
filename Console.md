@@ -107,6 +107,7 @@ Arguments:
     ```sh
     roscon -p 80 "192.168.0.1" "admin" "password"
     ```
+
 ## Flow
 As mentioned in the beginning, the console is a REPL shell, and as such, it follows that flow. In other words, after a connection is established (and perhaps you're logged in):
 
