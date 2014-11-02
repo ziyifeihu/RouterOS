@@ -89,17 +89,17 @@ Arguments:
 1. Connecting to RouterOS at 192.168.0.1 with the username "admin" and no password over the default API port (8728):
 
     ```sh
-    roscon 192.168.0.1 admin
+    roscon "192.168.0.1" "admin"
     ```
 2. Connecting to RouterOS at 192.168.0.1 with the username "admin" and the password "password" over the default API port (8728):
 
     ```sh
-    roscon 192.168.0.1 admin password
+    roscon "192.168.0.1" "admin" "password"
     ```
 3. Same as above, but on port 80 instead of port 8728:
 
     ```sh
-    roscon -p 80 192.168.0.1 admin password
+    roscon -p 80 "192.168.0.1" "admin" "password"
     ```
 
 ## Flow
