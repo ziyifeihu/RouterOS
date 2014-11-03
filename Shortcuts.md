@@ -114,6 +114,34 @@ $client
     ->loop();
 ```
 
+The Util::setMenu() is another method that returns the object itself, so for example, the code
+
+```php
+<?php
+use PEAR2\Net\RouterOS;
+require_once 'PEAR2/Autoload.php';
+
+$util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
+$util->setMenu('/system identity');
+echo $util->get(null, 'name');//echoes "MikroTik", assuming you've never altered your router's 
+```
+
+can be written as
+
+```php
+<?php
+use PEAR2\Net\RouterOS;
+require_once 'PEAR2/Autoload.php';
+
+$util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
+<?php
+use PEAR2\Net\RouterOS;
+require_once 'PEAR2/Autoload.php';
+
+$util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
+echo $util->setMenu('/system identity')->get(null, 'name');//echoes "MikroTik", assuming you've never altered your router's identity.
+```
+
 ## \_\_invoke() magic
 Most objects can be invoked as functions, and which point they're like a shorthand for the most common functionality of the object. You can see full details in the API reference, under the \_\_invoke() magic method's description for that object. Using that, the example above could be written as
 
