@@ -1,4 +1,4 @@
-#Console
+#Roscon
 The PHAR file is also an executable, that is a console. Running the PHAR file with any arguments will run the console. Also, installing PEAR2_Net_RouterOS with Pyrus, PEAR or Composer will give you an executable in your bin folder, called "roscon", which is that same console.
 
 You can use the console to quickly test for connectivity, login and API protocol related issues, making sure that certain errors are ultimately due to RouterOS and/or configuration, and not due to a bug in PEAR2_Net_RouterOS or your code.
