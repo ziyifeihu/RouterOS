@@ -14,7 +14,7 @@ Other requirements are not a problem in most scenarios. For reference, they are:
 * [optional] The iconv extension (compiled into PHP by default; required only if you want to use [automatic charset conversion](Optional-features#wiki-automatic-charset-conversion))
 * [optional] The OpenSSL extension (bundled with PHP by default; needs to be enabled in php.ini or during compilation; required only if you want to use [encrypted connections](Optional-features#wiki-encrypted-connections))
 * [optional] [PEAR2_Cache_SHM](http://pear2.github.com/Cache_SHM/) (bundled in the archive; needed only if you use [persistent connections](Optional-features#wiki-persistent-connections))
-* [optional] [PEAR2_Console_CommandLine](https://github.com/pear2/Console_CommandLine) (bundled in the archive; needed only when using the [API console](wiki/Console))
+* [optional] [PEAR2_Console_CommandLine](https://github.com/pear2/Console_CommandLine) (bundled in the archive; needed only when using the [API console](Console))
 * [optional] [PEAR2_Console_Color](https://github.com/pear2/Console_Color) (bundled in the archive; needed only if you'd like to have colors in the API console)
 * [optional] A PSR-0 or PSR-4 compliant autoloader (highly recommended; [PEAR2_Autoload](http://pear2.php.net/PEAR2_Autoload) is one PSR-0 autoloader that is bundled in the archive)
 
