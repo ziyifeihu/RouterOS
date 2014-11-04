@@ -142,7 +142,7 @@ Here's a more nicely formatted version of what you'd see:
     ```sh
     roscon "192.168.0.1"
     ```
-    This mode allows you to diagnose issues during the login procedure itself or with commands that may otherwise be issued anonymously.
+    This mode allows you to diagnose issues occurring prior or during the login procedure itself or with commands that may otherwise be issued anonymously.
 
 2. Same as above, but with username "admin" and no password (as all other examples in this wiki):
 
