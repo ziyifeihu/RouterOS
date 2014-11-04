@@ -154,10 +154,10 @@ Here's a more nicely formatted version of what you'd see:
     ```sh
     roscon "192.168.0.1" "admin" "password"
     ```
-4. Same as above, but on port 80 instead of port 8728:
+4. Same as above, but on port 443 instead of port 8728:
 
     ```sh
-    roscon -p 80 "192.168.0.1" "admin" "password"
+    roscon -p 443 "192.168.0.1" "admin" "password"
     ```
 
 ## Flow
