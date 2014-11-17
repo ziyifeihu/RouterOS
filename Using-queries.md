@@ -54,9 +54,9 @@ $query = RouterOS\Query::where(
 ```
 
 ## Limiting returned properties
-The query works a little like the "WHERE" clause in an SQL statement - it limits the amount of responses returned (which can be thought of as a "record" in DB terms) - but it doesn't limit the arguments of each response (which can be thought of as "fields" in DB terms, and are often reffered to as "properties" in the RouterOS documentation).
+The query works a little like the "WHERE" clause in an SQL statement - it limits the amount of responses returned (which can be thought of as a "record" in DB terms) - but it doesn't limit the properties of each response (which can be thought of as "fields" in DB terms).
 
-To do that, you need to set an API specific argument called ".proplist". The value is a comma separated list of arguments to be listed in the responses. For example, if you were only interested in the MAC addresses, you can do:
+To do that, you need to set an API specific argument called ".proplist". The value is a comma separated list of properties to be listed in the responses. For example, if you were only interested in the MAC addresses, you can do:
 
 ```php
 $request->setArgument('.proplist', 'mac-address');
