@@ -167,8 +167,10 @@ $client($addRequest);
 $client();
 ```
 
-## I wish...
-There is currently [an RFC about function chaining](https://wiki.php.net/rfc/fcallfcall), with a patch in it. Unfortunately, the patch is not yet implemented in a stock PHP. If this patch is ever implemented (or if you're willing to compile PHP yourself), you'd be able to write some extremely fancy code. The above for example could be rewritten as
+## I wish... / In PHP 7
+In the upcoming PHP 7, there's support for function chaining (see [uniform variable syntax RFC](https://wiki.php.net/rfc/uniform_variable_syntax)).
+
+With that in place, the above for example could be rewritten as
 
 ```php
 <?php
