@@ -6,7 +6,8 @@ The requirements to watch out for are:
 * PHP 5.3.0 or later. 
 * A host with RouterOS v3 or later. 
 * Enabled API service on the RouterOS host.
-* Enabled outgoing connections with [stream_socket_client()](http://php.net/stream_socket_client).
+* Enabled **outgoing** connections with PHP's [stream_socket_client()](http://php.net/stream_socket_client).
+* Enabled **incoming** connections in the firewall of RouterOS (check any rules in the "input" chain).
 
 Other requirements are not a problem in most scenarios. For reference, they are:
 * The PCRE and SPL extensions (compiled into PHP by default)
@@ -21,10 +22,9 @@ Other requirements are not a problem in most scenarios. For reference, they are:
 ### Notes
 * The API service in RouterOS is disabled by default in versions prior to 6.0. To enable it, you need to execute
     ```sh
-/ip service set numbers="api" address="0.0.0.0/0" disabled="no"
+/ip service set numbers="api" address="" disabled="no"
     ```
     from a RouterOS terminal. The "address" argument in the command above allows you to limit access to this service only to certain client IP addresses. For security's sake, it's better that you limit connections only to the IP address(es) of the server(s) from which PHP will access RouterOS.
-
 * Many shared web hosts choose to disable stream_socket_client(), and it's close relative fsockopen() as well. When they don't disable them, they often render them useless by forbidding outgoing connections with the server's firewall. A frequently possible workaround is to use the API service on a different, more popular port, such as 21, 80, 443, or something similar. If even that doesn't work, you need to contact your host. If you're on your own server, and fail to connect, configure your server's firewall so that it enables PHP to make outgoing connections (at least to the ip:port combo of where your router uses the API service). Depending on how you run PHP as:
 <table>
     <thead>
@@ -59,6 +59,11 @@ Other requirements are not a problem in most scenarios. For reference, they are:
         </tr>
     </tbody>
 </table>
+* By default, RouterBoard devices come with a rule in "/ip firewall filter" that drops any incoming connections from the WAN interface. If your web server is outside the LAN (e.g. a web host, as opposed to your own web server), you must explicitly whitelist the API port. You can do that by executing the following command:
+    ```sh
+/ip firewall filter add place-before=[find where chain="input" && action="drop"] chain="input" action="accept" dst-port=[/ip service get "api" "port"]
+    ```
+
 
 ## Installation
 ### Direct PHAR usage
