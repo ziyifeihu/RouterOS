@@ -17,5 +17,5 @@ Some reccomendations for more elegant code.
 All about charset conversion, persistent connections and encrypted connections.
 ## [Roscon](wiki/Roscon)
 All about the bundled API protocol console.
-## [API reference](http://pear2.github.com/Net_RouterOS/Documentation/1.0.0b5/)
+## [API reference](https://pear2.github.io/Net_RouterOS/Documentation/1.0.0b5/)
 Doxygen generated API documentation.

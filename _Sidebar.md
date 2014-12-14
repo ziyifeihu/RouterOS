@@ -1,1 +1,1 @@
-[API reference] (http://pear2.github.com/Net_RouterOS/Documentation/1.0.0b5/)
+[API reference] (https://pear2.github.io/Net_RouterOS/Documentation/1.0.0b5/)
