@@ -78,7 +78,7 @@ $client = new RouterOS\Client('192.168.0.1', 'admin', 'password', null, false, n
 
 Notice that we left the port (the 4th argument) to ```null```. The port is automatically chosen between 8728 and 8729 depending on whether we don't or do have an encrypted connection, respectively. If you want to use a different port, set it at both the 4th argument, and at "/ip service" under the "api-ssl" service.
 
-BTW, the reason we use a class constant is in case MikroTik and PHP later support additional encryption methods - this would allow you to easily switch to them.
+The reason we use a class constant is in case MikroTik and PHP later support additional encryption methods - this would allow you to easily switch to them.
 
 If you need to use a certificate, you could leave it like that, but while you're at it, you'll probably want to check the certificate - to do that, you need to supply a stream context argument as the 8th argument. The stream context needs to contain a CA file (or a folder with such file(s)) that will verify RouterOS' certificate. For example:
 ```php
