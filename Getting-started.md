@@ -63,7 +63,7 @@ Other requirements are not a problem in most scenarios. For reference, they are:
 
 * Many RouterBOARD devices come, by default, with a rule in "/ip firewall filter" that drops any incoming connections from to the router, coming from the WAN interface. If your web server is outside the LAN (e.g. a web host, as opposed to your own web server inside your network), you must explicitly whitelist RouterOS' API port or (not recommended) disable that rule entirely. You can whitelist the API port for all interfaces with the following command:
     ```sh
-/ip firewall filter add place-before=[:pick [find where chain="input"] 0] chain="input" action="accept" dst-port=[/ip service get "api" "port"]
+/ip firewall filter add place-before=[:pick [find where chain="input"] 0] chain="input" action="accept" protocol="tcp" dst-port=[/ip service get "api" "port"]
     ```
 
 
