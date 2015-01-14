@@ -159,13 +159,13 @@ __Note: If you plan to contribute to this project, please use GitHub's "fork" fe
 If you use the PHAR archive, every class you attempt to use will automatically be auto loaded with the bundled PEAR2_Autoload. In virtually all places of this documentation, the line
 
 ```php
-include_once 'PEAR2/Autoload.php';
+require_once 'PEAR2/Autoload.php';
 ```
 
 can be replaced with
 
 ```php
-include_once 'PEAR2_Net_RouterOS-1.0.0b5.phar';
+require_once 'PEAR2_Net_RouterOS-1.0.0b5.phar';
 ```
 
 and then everything should work the same.
@@ -174,7 +174,7 @@ With any other method, you need to include any PSR-0 compatible autoloader (the 
 
 ```php
 <?php
-include_once 'PEAR2/Autoload.php';
+require_once 'PEAR2/Autoload.php';
 \PEAR2\Autoload::initialize('/path/to/your/PEAR2/files');
 //Use any PEAR2_Net_RouterOS class
 ```
@@ -182,7 +182,7 @@ include_once 'PEAR2/Autoload.php';
 If you've used Composer, then you should be able to access the generated autoloader with
 ```php
 <?php
-include_once 'vendor/autoload.php';
+require_once 'vendor/autoload.php';
 //Use any PEAR2_Net_RouterOS class
 ```
 
@@ -192,7 +192,7 @@ Like every other PEAR2 package, PEAR2_Net_RouterOS uses namespaces - a feature i
 
     ```php
     <?php
-    include_once 'PEAR2/Autoload.php';
+    require_once 'PEAR2/Autoload.php';
     $client = new \PEAR2\Net\RouterOS\Client('example.com', 'admin');
     // Use the client here
     ?>
@@ -202,7 +202,7 @@ Like every other PEAR2 package, PEAR2_Net_RouterOS uses namespaces - a feature i
     ```php
     <?php
     use PEAR2\Net\RouterOS as Ros;
-    include_once 'PEAR2/Autoload.php';
+    require_once 'PEAR2/Autoload.php';
     $client = new Ros\Client('example.com', 'admin');
     // Use the client here
     ?>
@@ -212,7 +212,7 @@ Like every other PEAR2 package, PEAR2_Net_RouterOS uses namespaces - a feature i
     ```php
     <?php
     use PEAR2\Net\RouterOS\Client as Ros;
-    include_once 'PEAR2/Autoload.php';
+    require_once 'PEAR2/Autoload.php';
     $client = new Ros('example.com', 'admin');
     // Use the client here
     ?>
@@ -222,7 +222,7 @@ Like every other PEAR2 package, PEAR2_Net_RouterOS uses namespaces - a feature i
     ```php
     <?php
     namespace PEAR2\Net\RouterOS;
-    include_once 'PEAR2/Autoload.php';
+    require_once 'PEAR2/Autoload.php';
     $client = new Client('example.com', 'admin');
     // Use the client here
     ?>
