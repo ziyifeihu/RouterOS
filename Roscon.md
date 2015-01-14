@@ -3,7 +3,7 @@ The PHAR file is also an executable, that is a console. Running the PHAR file wi
 
 You can use the console to quickly test for connectivity, login and API protocol related issues, making sure that certain errors are ultimately due to RouterOS and/or configuration, and not due to a bug in PEAR2_Net_RouterOS or your code.
 
-(Strictly speaking, it's more of a [REPL](http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) application)
+(Strictly speaking, the console is more of a [REPL](http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) application)
 
 ## Options and arguments
 You can get a list of all command line options and arguments by either running the "roscon" executable without arguments, or running the PHAR with the "--help" option.
