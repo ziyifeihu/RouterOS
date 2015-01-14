@@ -17,7 +17,7 @@ Other requirements are not a problem in most scenarios. For reference, they are:
 * [optional] [PEAR2_Cache_SHM](http://pear2.github.com/Cache_SHM/) (bundled in the archive; needed only if you use [persistent connections](Optional-features#wiki-persistent-connections))
 * [optional] [PEAR2_Console_CommandLine](https://github.com/pear2/Console_CommandLine) (bundled in the archive; needed only when using the [API console](Roscon))
 * [optional] [PEAR2_Console_Color](https://github.com/pear2/Console_Color) (bundled in the archive; needed only if you'd like to have colors in the API console)
-* [optional] A PSR-0 or PSR-4 compliant autoloader (highly recommended; [PEAR2_Autoload](http://pear2.php.net/PEAR2_Autoload) is one PSR-0 autoloader that is bundled in the archive)
+* [optional] A [PSR-0](http://www.php-fig.org/psr/psr-0/) or [PSR-4](http://www.php-fig.org/psr/psr-4/) compliant autoloader (highly recommended; [PEAR2_Autoload](http://pear2.php.net/PEAR2_Autoload) is one PSR-0 autoloader that is bundled in the archive)
 
 ### Notes
 * The API service in RouterOS is disabled by default in versions prior to 6.0. To enable it, you need to execute
