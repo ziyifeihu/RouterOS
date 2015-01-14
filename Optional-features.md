@@ -27,7 +27,7 @@ require_once 'PEAR2/Autoload.php';
 //If you're using Notepad, you can ensure that from the "Encoding" drop down at the "Save As..." dialog.
 header('Content-Type: text/html;charset=UTF-8');
 
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
 
 //Here's where we specify the charset pair.
 $client->setCharset(
@@ -73,7 +73,7 @@ use PEAR2\Net\RouterOS;
 use PEAR2\Net\Transmitter\NetworkStream;
 require_once 'PEAR2/Autoload.php';
 
-$client = new RouterOS\Client('192.168.0.1', 'admin', 'password', null, false, null, NetworkStream::CRYPTO_TLS);
+$client = new RouterOS\Client('192.168.88.1', 'admin', 'password', null, false, null, NetworkStream::CRYPTO_TLS);
 ```
 
 Notice that we left the port (the 4th argument) to ```null```. The port is automatically chosen between 8728 and 8729 depending on whether we don't or do have an encrypted connection, respectively. If you want to use a different port, set it at both the 4th argument, and at "/ip service" under the "api-ssl" service.
@@ -96,7 +96,7 @@ $context = stream_context_create(
     )
 );
 
-$client = new RouterOS\Client('192.168.0.1', 'admin', 'password', null, false, null, NetworkStream::CRYPTO_TLS, $context);
+$client = new RouterOS\Client('192.168.88.1', 'admin', 'password', null, false, null, NetworkStream::CRYPTO_TLS, $context);
 ```
 
 **NOTE: Due to known issues with PHP itself ([61285](https://bugs.php.net/bug.php?id=61285), [62605](https://bugs.php.net/bug.php?id=62605), [65137](https://bugs.php.net/bug.php?id=65137), and possibly others), encrypted connections can be very unstable.**
