@@ -174,7 +174,7 @@ require_once 'PEAR2_Net_RouterOS-1.0.0b5.phar';
 
 and then everything should work the same.
 
-With any other method, you need to include any PSR-0 compatible autoloader (the bundled PEAR2_Autoload being just one option), and if necessary, register the folder where the PHP files are located. With PEAR2_Autoload, that is only needed when the files are outside the parent folder of Autoload.php's folder, so the code MAY look like:
+With any other method, you need to include any PSR-0 or PSR-4 compatible autoloader (the bundled PEAR2_Autoload being just one option), and if necessary, register the folder where the PHP files are located. With PEAR2_Autoload, that is only needed when the files are outside the parent folder of Autoload.php's folder, so the code MAY look like:
 
 ```php
 <?php
