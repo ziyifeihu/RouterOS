@@ -61,7 +61,7 @@ Other requirements are not a problem in most scenarios. For reference, they are:
     </tbody>
 </table>
 
-* Many RouterBOARD devices come, by default, with a rule in "/ip firewall filter" that drops any incoming connections from to the router, coming from the WAN interface. If your web server is outside the LAN (e.g. a web host, as opposed to your own web server inside your network), you must explicitly whitelist RouterOS' API port or (not recommended) disable that rule entirely. You can whitelist the API port for all interfaces with the following command:
+* Many RouterBOARD devices come, by default, with a rule in "/ip firewall filter" that drops any incoming connections to the router, coming from the WAN interface. If your web server is outside the LAN (e.g. a web host, as opposed to your own web server inside your network), you must explicitly whitelist RouterOS' API port or (not recommended) disable that rule entirely. You can whitelist the API port for all interfaces with the following command:
     ```sh
 /ip firewall filter add place-before=[:pick [find where chain="input"] 0] chain="input" action="accept" protocol="tcp" dst-port=[/ip service get "api" "port"]
     ```
@@ -235,7 +235,7 @@ The rest of the examples in this documentation will be "use"-ing the PEAR2\Net\R
 ## Troubleshooting
 If the package doesn't work, you can download the "phar" file (maybe rename it from ".phar" to ".php"), and run it in your browser or command line.
 
-When you do that, you should see the version of the package, along with some messages indicating if you're missing any of the requirements. If all requirements are present, you'll see suggestions as to what may go wrong when connecting to a RouterOS host, and suggestions on how to fix it.
+When you do that, you should see the version of the package, along with some messages indicating if you're missing any of the requirements. If all requirements are present, you'll see a message suggesting you use the PHAR itself as a [console](Roscon). Try doing that, and see if any error messages show up. If all is OK, the console will start with no error messages on screen, and you should be able to start typing input.
 
 ## Further information
 The [rest of this documentation](../wiki) contains more tutorials and examples on how to use this package. If you have trouble doing a certain thing with the RouterOS API, the best place to ask for help is [MikroTik's forum on scripting](http://forum.mikrotik.com/viewforum.php?f=9). If you believe you've found a bug in this package or miss a certain feature, don't hesitate to [submit an issue](../issues/new) for it.
