@@ -8,7 +8,7 @@ Getting an individual item property is as easy as in shell, but a little more ex
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
 
 $getRequest = new RouterOS\Request('/interface/get');
 $getRequest->setArgument('value-name', 'type');
@@ -34,13 +34,13 @@ For example, if you were interested in getting the MAC address of a certain "arp
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
 
 $printRequest = new RouterOS\Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', 'mac-address');
-$printRequest->setQuery(RouterOS\Query::where('address', '192.168.0.100'));
+$printRequest->setQuery(RouterOS\Query::where('address', '192.168.88.100'));
 $mac = $client->sendSync($printRequest)->getProperty('mac-address');
-//$mac now conains the MAC address for the IP 192.168.0.100
+//$mac now conains the MAC address for the IP 192.168.88.100
 ?>
 ```
 
@@ -60,7 +60,7 @@ To delete an entry in the ARP list that has a comment saying "my", we'd do:
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
 
 $printRequest = new RouterOS\Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
@@ -82,7 +82,7 @@ If we wanted to change the comment of an entry, we would do something like:
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
 
 $printRequest = new RouterOS\Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
@@ -107,7 +107,7 @@ The following example removes the comment from an ARP entry:
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
 
 $printRequest = new RouterOS\Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
@@ -130,7 +130,7 @@ The following example uses the "disable" command to disable an ARP item. Analogo
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
 
 $printRequest = new RouterOS\Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
@@ -152,7 +152,7 @@ Keep in mind the "numbers" argument accepts a list - a comma separated list to b
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
 
 $printRequest = new RouterOS\Request('/ip/arp/print');
 $printRequest->setArgument('.proplist', '.id');
