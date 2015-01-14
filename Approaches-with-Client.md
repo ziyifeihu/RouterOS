@@ -12,7 +12,7 @@ use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
 try {
-    $client = new RouterOS\Client('192.168.0.1', 'admin');
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
 } catch (Exception $e) {
     die('Unable to connect to the router.');
     //Inspect $e if you want to know details about the failure.
@@ -29,8 +29,8 @@ foreach ($responses as $response) {
 }
 //Example output:
 /*
-IP: 192.168.0.100 MAC: 00:00:00:00:00:01
-IP: 192.168.0.101 MAC: 00:00:00:00:00:02
+IP: 192.168.88.100 MAC: 00:00:00:00:00:01
+IP: 192.168.88.101 MAC: 00:00:00:00:00:02
 */
 ?>
 ```
@@ -46,23 +46,23 @@ use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
 try {
-    $client = new RouterOS\Client('192.168.0.1', 'admin');
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
 } catch (Exception $e) {
     die('Unable to connect to the router.');
 }
  
 $addRequest = new RouterOS\Request('/ip/arp/add');
  
-$addRequest->setArgument('address', '192.168.0.100');
+$addRequest->setArgument('address', '192.168.88.100');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:01');
 if ($client->sendSync($addRequest)->getType() !== RouterOS\Response::TYPE_FINAL) {
-    die("Error when creating ARP entry for '192.168.0.100'");
+    die("Error when creating ARP entry for '192.168.88.100'");
 }
  
 $addRequest->setArgument('address', '192.168.0.101');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:02');
 if ($client->sendSync($addRequest)->getType() !== RouterOS\Response::TYPE_FINAL) {
-    die("Error when creating ARP entry for '192.168.0.101'");
+    die("Error when creating ARP entry for '192.168.88.101'");
 }
  
 echo 'OK';
@@ -73,12 +73,12 @@ You can also enter the arguments with a shell syntax at the request constructor,
 
 1. Nameless arguments are not supported. You have to explicitly specify the argument names. This is optional in shell, but is required by the API protocol. e.g.
     ```php
-$pingRequest = new RouterOS\Request('/ping 192.168.0.100');
+$pingRequest = new RouterOS\Request('/ping 192.168.88.100');
     ```
     becomes
     
     ```php
-$pingRequest = new RouterOS\Request('/ping address=192.168.0.100');
+$pingRequest = new RouterOS\Request('/ping address=192.168.88.100');
     ```
     To find out the name of a nameless argument, go to a terminal, and type "?" after the command to see its help. The real names of nameless arguments can be seen in the form "&lt; __argument name__ >".
 2. Only literal values are allowed. No operators of any kind.
@@ -108,20 +108,20 @@ use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
 try {
-    $client = new RouterOS\Client('192.168.0.1', 'admin');
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
 } catch (Exception $e) {
     die('Unable to connect to the router.');
 }
  
-$addRequest = new RouterOS\Request('/ip arp add address=192.168.0.100 mac-address=00:00:00:00:00:01');
+$addRequest = new RouterOS\Request('/ip arp add address=192.168.88.100 mac-address=00:00:00:00:00:01');
  
 if ($client->sendSync($addRequest)->getType() !== RouterOS\Response::TYPE_FINAL) {
-    die("Error when creating ARP entry for '192.168.0.100'");
+    die("Error when creating ARP entry for '192.168.88.100'");
 }
  
-$addRequest = new RouterOS\Request('/ip arp add address=192.168.0.101 mac-address=00:00:00:00:00:02');
+$addRequest = new RouterOS\Request('/ip arp add address=192.168.88.101 mac-address=00:00:00:00:00:02');
 if ($client->sendSync($addRequest)->getType() !== RouterOS\Response::TYPE_FINAL) {
-    die("Error when creating ARP entry for '192.168.0.101'");
+    die("Error when creating ARP entry for '192.168.88.101'");
 }
  
 echo 'OK';
@@ -145,19 +145,19 @@ use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
 try {
-    $client = new RouterOS\Client('192.168.0.1', 'admin');
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
 } catch (Exception $e) {
     die('Unable to connect to the router.');
 }
  
 $addRequest = new RouterOS\Request('/ip/arp/add');
  
-$addRequest->setArgument('address', '192.168.0.100');
+$addRequest->setArgument('address', '192.168.88.100');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:01');
 $addRequest->setTag('arp1');
 $client->sendAsync($addRequest);
  
-$addRequest->setArgument('address', '192.168.0.101');
+$addRequest->setArgument('address', '192.168.88.101');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:02');
 $addRequest->setTag('arp2');
 $client->sendAsync($addRequest);
@@ -179,19 +179,19 @@ use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
 try {
-    $client = new RouterOS\Client('192.168.0.1', 'admin');
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
 } catch (Exception $e) {
     die('Unable to connect to the router.');
 }
  
 $addRequest = new RouterOS\Request('/ip/arp/add');
  
-$addRequest->setArgument('address', '192.168.0.100');
+$addRequest->setArgument('address', '192.168.88.100');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:01');
 $addRequest->setTag('arp1');
 $client->sendAsync($addRequest);
  
-$addRequest->setArgument('address', '192.168.0.101');
+$addRequest->setArgument('address', '192.168.88.101');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:02');
 $addRequest->setTag('arp2');
 $client->sendAsync($addRequest);
@@ -223,7 +223,7 @@ use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
 try {
-    $client = new RouterOS\Client('192.168.0.1', 'admin');
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
 } catch (Exception $e) {
     die('Unable to connect to the router.');
 }
@@ -237,12 +237,12 @@ function responseHandler($response) {
  
 $addRequest = new RouterOS\Request('/ip/arp/add');
  
-$addRequest->setArgument('address', '192.168.0.100');
+$addRequest->setArgument('address', '192.168.88.100');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:01');
 $addRequest->setTag('arp1');
 $client->sendAsync($addRequest, 'responseHandler');
  
-$addRequest->setArgument('address', '192.168.0.101');
+$addRequest->setArgument('address', '192.168.88.101');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:02');
 $addRequest->setTag('arp2');
 $client->sendAsync($addRequest, 'responseHandler');
@@ -265,19 +265,19 @@ use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
 try {
-    $client = new RouterOS\Client('192.168.0.1', 'admin');
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
 } catch (Exception $e) {
     die('Unable to connect to the router.');
 }
  
 $addRequest = new RouterOS\Request('/ip/arp/add');
  
-$addRequest->setArgument('address', '192.168.0.100');
+$addRequest->setArgument('address', '192.168.88.100');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:01');
 $addRequest->setTag('arp1');
 $client->sendAsync($addRequest);
  
-$addRequest->setArgument('address', '192.168.0.101');
+$addRequest->setArgument('address', '192.168.88.101');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:02');
 $addRequest->setTag('arp2');
 $client->sendAsync($addRequest);
