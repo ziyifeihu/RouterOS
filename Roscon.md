@@ -147,17 +147,17 @@ Here's a more nicely formatted version of what you'd see:
 2. Same as above, but with username "admin" and no password (as all other examples in this wiki):
 
     ```sh
-    roscon "192.168.0.1" "admin"
+    roscon "192.168.88.1" "admin"
     ```
 3. Same as above, but with "password" being used as the password for "admin".
 
     ```sh
-    roscon "192.168.0.1" "admin" "password"
+    roscon "192.168.88.1" "admin" "password"
     ```
 4. Same as above, but on port 443 instead of port 8728:
 
     ```sh
-    roscon -p 443 "192.168.0.1" "admin" "password"
+    roscon -p 443 "192.168.88.1" "admin" "password"
     ```
 
 ## Flow
@@ -173,7 +173,7 @@ As mentioned in the beginning, the console is a REPL application, and as such, i
 Using the command line
 
 ```sh
-roscon -v "192.168.0.1" "admin" "password"
+roscon -v "192.168.88.1" "admin" "password"
 ```
 
 Here's the output from "/system/package/print" on RouterOS 6.19, followed by a "/quit" after its completion:
