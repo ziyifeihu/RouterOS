@@ -145,16 +145,16 @@ Most objects can be invoked as functions, and which point they're like a shortha
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
  
 $addRequest = new RouterOS\Request('/ip/arp/add');
  
-$addRequest('address', '192.168.0.100');
+$addRequest('address', '192.168.88.100');
 $addRequest('mac-address', '00:00:00:00:00:01');
 $addRequest->setTag('arp1');
 $client($addRequest);
  
-$addRequest('address', '192.168.0.101');
+$addRequest('address', '192.168.88.101');
 $addRequest('mac-address', '00:00:00:00:00:02');
 $addRequest->setTag('arp2');
 $client($addRequest);
@@ -172,16 +172,16 @@ With that in place, the above for example could be rewritten as
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-(new RouterOS\Client('192.168.0.1', 'admin'))
+(new RouterOS\Client('192.168.88.1', 'admin', 'password'))
     (
         ($addRequest = new RouterOS\Request('/ip/arp/add'))
-        ('address', '192.168.0.100')
+        ('address', '192.168.88.100')
         ('mac-address', '00:00:00:00:00:01')
         ->setTag('arp1')
     )
     (
         $addRequest
-        ('address', '192.168.0.101')
+        ('address', '192.168.88.101')
         ('mac-address', '00:00:00:00:00:02')
         ->setTag('arp2')
     )
@@ -195,15 +195,15 @@ or perhaps even
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-(new RouterOS\Client('192.168.0.1', 'admin'))
+(new RouterOS\Client('192.168.88.1', 'admin', 'password'))
     (
         (new RouterOS\Request('/ip/arp/add', null, 'arp1'))
-        ('address', '192.168.0.100')
+        ('address', '192.168.88.100')
         ('mac-address', '00:00:00:00:00:01')
     )
     (
         (new RouterOS\Request('/ip/arp/add', null, 'arp2'))
-        ('address', '192.168.0.101')
+        ('address', '192.168.88.101')
         ('mac-address', '00:00:00:00:00:02')
     )
  ();
