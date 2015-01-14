@@ -11,20 +11,20 @@ The setArgument(), setTag() and setQuery() from the Request object all return th
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
  
 $addRequest = new RouterOS\Request('/ip/arp/add');
  
-$addRequest->setArgument('address', '192.168.0.100');
+$addRequest->setArgument('address', '192.168.88.100');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:01');
 if ($client->sendSync($addRequest)->getType() !== RouterOS\Response::TYPE_FINAL) {
-    die("Error when creating ARP entry for '192.168.0.100'");
+    die("Error when creating ARP entry for '192.168.88.100'");
 }
  
-$addRequest->setArgument('address', '192.168.0.101');
+$addRequest->setArgument('address', '192.168.88.101');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:02');
 if ($client->sendSync($addRequest)->getType() !== RouterOS\Response::TYPE_FINAL) {
-    die("Error when creating ARP entry for '192.168.0.101'");
+    die("Error when creating ARP entry for '192.168.88.101'");
 }
  
 echo 'OK';
@@ -38,26 +38,26 @@ as
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
  
 $addRequest = new RouterOS\Request('/ip/arp/add');
 
 if ($client->sendSync(
     $addRequest
-        ->setArgument('address', '192.168.0.100')
+        ->setArgument('address', '192.168.88.100')
         ->setArgument('mac-address', '00:00:00:00:00:01')
     )->getType() !== RouterOS\Response::TYPE_FINAL
 ) {
-    die("Error when creating ARP entry for '192.168.0.100'");
+    die("Error when creating ARP entry for '192.168.88.100'");
 }
 
 if ($client->sendSync(
     $addRequest
-        ->setArgument('address', '192.168.0.101')
+        ->setArgument('address', '192.168.88.101')
         ->setArgument('mac-address', '00:00:00:00:00:02')
     )->getType() !== RouterOS\Response::TYPE_FINAL
 ) {
-    die("Error when creating ARP entry for '192.168.0.101'");
+    die("Error when creating ARP entry for '192.168.88.101'");
 }
  
 echo 'OK';
@@ -71,16 +71,16 @@ In addition to those, the removeAllArguments() returns the request object too. C
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
  
 $addRequest = new RouterOS\Request('/ip/arp/add');
  
-$addRequest->setArgument('address', '192.168.0.100');
+$addRequest->setArgument('address', '192.168.88.100');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:01');
 $addRequest->setTag('arp1');
 $client->sendAsync($addRequest);
  
-$addRequest->setArgument('address', '192.168.0.101');
+$addRequest->setArgument('address', '192.168.88.101');
 $addRequest->setArgument('mac-address', '00:00:00:00:00:02');
 $addRequest->setTag('arp2');
 $client->sendAsync($addRequest);
@@ -94,20 +94,20 @@ could be written as
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
  
-$client = new RouterOS\Client('192.168.0.1', 'admin');
+$client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
  
 $addRequest = new RouterOS\Request('/ip/arp/add');
 
 $client
     ->sendAsync(
         $addRequest
-            ->setArgument('address', '192.168.0.100')
+            ->setArgument('address', '192.168.88.100')
             ->setArgument('mac-address', '00:00:00:00:00:01')
             ->setTag('arp1')
     )
     ->sendAsync(
         $addRequest
-            ->setArgument('address', '192.168.0.101')
+            ->setArgument('address', '192.168.88.101')
             ->setArgument('mac-address', '00:00:00:00:00:02')
             ->setTag('arp2')
     )
@@ -121,7 +121,7 @@ The Util::setMenu() is another method that returns the object itself, so for exa
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
+$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
 $util->setMenu('/system identity');
 echo $util->get(null, 'name');//echoes "MikroTik", assuming you've never altered your router's 
 ```
@@ -133,12 +133,7 @@ can be written as
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
-<?php
-use PEAR2\Net\RouterOS;
-require_once 'PEAR2/Autoload.php';
-
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.0.1', 'admin'));
+$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
 echo $util->setMenu('/system identity')->get(null, 'name');//echoes "MikroTik", assuming you've never altered your router's identity.
 ```
 
