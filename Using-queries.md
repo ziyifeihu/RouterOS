@@ -32,25 +32,25 @@ foreach ($responses as $response) {
 ```
 
 ## A simple query
-You can create a query by calling the static Query::where() method, along with the first criteria of the query. For example, if you wanted to limit results to the entry about 192.168.0.100, you can use a query like:
+You can create a query by calling the static Query::where() method, along with the first criteria of the query. For example, if you wanted to limit results to the entry about 192.168.88.100, you can use a query like:
 
 ```php
-$query = RouterOS\Query::where('address', '192.168.0.100');
+$query = RouterOS\Query::where('address', '192.168.88.100');
 ```
 
-Using the optional third parameter, you can specify exactly what do you want to do with the value. Possible values are the Query::OP_* constants. For example, if you wanted to get all addresses greather than 192.168.0.100, you can use:
+Using the optional third parameter, you can specify exactly what do you want to do with the value. Possible values are the Query::OP_* constants. For example, if you wanted to get all addresses greather than 192.168.88.100, you can use:
 
 ```php
-$query = RouterOS\Query::where('address', '192.168.0.100', RouterOS\Query::OP_GT);
+$query = RouterOS\Query::where('address', '192.168.88.100', RouterOS\Query::OP_GT);
 ```
 
 ## Chaining conditions
-The Query class uses a "fluent" interface, i.e. it always returns the query object itself, similarly to how [jQuery](http://jquery.com) and [Zend_Db_Select](http://framework.zend.com/manual/en/zend.db.select.html) do it. Thanks to that, you can chain conditions right when defining the $query variable (though you can also alter it later). For example, if you wanted to get all addresses greather than or equal to 192.168.0.100, you can do:
+The Query class uses a "fluent" interface, i.e. it always returns the query object itself, similarly to how [jQuery](http://jquery.com) and [Zend_Db_Select](http://framework.zend.com/manual/en/zend.db.select.html) do it. Thanks to that, you can chain conditions right when defining the $query variable (though you can also alter it later). For example, if you wanted to get all addresses greather than or equal to 192.168.88.100, you can do:
 
 ```php
 $query = RouterOS\Query::where(
-    'address', '192.168.0.100', RouterOS\Query::OP_GT
-)->orWhere('address', '192.168.0.100');
+    'address', '192.168.88.100', RouterOS\Query::OP_GT
+)->orWhere('address', '192.168.88.100');
 ```
 
 ## Limiting returned properties
