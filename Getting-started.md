@@ -80,7 +80,7 @@ require_once 'PEAR2_Net_RouterOS-1.0.0b5.phar';
 //Use any PEAR2_Net_RouterOS class from here on
 ```
 
-(see [this page from the PHP manual](http://php.net/manual/en/language.namespaces.importing.php) if you want to learn more about namespaces and aliasing)
+(See [this page from the PHP manual](http://php.net/manual/en/language.namespaces.importing.php) if you want to learn more about namespaces and aliasing in general)
 
 ### Installation with [Pyrus/PEAR2](http://pear2.php.net/) (recommended)
 Assuming you have [installed Pyrus](http://pear.php.net/manual/en/installationpyrus.introduction.php), you can install PEAR2_Net_RouterOS from the PEAR2 channel with just
