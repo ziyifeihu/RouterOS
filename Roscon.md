@@ -137,10 +137,10 @@ Here's a more nicely formatted version of what you'd see:
 </table>
 
 ## Example command lines
-1. Connecting to RouterOS at 192.168.0.1 without credentials over the default API port (8728):
+1. Connecting to RouterOS at 192.168.88.1 without credentials over the default API port (8728):
 
     ```sh
-    roscon "192.168.0.1"
+    roscon "192.168.88.1"
     ```
     This mode allows you to diagnose issues occurring prior or during the login procedure itself or with commands that may otherwise be issued anonymously.
 
