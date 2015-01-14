@@ -69,11 +69,13 @@ Other requirements are not a problem in most scenarios. For reference, they are:
 
 ## Installation
 ### Direct PHAR usage
-If you download the ".phar" archive, you can just include the archive, and be ready to go, like for example:
+If you download the ".phar" archive, you can just include the archive, and be ready to go.
+
+To keep the names of the classes short, you may also add a "use" statement, so for example:
 
 ```php
 <?php
-//You may want to include a namespace/use declaration here
+use PEAR2\Net\RouterOS;
 require_once 'PEAR2_Net_RouterOS-1.0.0b5.phar';
 //Use any PEAR2_Net_RouterOS class from here on
 ```
@@ -174,63 +176,20 @@ With any other method, you need to include any PSR-0 compatible autoloader (the 
 
 ```php
 <?php
+use PEAR2\Net\RouterOS;
+use PEAR2\Autoload;
 require_once 'PEAR2/Autoload.php';
-\PEAR2\Autoload::initialize('/path/to/your/PEAR2/files');
-//Use any PEAR2_Net_RouterOS class
+Autoload::initialize('/path/to/your/PEAR2/files');
+//Use any PEAR2_Net_RouterOS class from here on
 ```
 
 If you've used Composer, then you should be able to access the generated autoloader with
 ```php
 <?php
+use PEAR2\Net\RouterOS;
 require_once 'vendor/autoload.php';
-//Use any PEAR2_Net_RouterOS class
+//Use any PEAR2_Net_RouterOS class from here on
 ```
-
-Like every other PEAR2 package, PEAR2_Net_RouterOS uses namespaces - a feature introduced in PHP 5.3 - for its organization. Among other things, this means that instead of you having to write long class names, you can just declare at the top that you'll be using this namespace, and then just write shorter class names. The possible approaches are as follows:
-
-* Using a fully qualified class name
-
-    ```php
-    <?php
-    require_once 'PEAR2/Autoload.php';
-    $client = new \PEAR2\Net\RouterOS\Client('example.com', 'admin');
-    // Use the client here
-    ?>
-    ```
-* Declaring the PEAR2\Net\RouterOS as an aliased namespace
-
-    ```php
-    <?php
-    use PEAR2\Net\RouterOS as Ros;
-    require_once 'PEAR2/Autoload.php';
-    $client = new Ros\Client('example.com', 'admin');
-    // Use the client here
-    ?>
-    ```
-* Declaring an alias of each class you intend to use directly.
-
-    ```php
-    <?php
-    use PEAR2\Net\RouterOS\Client as Ros;
-    require_once 'PEAR2/Autoload.php';
-    $client = new Ros('example.com', 'admin');
-    // Use the client here
-    ?>
-    ```
-* Declaring the PEAR2\Net\RouterOS as your default namespace
-
-    ```php
-    <?php
-    namespace PEAR2\Net\RouterOS;
-    require_once 'PEAR2/Autoload.php';
-    $client = new Client('example.com', 'admin');
-    // Use the client here
-    ?>
-    ```
-
-Note that namespace declarations must appear before any includes. They must in fact be the first thing in a PHP file.
-
-The rest of the examples in this documentation will be "use"-ing the PEAR2\Net\RouterOS namespace.
 
 ## Troubleshooting
 If the package doesn't work, you can download the "phar" file (maybe rename it from ".phar" to ".php"), and run it in your browser or command line.
