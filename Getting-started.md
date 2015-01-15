@@ -6,7 +6,7 @@ The requirements to watch out for are:
 * PHP 5.3.0 or later. 
 * A host with RouterOS v3 or later. 
 * Enabled API service on the RouterOS host.
-* Enabled **outgoing** connections with PHP's [stream_socket_client()](http://php.net/stream_socket_client).
+* Enabled **outgoing** connections with PHP's [stream_socket_client()](http://php.net/stream_socket_client) (check your OS' firewall)
 * Enabled **incoming** connections to the API port in the firewall of RouterOS (check any rules in the "input" chain).
 
 Other requirements are not a problem in most scenarios. For reference, they are:
