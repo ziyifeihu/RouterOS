@@ -144,12 +144,12 @@ Here's a more nicely formatted version of what you'd see:
     ```
     This mode allows you to diagnose issues occurring prior or during the login procedure itself or with commands that may otherwise be issued anonymously.
 
-2. Same as above, but with username "admin" and no password (as all other examples in this wiki):
+2. Same as above, but with username "admin" and no password:
 
     ```sh
     roscon "192.168.88.1" "admin"
     ```
-3. Same as above, but with "password" being used as the password for "admin".
+3. Same as above, but with "password" being used as the password for "admin" (as all other examples in this wiki):
 
     ```sh
     roscon "192.168.88.1" "admin" "password"
