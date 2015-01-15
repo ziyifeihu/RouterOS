@@ -201,5 +201,25 @@ If the package doesn't work, you can download the "phar" file (maybe rename it f
 
 When you do that, you should see the version of the package, along with some messages indicating if you're missing any of the requirements. If all requirements are present, you'll see a message suggesting you use the PHAR itself as a [console](Roscon). Try doing that, and see if any error messages show up. If all is OK, the console will start with no error messages on screen, and you should be able to start typing input. Otherwise, you'll see whether the problem is at login or at connecting, and see the exact error message from the OS, which should hopefully make it easier to see where the problem is.
 
+If the console works, but a web page fails, then there are two possible problems left. Either the PHP in the web server is a different one (a different version and/or configured by a separate php.ini), or (more likely!!!) a different executable needs to be whitelisted in the OS' firewall.
+
+To check the first issue, you can rename the PHAR file to ".php", and run it from a web browser. The output should be the same as from the command line.
+
+To check the second issue, try to run the following test code from a web browser (replacing the router details accordingly of course):
+```php
+<?php
+use PEAR2\Net\RouterOS;
+require_once 'PEAR2_Net_RouterOS-1.0.0b5.phar';
+
+try {
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
+    echo 'OK';
+} catch (Exception $e) {
+    die($e);
+}
+```
+
+If you don't see "OK", and yet the console works, the most likely issue is firewall trouble. See the [the Notes section above](#Notes).
+
 ## Further information
 The [rest of this documentation](../wiki) contains more tutorials and examples on how to use this package. If you have trouble doing a certain thing with the RouterOS API, the best place to ask for help is [MikroTik's forum on scripting](http://forum.mikrotik.com/viewforum.php?f=9). If you believe you've found a bug in this package or miss a certain feature, don't hesitate to [submit an issue](../issues/new) for it.
