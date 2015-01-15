@@ -201,7 +201,7 @@ If the package doesn't work, you can download the "phar" file (maybe rename it f
 
 When you do that, you should see the version of the package, along with some messages indicating if you're missing any of the requirements. If all requirements are present, you'll see a message suggesting you use the PHAR itself as a [console](Roscon). Try doing that, and see if any error messages show up. If all is OK, the console will start with no error messages on screen, and you should be able to start typing input. Otherwise, you'll see whether the problem is at login or at connecting, and see the exact error message from the OS, which should hopefully make it easier to see where the problem is.
 
-If the console works, but a web page fails, then there are two possible problems left. Either the PHP in the web server is a different one (a different version and/or configured by a separate php.ini), or (more likely!!!) a different executable needs to be whitelisted in the OS' firewall.
+If the console works, but a web page fails, then there are two possible problems left. Either the PHP in the web server is a different one (a different version and/or configured by a separate php.ini), or a different executable needs to be whitelisted in the OS' firewall.
 
 To check the first issue, you can rename the PHAR file to ".php", and run it from a web browser. The output should be the same as from the command line.
 
