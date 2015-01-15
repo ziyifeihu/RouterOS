@@ -219,7 +219,7 @@ try {
 }
 ```
 
-If you don't see "OK", and yet the console works, the most likely issue is firewall trouble. See the [the Notes section above](#Notes).
+If you don't see "OK", and yet the console works, the most likely issue is firewall trouble. See the [the Notes section above](#notes).
 
 ## Further information
 The [rest of this documentation](../wiki) contains more tutorials and examples on how to use this package. If you have trouble doing a certain thing with the RouterOS API, the best place to ask for help is [MikroTik's forum on scripting](http://forum.mikrotik.com/viewforum.php?f=9). If you believe you've found a bug in this package or miss a certain feature, don't hesitate to [submit an issue](../issues/new) for it.
