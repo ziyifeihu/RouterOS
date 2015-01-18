@@ -99,4 +99,4 @@ $context = stream_context_create(
 $client = new RouterOS\Client('192.168.88.1', 'admin', 'password', null, false, null, NetworkStream::CRYPTO_TLS, $context);
 ```
 
-**NOTE: Due to known issues with PHP itself ([61285](https://bugs.php.net/bug.php?id=61285), [62605](https://bugs.php.net/bug.php?id=62605), [65137](https://bugs.php.net/bug.php?id=65137), and possibly others), encrypted connections can be very unstable.**
+**NOTE: Due to known issues with PHP itself ([61285](https://bugs.php.net/bug.php?id=61285), [62605](https://bugs.php.net/bug.php?id=62605), [65137](https://bugs.php.net/bug.php?id=65137), [68853](https://bugs.php.net/bug.php?id=68853) and possibly others), encrypted connections can be very unstable.**
