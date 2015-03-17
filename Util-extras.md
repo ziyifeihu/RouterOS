@@ -92,7 +92,7 @@ fetch url=$db keep-result=yes dst-path=$filename
 $util->exec(
     $source,
     array(
-        'db' => $url
+        'db' => $url,
         'filename' => pathinfo(parse_url($url, PHP_URL_PATH), PATHINFO_FILENAME)//... then this would be equal to "geoip.rsc"
     ),
     'read,write'
