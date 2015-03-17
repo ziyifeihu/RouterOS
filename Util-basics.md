@@ -196,7 +196,7 @@ $util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin',
 $util->setMenu('/ip arp');
 $util->set(0, array(
     'address' => '192.168.88.103'
-);
+));
 ```
 
 or if you want to modify more entries at once, you can specify the result of find() as the first argument, e.g.:
@@ -215,7 +215,8 @@ $util->set(
     ),
     array(
         'address' => '192.168.88.103'
-    );
+    )
+);
 ```
 
 ## unsetValue()
