@@ -9,30 +9,30 @@ If the request you want to send is just a simple command with no arguments, the 
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
- 
+
 try {
     $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
 } catch (Exception $e) {
     die('Unable to connect to the router.');
     //Inspect $e if you want to know details about the failure.
 }
- 
+
 $responses = $client->sendSync(new RouterOS\Request('/ip/arp/print'));
- 
+
 foreach ($responses as $response) {
-    if ($response->getType() === RouterOS\Response::TYPE_DATA) {
+    if ($response->getType() === Response::TYPE_DATA) {
         echo 'IP: ', $response->getProperty('address'),
-            ' MAC: ', $response->getProperty('mac-address'),
-            "\n";
+        ' MAC: ', $response->getProperty('mac-address'),
+        "\n";
     }
 }
 //Example output:
 /*
 IP: 192.168.88.100 MAC: 00:00:00:00:00:01
 IP: 192.168.88.101 MAC: 00:00:00:00:00:02
-*/
-?>
+ */
 ```
 
 You can also use the syntax from RouterOS's shell (spaces between words instead of "/"). Either way, the command needs to be absolute (begin with "/"). Note also that auto completion is not supported (e.g. "/ip f n p" will NOT be translated to "/ip/firewall/nat/print", but will instead be passed to RouterOS as "/ip/f/n/p", which in current versions results in an error). Examples in the rest of this documentation will use the API syntax.
@@ -43,6 +43,7 @@ To add arguments to a command, you need to use the Request::setArgument() method
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
  
 try {
@@ -66,7 +67,6 @@ if ($client->sendSync($addRequest)->getType() !== RouterOS\Response::TYPE_FINAL)
 }
  
 echo 'OK';
-?>
 ```
 
 You can also enter the arguments with a shell syntax at the request constructor, but with a few caveats:
@@ -105,6 +105,7 @@ Here's the last example, rewritten with the aforementioned abilities in mind (th
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
  
 try {
@@ -142,6 +143,7 @@ If you don't care about the responses, you can just do something like the follow
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
 try {
@@ -163,7 +165,6 @@ $addRequest->setTag('arp2');
 $client->sendAsync($addRequest);
 
 $client->loop();
-?>
 ```
 
 Note that, as in the example above, different asynchronous requests need to have a different "tag", regardless of whether you care about the responses or not. A "tag" in this context is a RouterOS API specific construct that allows clients like PEAR2_Net_RouterOS to keep track of responses coming from multiple requests, since they don't appear in the order of their execution. You can only reuse a tag once you get its final response.
@@ -176,6 +177,7 @@ One way to get responses is to let PEAR2_Net_RouterOS process any new ones, and 
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
 try {
@@ -211,7 +213,6 @@ foreach ($responses as $response) {
 OK with arp1
 OK with arp2
 */
-?>
 ```
 
 #### Callback and loop
@@ -262,6 +263,7 @@ Processing of responses can also be started with Client::completeRequest(). The 
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
 try {
@@ -295,5 +297,4 @@ foreach ($client->completeRequest('arp2') as $response) {
 }
  
 echo 'OK';
-?>
 ```

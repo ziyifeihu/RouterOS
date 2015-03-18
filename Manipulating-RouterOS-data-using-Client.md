@@ -6,6 +6,7 @@ Getting an individual item property is as easy as in shell, but a little more ex
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
  
 $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
@@ -15,7 +16,6 @@ $getRequest->setArgument('value-name', 'type');
 $getRequest->setArgument('number', 'ether1');
 $type = $client->sendSync($getRequest)->getProperty('ret');
 //$type now contains the "type" of the interface "ether1"
-?>
 ```
 
 On menus where items are not identified with a unique name (e.g. "/ip arp", "/ip firewall", etc.), it's best that you use the same approach as for RouterOS versions before 6.0, as IDs may change from one connection to the next, and numbers are not natively supported by the protocol (see below).
@@ -32,6 +32,7 @@ For example, if you were interested in getting the MAC address of a certain "arp
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
  
 $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
@@ -41,7 +42,6 @@ $printRequest->setArgument('.proplist', 'mac-address');
 $printRequest->setQuery(RouterOS\Query::where('address', '192.168.88.100'));
 $mac = $client->sendSync($printRequest)->getProperty('mac-address');
 //$mac now conains the MAC address for the IP 192.168.88.100
-?>
 ```
 
 ## The "numbers" argument
@@ -71,7 +71,6 @@ $id = $client->sendSync($printRequest)->getProperty('.id');
 $removeRequest = new RouterOS\Request('/ip/arp/remove');
 $removeRequest->setArgument('numbers', $id);
 $client->sendSync($removeRequest);
-?>
 ```
 
 #### Edit/Set
@@ -80,6 +79,7 @@ If we wanted to change the comment of an entry, we would do something like:
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
  
 $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
@@ -94,7 +94,6 @@ $setRequest = new RouterOS\Request('/ip/arp/set');
 $setRequest->setArgument('numbers', $id);
 $setRequest->setArgument('comment', 'new comment');
 $client->sendSync($setRequest);
-?>
 ```
 
 #### Unset
@@ -105,6 +104,7 @@ The following example removes the comment from an ARP entry:
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
  
 $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
@@ -119,7 +119,6 @@ $unsetRequest = new RouterOS\Request('/ip/arp/unset');
 $unsetRequest->setArgument('numbers', $id);
 $unsetRequest->setArgument('value-name', 'comment');
 $client->sendSync($unsetRequest);
-?>
 ```
 
 #### Enable/Disable
@@ -128,6 +127,7 @@ The following example uses the "disable" command to disable an ARP item. Analogo
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
  
 $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
@@ -141,7 +141,6 @@ $id = $client->sendSync($printRequest)->getProperty('.id');
 $disableRequest = new RouterOS\Request('/ip/arp/disable');
 $disableRequest->setArgument('numbers', $id);
 $client->sendSync($disableRequest);
-?>
 ```
 
 ### Note: It's a list
@@ -150,6 +149,7 @@ Keep in mind the "numbers" argument accepts a list - a comma separated list to b
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
  
 $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
@@ -168,5 +168,4 @@ $idList = substr($idList, 1);
 $removeRequest = new RouterOS\Request('/ip/arp/remove');
 $removeRequest->setArgument('numbers', $idList);
 $client->sendSync($removeRequest);
-?>
 ```

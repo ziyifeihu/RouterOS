@@ -9,6 +9,7 @@ The setArgument(), setTag() and setQuery() from the Request object all return th
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
  
 $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
@@ -28,7 +29,6 @@ if ($client->sendSync($addRequest)->getType() !== RouterOS\Response::TYPE_FINAL)
 }
  
 echo 'OK';
-?>
 ```
 
 as
@@ -36,6 +36,7 @@ as
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
  
 $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
@@ -61,7 +62,6 @@ if ($client->sendSync(
 }
  
 echo 'OK';
-?>
 ```
 
 In addition to those, the removeAllArguments() returns the request object too. Client::sendAsync() is also another method that returns the object itself, which means you could chain several requests one after another, e.g. the code
@@ -69,6 +69,7 @@ In addition to those, the removeAllArguments() returns the request object too. C
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
  
 $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
@@ -92,6 +93,7 @@ could be written as
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
  
 $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
@@ -119,11 +121,16 @@ The Util::setMenu() is another method that returns the object itself, so for exa
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 $util->setMenu('/system identity');
-echo $util->get(null, 'name');//echoes "MikroTik", assuming you've never altered your router's 
+
+//echoes "MikroTik", assuming you've never altered your router's identity.
+echo $util->get(null, 'name');
 ```
 
 can be written as
@@ -131,10 +138,15 @@ can be written as
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
-echo $util->setMenu('/system identity')->get(null, 'name');//echoes "MikroTik", assuming you've never altered your router's identity.
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
+
+//echoes "MikroTik", assuming you've never altered your router's identity.
+echo $util->setMenu('/system identity')->get(null, 'name');
 ```
 
 ## \_\_invoke() magic
@@ -143,6 +155,7 @@ Most objects can be invoked as functions, and which point they're like a shortha
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
  
 $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
@@ -162,7 +175,7 @@ $client($addRequest);
 $client();
 ```
 
-## I wish... / In PHP 7
+## Since PHP 7
 In the upcoming PHP 7, there's support for function chaining (see [uniform variable syntax RFC](https://wiki.php.net/rfc/uniform_variable_syntax)).
 
 With that in place, the above for example could be rewritten as
@@ -170,6 +183,7 @@ With that in place, the above for example could be rewritten as
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
  
 (new RouterOS\Client('192.168.88.1', 'admin', 'password'))
@@ -193,6 +207,7 @@ or perhaps even
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
  
 (new RouterOS\Client('192.168.88.1', 'admin', 'password'))

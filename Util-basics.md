@@ -19,7 +19,9 @@ If you also need the raw power of Client, you may want to also save it into an a
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 //Use $util or $client from here on
 ```
 
@@ -30,7 +32,9 @@ Before executing a command with Util, you must first navigate to the menu you'll
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 $util->setMenu('/ip arp');
 //Target entries in the "/ip arp" menu from here on
 ```
@@ -41,7 +45,9 @@ Notice that you can use shell syntax, as well as API syntax. In addition, you ca
 use PEAR2\Net\RouterOS;
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 $util->setMenu('/ip arp');//We're now at "/ip arp"
 $util->setMenu('.. addresses');//We're now at the "/ip addresses" menu.
 //Target entries in the "/ip addresses'" menu from here on
@@ -58,9 +64,12 @@ Here's the second example from the last tutorial, rewritten with Util in mind:
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 $util->setMenu('/ip arp');
 $util->add(
     array(
@@ -87,9 +96,12 @@ Example:
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 $util->setMenu('/ip arp');
 
 //With function
@@ -111,12 +123,15 @@ Here's the very first example from Approaches with Client, written with getAll()
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 $util->setMenu('/ip arp');
 
-foreach($util->getAll() as $item) {
+foreach ($util->getAll() as $item) {
     echo 'IP: ', $item->getProperty('address'),
          ' MAC: ', $item->getProperty('mac-address'),
          "\n";
@@ -128,11 +143,17 @@ The find() method is by far the most important method in the whole class, as it'
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 $util->setMenu('/ip arp');
-echo $util->find(0, 1);//Outputs something similar to "*4de,*16a", since we targeted two entries - the one in position 0 and position 1. 
+
+//Outputs something similar to "*4de,*16a", since we targeted two entries:
+//the one in position 0 and position 1. 
+echo $util->find(0, 1);
 ```
 
 Note that most other methods below also accept at least one of these criteria, including numbers, so if you're targeting just one entry, you don't need to use this method directly. They'll call it automatically.
@@ -145,13 +166,19 @@ Here's an example:
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
-$util->changeMenu('/ip arp');
-echo $util->find(function ($response) {
-    return preg_match('/^\d\d/', $response->getArgument('comment'));//Matches any entry who's comment starts with two digits
-});
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
+$util->setMenu('/ip arp');
+echo $util->find(
+    function ($response) {
+        //Matches any item with a comment that starts with two digits
+        return preg_match('/^\d\d/', $response->getArgument('comment'));
+    }
+);
 ```
 
 If there are no matches, an empty string will be returned. This is a valid value, as an empty string is interpreted by other functions as meaning "apply on nothing at all", as opposed to no argument at all which is instead read as "apply to everything".
@@ -161,22 +188,33 @@ In most menus, you just target an entry, and the property name you want to get, 
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 $util->setMenu('/ip arp');
-echo $util->get(0, 'address');//echoes "192.168.88.1", assuming we had the previous example executed under an empty ARP list
+
+//echoes "192.168.88.1", assuming an otherwise empty ARP list
+echo $util->get(0, 'address');
 ```
 
 There are some menus on which there are no entries, but there are properties to get non the less, such as "/system identity" for example, where you have the "name" property. In those menus, you need to specify ```null``` as the first argument, e.g.:
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 $util->setMenu('/system identity');
-echo $util->get(null, 'name');//echoes "MikroTik", assuming you've never altered your router's identity.
+
+//echoes "MikroTik", assuming you've never altered your router's identity.
+echo $util->get(null, 'name');
+
 ```
 
 You could theoretically also specify ```null``` to get the first entry in other menus, but this is not recommended, as PEAR2_Net_RouterOS will get ALL entries before showing you the first entry's property.
@@ -190,27 +228,37 @@ As already mentioned with regards to find(), if you have just a single criteria,
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 $util->setMenu('/ip arp');
-$util->set(0, array(
-    'address' => '192.168.88.103'
-));
+$util->set(
+    0,
+    array(
+        'address' => '192.168.88.103'
+    )
+);
 ```
 
 or if you want to modify more entries at once, you can specify the result of find() as the first argument, e.g.:
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 $util->setMenu('/ip arp');
 $util->set(
     $util->find(
         function ($response) {
-            return preg_match('/^\d\d/', $response->getArgument('comment'));//Matches any entry who's comment starts with two digits
+            //Matches any item with a comment that starts with two digits
+            return preg_match('/^\d\d/', $response->getArgument('comment'));
         }
     ),
     array(
@@ -229,9 +277,12 @@ Here's a simple example for illustrative purposes:
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 $util->setMenu('/ip arp');
 $util->remove(0);
 $util->disable(Query::where('comment', 'DISABLE ME'));
@@ -245,10 +296,16 @@ Example:
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 $util->setMenu('/queue simple');
 $util->move(2, 0);//Place the queue at position 2 above the queue at position 0
-$util->move($util->find(3,4), 0);//Place the queues at positions 3 and 4 above the queue at position 0 (the same one that a line ago was at position 2)
+
+//Place the queues at positions 3 and 4 above the queue at position 0
+//(the same one that was at position 2, before it was moved above)
+$util->move($util->find(3, 4), 0);
 ```

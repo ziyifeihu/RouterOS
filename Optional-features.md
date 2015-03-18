@@ -20,6 +20,7 @@ Let's say that we find our charset pair. In the example below, we'll assume that
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
 //Ensuring our text on screen in UTF-8 too.
@@ -71,6 +72,7 @@ In particular, to establish an encrypted connection without a certificate, all y
 <?php
 use PEAR2\Net\RouterOS;
 use PEAR2\Net\Transmitter\NetworkStream;
+
 require_once 'PEAR2/Autoload.php';
 
 $client = new RouterOS\Client('192.168.88.1', 'admin', 'password', null, false, null, NetworkStream::CRYPTO_TLS);
@@ -85,6 +87,7 @@ If you need to use a certificate, you could leave it like that, but while you're
 <?php
 use PEAR2\Net\RouterOS;
 use PEAR2\Net\Transmitter\NetworkStream;
+
 require_once 'PEAR2/Autoload.php';
 
 $context = stream_context_create(

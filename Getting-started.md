@@ -79,6 +79,7 @@ To keep the names of the classes short, you may also add a "use" statement, so f
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2_Net_RouterOS-1.0.0b5.phar';
 //Use any PEAR2_Net_RouterOS class from here on
 ```
@@ -183,6 +184,7 @@ With any other method, you need to include any PSR-0 or PSR-4 compatible autoloa
 <?php
 use PEAR2\Net\RouterOS;
 use PEAR2\Autoload;
+
 require_once 'PEAR2/Autoload.php';
 Autoload::initialize('/path/to/your/PEAR2/files');
 //Use any PEAR2_Net_RouterOS class from here on
@@ -192,6 +194,7 @@ If you've used Composer, then you should be able to access the generated autoloa
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'vendor/autoload.php';
 //Use any PEAR2_Net_RouterOS class from here on
 ```
@@ -209,6 +212,7 @@ To check the second issue, try to run the following test code from a web browser
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2_Net_RouterOS-1.0.0b5.phar';
 
 try {

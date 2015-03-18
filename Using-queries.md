@@ -12,6 +12,7 @@ To set a query for a request, you need to either set it as a second argument to 
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 include_once 'PEAR2/Autoload.php';
 $client = new RouterOS\Client('192.168.88.1', 'admin', 'password');
  
@@ -28,7 +29,6 @@ foreach ($responses as $response) {
     }
     echo "====\n";
 }
-?>
 ```
 
 ## A simple query

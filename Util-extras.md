@@ -8,18 +8,23 @@ For example:
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 $util->setMenu('/ip arp');
 
-$util->exec('
+$util->exec(
+    '
 add address=192.168.88.100 mac-address=00:00:00:00:00:01 comment=customer_1
 add address=192.168.88.101 mac-address=00:00:00:00:00:02 comment=customer_2
 /tool
 fetch url="http://example.com/?name=customer_1"
 fetch url="http://example.com/?name=customer_2"
-');
+    '
+);
 ```
 
 ## Supplying arguments
@@ -31,9 +36,12 @@ The previous example could be written as:
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 $util->setMenu('/ip arp');
 
 $source = '
@@ -76,12 +84,16 @@ Here's one example:
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 $util->setMenu('/tool');
 
-$url = $_GET['url'];//assume $_GET['url'] equals something akin to "http://example.com/geoip.rsc?filter=all"...
+//If $_GET['url'] equals "http://example.com/geoip.rsc?filter=all"...
+$url = $_GET['url'];
 
 $source = '
 fetch url=$db keep-result=yes dst-path=$filename
@@ -93,7 +105,8 @@ $util->exec(
     $source,
     array(
         'db' => $url,
-        'filename' => pathinfo(parse_url($url, PHP_URL_PATH), PATHINFO_FILENAME)//... then this would be equal to "geoip.rsc"
+        //... then this would be equal to "geoip.rsc"
+        'filename' => pathinfo(parse_url($url, PHP_URL_PATH), PATHINFO_FILENAME)
     ),
     'read,write'
 );
@@ -111,9 +124,12 @@ An example:
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 
 $filename = 'backup.rsc';
 file_put_contents($filename, $util->fileGetContents($filename));
@@ -130,9 +146,12 @@ For the sake of example:
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 
 $filename = 'backup.auto.rsc';
 $util->filePutContents($filename, file_get_contents($filename));
@@ -155,15 +174,18 @@ For example:
 ```php
 <?php
 use PEAR2\Net\RouterOS;
+
 require_once 'PEAR2/Autoload.php';
 
-$util = new RouterOS\Util($client = new RouterOS\Client('192.168.88.1', 'admin', 'password'));
+$util = new RouterOS\Util(
+    $client = new RouterOS\Client('192.168.88.1', 'admin', 'password')
+);
 
 $util->setMenu('/system resource');
 $uptime = RouterOS\Util::parseValue($util->get(null, 'uptime'));
 
 $now = new DateTime;
 
-//Will output something akin to 'The router has been in operation since Sunday, 18 Aug 2013 14:03:01'
-echo 'The router has been in operation since ' . $now->sub($uptime)->format(DateTime::COOKIE);
+//Will output something akin to 'Running since: Sunday, 18 Aug 2013 14:03:01'
+echo 'Running since: ' . $now->sub($uptime)->format(DateTime::COOKIE);
 ```
