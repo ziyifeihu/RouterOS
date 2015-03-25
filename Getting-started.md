@@ -153,7 +153,7 @@ composer require pear2/console_color
 Instead of using the PEAR(2) installer or Composer, you can just download a packaged archive, and extract its contents. To emulate the PEAR(2) installer, you can place the files from the "src" folder at a folder that's within your include_path. The packaged archive includes a version of PEAR2_Net_Transmitter (as well as all optional dependencies), so there's nothing to worry about beyond extracting the archive.
 
 ### Installation from the repository (with [Git](http://git-scm.com/))
-If you want to get the "cutting edge", unpackaged version of PEAR2_Net_RouterOS, you'll need to have Git. Once you have it, create a folder to place the package and its dependencies in, navigate to it from the command line, and execute the following commands:
+If you want to get the "bleeding edge", unpackaged version of PEAR2_Net_RouterOS, you'll need to have Git. Once you have it, create a folder to place the package and its dependencies in, navigate to it from the command line, and execute the following commands:
 
 ```sh
 git clone https://github.com/pear2/Net_RouterOS.git Net_RouterOS.git
@@ -161,7 +161,9 @@ git clone https://github.com/pear2/Net_Transmitter.git Net_Transmitter.git
 git clone https://github.com/pear2/Cache_SHM.git Cache_SHM.git
 ```
 
-__Note: If you plan to contribute to this project, please use GitHub's "fork" feature instead, and then apply "git clone" on *it*, instead of the original repository. This will then allow you to easily make pull requests from your fork.__
+Once you've cloned the repositories, switch to the "develop" branch on each of them. The "master" branch contains the latest *released* versions, while the "develop" branch contains the *unreleased* versions.
+
+__Note: If you plan to contribute to this project, please use GitHub's "fork" feature instead, and then apply "git clone" on *it*, instead of the original repository. This will then allow you to easily make pull requests from your fork. Needless to say that pull requests should be based on the "develop" branch.__
 
 ## Usage
 If you use the PHAR archive, every class you attempt to use will automatically be auto loaded with the bundled PEAR2_Autoload. In virtually all places of this documentation, the line
