@@ -134,19 +134,19 @@ to install optional dependencies as well.
 
 ### Installation with [Composer](http://getcomposer.org/)
 This package is [available from packagist.org](https://packagist.org/packages/pear2/net_routeros), so all you have to do is to go to your project's directory (where your composer.json is), and run
-```sh
+```
 composer require pear2/net_routeros:*@alpha
 ```
 
-Similarly to the PEAR(2) installer, you need to add ```@alpha``` because the required ```pear2/net_transmitter``` package is an alpha. You can of course replace the "*" with the actual version you want to stay on.
+Similarly to the PEAR(2) installer, you need to add ```@alpha``` because the required ```pear2/net_transmitter``` dependency package is an alpha. You can of course replace the "*" with the actual version you want to stay on.
 
 Due to the way composer works, you need to add each optional dependency manually. So for example, if you want to use persistent connections, you'd also need to execute
-```sh
+```
 composer require pear2/cache_shm
 ```
 
 and if you want to use the API console
-```sh
+```
 composer require pear2/console_commandline
 composer require pear2/console_color
 ```
