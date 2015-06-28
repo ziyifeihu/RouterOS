@@ -164,7 +164,7 @@ Here's a more nicely formatted version of what you'd see:
 As mentioned in the beginning, the console is a REPL application, and as such, it follows that flow. In other words, after a connection is established (and perhaps after you're logged in):
 
 1. You write an API protocol word.
-2. At some point (defined by the --command-mode option; By default, as soon as you form an API sentence, i.e. when you write an empty word), no more reading is done, and all collected input is sent to RouterOS. The console goes back to step 1 if that point is not yet reached.
+2. At some point (defined by the --command-mode option), no more reading is done, and all collected input is sent to RouterOS. The console goes back to step 1 if that point is not yet reached.
 3. The console waits for data up to the time defined by --timeout, and once a word is received or the time is up, it prints on screen what's been received.
 4. Up to a certain point (defined by the --reply-mode option), the console keeps repeating step 3.
 5. After receiving is done, if the connection is still alive, things go back to step 1. Otherwise, connection is terminated, and the console exits.
