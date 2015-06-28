@@ -164,9 +164,9 @@ Here's a more nicely formatted version of what you'd see:
 As mentioned in the beginning, the console is a REPL application, and as such, it follows that flow. In other words, after a connection is established (and perhaps after you're logged in):
 
 1. You write an API protocol word.
-2. At some point (defined by the --command-mode option), no more reading is done, and all collected input is sent to RouterOS. The console goes back to step 1 if that point is not yet reached.
-3. The console waits for data up to the time defined by --timeout, and once a word is received or the time is up, it prints on screen what's been received.
-4. Up to a certain point (defined by the --reply-mode option), the console keeps repeating step 3.
+2. At some point (defined by the ```--command-mode``` option), no more reading is done, and all collected input is sent to RouterOS. The console goes back to step 1 if that point is not yet reached.
+3. The console waits for data up to the time defined by ```--timeout```, and once a word is received or the time is up, it prints on screen what's been received.
+4. Up to a certain point (defined by the ```--reply-mode`` option), the console keeps repeating step 3.
 5. After receiving is done, if the connection is still alive, things go back to step 1. Otherwise, connection is terminated, and the console exits.
 
 ### Example session
@@ -208,4 +208,4 @@ RECV |           0 |         0x00 |
 NOTE |   Connection terminated    | 
 ```
 
-All rows with "\<prompt\>" (mode "SEND") are the points where the console reads from STDIN (i.e. your input). If you're saving the output to a file (as was done to generate this example), you can see what was written as input in the "SENT" rows just below. Those, as well as the length, are only visible in verbose mode, which you can enable with the "-v" option, as shown above. Non-verbose mode looks more like [the examples from the API protocol specification](http://wiki.mikrotik.com/wiki/Manual:API#Command_examples) where no length is shown, and direction is only indicated with color (as is done here, if you have the needed requirements, described above in the "--colors" option).
+All rows with "\<prompt\>" (mode "SEND") are the points where the console reads from STDIN (i.e. your input). If you're saving the output to a file (as was done to generate this example), you can see what was written as input in the "SENT" rows just below. Those, as well as the length, are only visible in verbose mode, which you can enable with the "-v" option, as shown above. Non-verbose mode looks more like [the examples from the API protocol specification](http://wiki.mikrotik.com/wiki/Manual:API#Command_examples) where no length is shown, and direction is only indicated with color (as is done here, if you have the needed requirements, described above in the ```--colors``` option).
