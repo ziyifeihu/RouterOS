@@ -285,7 +285,7 @@ $util = new RouterOS\Util(
 );
 $util->setMenu('/ip arp');
 $util->remove(0);
-$util->disable(Query::where('comment', 'DISABLE ME'));
+$util->disable(RouterOS\Query::where('comment', 'DISABLE ME'));
 $util->enable(1);
 ```
 
