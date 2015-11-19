@@ -60,6 +60,8 @@ If you have a powerful enough web server (as in, you're happy with the web serve
 
 You can create a persistent connection by specifying ```true``` at the 5th argument of the Client constructor (the 4th being the API port).
 
+Note that persistent connections require [PEAR2_Cache_SHM](http://pear2.github.io/Cache_SHM/) (bundled in the archive), which in turn requires the [APC](http://php.net/apc) (>= 3.0.13) or [WinCache](http://php.net/wincache) (>= 1.1.0) extension.
+
 __There is no difference in terms of "features" between persistent and non-persistent connections. If you find a difference, you've found a bug. The only difference is in performance.__
 
 ## Encrypted connections
