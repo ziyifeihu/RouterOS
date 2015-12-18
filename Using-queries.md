@@ -35,13 +35,13 @@ foreach ($responses as $response) {
 You can create a query by calling the static Query::where() method, along with the first criteria of the query. For example, if you wanted to limit results to the entry about 192.168.88.100, you can use a query like:
 
 ```php
-$query = RouterOS\Query::where('address', '192.168.88.100');
+$query = RouterOS\Query::where('address', '192.168.88.10');
 ```
 
 Using the optional third parameter, you can specify exactly what do you want to do with the value. Possible values are the Query::OP_* constants. For example, if you wanted to get all addresses greather than 192.168.88.100, you can use:
 
 ```php
-$query = RouterOS\Query::where('address', '192.168.88.100', RouterOS\Query::OP_GT);
+$query = RouterOS\Query::where('address', '192.168.88.10', RouterOS\Query::OP_GT);
 ```
 
 ## Chaining conditions
@@ -49,16 +49,16 @@ The Query class uses a "fluent" interface, i.e. it always returns the query obje
 
 ```php
 $query = RouterOS\Query::where(
-    'address', '192.168.88.100', RouterOS\Query::OP_GT
-)->orWhere('address', '192.168.88.100');
+    'address', '192.168.88.10', RouterOS\Query::OP_GT
+)->orWhere('address', '192.168.88.10');
 ```
 
 Note that each next condition applies over the whole of what came before it. You can think of it as having the whole expression on a command line surrounded with braces before the next step. e.g.
 
 ```php
 $query = RouterOS\Query::where(
-    'address', '192.168.88.100', RouterOS\Query::OP_GT
-)->orWhere('address', '192.168.88.100')
+    'address', '192.168.88.10', RouterOS\Query::OP_GT
+)->orWhere('address', '192.168.88.10')
 ->not()
 ->andWhere('interface', 'bridge-local');
 ```
@@ -66,23 +66,23 @@ $query = RouterOS\Query::where(
 is the same as the command line
 
 ```
-where (!((address>"192.168.88.100") || address="192.168.88.100") && interface="bridge-local")
+where (!((address>"192.168.88.10") || address="192.168.88.10") && interface="bridge-local")
 ```
 
 while
 
 ```php
 $query = RouterOS\Query::where(
-    'address', '192.168.88.100', RouterOS\Query::OP_GT
+    'address', '192.168.88.10', RouterOS\Query::OP_GT
 )->andWhere('interface', 'bridge-local')
 ->not()
-->orWhere('address', '192.168.88.100');
+->orWhere('address', '192.168.88.10');
 ```
 
 is the same as the command line
 
 ```
-where (!((address>"192.168.88.100") && interface="bridge-local") || address="192.168.88.100")
+where (!((address>"192.168.88.10") && interface="bridge-local") || address="192.168.88.10")
 ```
 
 ## Limiting returned properties
