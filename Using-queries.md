@@ -60,13 +60,13 @@ $query = RouterOS\Query::where(
     'address', '192.168.88.100', RouterOS\Query::OP_GT
 )->orWhere('address', '192.168.88.100')
 ->not()
-->andWhere('interface', 'ether2');
+->andWhere('interface', 'bridge-local');
 ```
 
 is the same as the command line
 
 ```
-where (!((address>"192.168.88.100") || address="192.168.88.100") && interface="ether2")
+where (!((address>"192.168.88.100") || address="192.168.88.100") && interface="bridge-local")
 ```
 
 while
@@ -74,7 +74,7 @@ while
 ```php
 $query = RouterOS\Query::where(
     'address', '192.168.88.100', RouterOS\Query::OP_GT
-)->andWhere('interface', 'ether2')
+)->andWhere('interface', 'bridge-local')
 ->not()
 ->orWhere('address', '192.168.88.100');
 ```
@@ -82,7 +82,7 @@ $query = RouterOS\Query::where(
 is the same as the command line
 
 ```
-where (!((address>"192.168.88.100") && interface="ether2") || address="192.168.88.100")
+where (!((address>"192.168.88.100") && interface="bridge-local") || address="192.168.88.100")
 ```
 
 ## Limiting returned properties
