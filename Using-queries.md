@@ -48,19 +48,17 @@ $query = RouterOS\Query::where('address', '192.168.88.10', RouterOS\Query::OP_GT
 The Query class uses a "fluent" interface, i.e. it always returns the query object itself, similarly to how [jQuery](http://jquery.com) and [Zend_Db_Select](http://framework.zend.com/manual/en/zend.db.select.html) do it. Thanks to that, you can chain conditions right when defining the $query variable (though you can also alter it later). For example, if you wanted to get all addresses greather than or equal to 192.168.88.10, you can do:
 
 ```php
-$query = RouterOS\Query::where(
-    'address', '192.168.88.10', RouterOS\Query::OP_GT
-)->orWhere('address', '192.168.88.10');
+$query = RouterOS\Query::where('address', '192.168.88.10', RouterOS\Query::OP_GT)
+    ->orWhere('address', '192.168.88.10');
 ```
 
 Note that each next condition applies over the whole of what came before it. You can think of it as having the whole expression on a command line surrounded with braces before the next step. e.g.
 
 ```php
-$query = RouterOS\Query::where(
-    'address', '192.168.88.10', RouterOS\Query::OP_GT
-)->orWhere('address', '192.168.88.10')
-->not()
-->andWhere('interface', 'bridge-local');
+$query = RouterOS\Query::where('address', '192.168.88.10', RouterOS\Query::OP_GT)
+    ->orWhere('address', '192.168.88.10')
+    ->not()
+    ->andWhere('interface', 'bridge-local');
 ```
 
 is the same as the command line
@@ -72,11 +70,10 @@ where (!((address>"192.168.88.10") || address="192.168.88.10") && interface="bri
 while
 
 ```php
-$query = RouterOS\Query::where(
-    'address', '192.168.88.10', RouterOS\Query::OP_GT
-)->andWhere('interface', 'bridge-local')
-->not()
-->orWhere('address', '192.168.88.10');
+$query = RouterOS\Query::where('address', '192.168.88.10', RouterOS\Query::OP_GT)
+    ->andWhere('interface', 'bridge-local')
+    ->not()
+    ->orWhere('address', '192.168.88.10');
 ```
 
 is the same as the command line
