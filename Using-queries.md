@@ -32,7 +32,7 @@ foreach ($responses as $response) {
 ```
 
 ## A simple query
-You can create a query by calling the static Query::where() method, along with the first criteria of the query. For example, if you wanted to limit results to the entry about 192.168.88.100, you can use a query like:
+You can create a query by calling the static Query::where() method, along with the first criteria of the query. For example, if you wanted to limit results to the entry about 192.168.88.10, you can use a query like:
 
 ```php
 $query = RouterOS\Query::where('address', '192.168.88.10');
