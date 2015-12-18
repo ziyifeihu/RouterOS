@@ -53,6 +53,38 @@ $query = RouterOS\Query::where(
 )->orWhere('address', '192.168.88.100');
 ```
 
+Note that each next condition applies over the whole of what came before it. You can think of it as having the whole expression on a command line surrounded with braces before the next step. e.g.
+
+```php
+$query = RouterOS\Query::where(
+    'address', '192.168.88.100', RouterOS\Query::OP_GT
+)->orWhere('address', '192.168.88.100')
+->not()
+->andWhere('interface', 'ether2');
+```
+
+is the same as the command line
+
+```
+where (!((address>"192.168.88.100") || address="192.168.88.100") && interface="ether2")
+```
+
+while
+
+```php
+$query = RouterOS\Query::where(
+    'address', '192.168.88.100', RouterOS\Query::OP_GT
+)->andWhere('interface', 'ether2')
+->not()
+->orWhere('address', '192.168.88.100');
+```
+
+is the same as the command line
+
+```
+where (!((address>"192.168.88.100") && interface="ether2") || address="192.168.88.100")
+```
+
 ## Limiting returned properties
 The query works a little like the "WHERE" clause in an SQL statement - it limits the amount of responses returned (which can be thought of as a "record" in DB terms) - but it doesn't limit the properties of each response (which can be thought of as "fields" in DB terms).
 
