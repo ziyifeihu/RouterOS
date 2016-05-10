@@ -1,7 +1,7 @@
 # Approaches with client
 Description of the various approaches in using the Client class
 
-## Synchonious requests
+## Synchronous requests
 The easiest approach in using PEAR2_Net_RouterOS is to connect, send a request, get the responses, and use them if you need to, all at one time. This is reffered to as "Synchonious request".
 
 ### Simple requests
