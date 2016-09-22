@@ -77,7 +77,15 @@ use PEAR2\Net\Transmitter\NetworkStream;
 
 require_once 'PEAR2/Autoload.php';
 
-$client = new RouterOS\Client('192.168.88.1', 'admin', 'password', null, false, null, NetworkStream::CRYPTO_TLS);
+$client = new RouterOS\Client(
+    '192.168.88.1',
+    'admin',
+    'password',
+    null,
+    false,
+    null,
+    NetworkStream::CRYPTO_TLS
+);
 ```
 
 Notice that we left the port (the 4th argument) to ```null```. The port is automatically chosen between 8728 and 8729 depending on whether we don't or do have an encrypted connection, respectively. If you want to use a different port, set it at both the 4th argument, and at "/ip service" under the "api-ssl" service.
