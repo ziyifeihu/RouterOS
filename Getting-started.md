@@ -61,8 +61,18 @@ Other requirements are not a problem in most scenarios. For reference, they are:
     </tbody>
 </table>
     - On Windows, even if you haven't installed a 3rd party firewall program, you certainly have Windows' firewall. One way you can access it (in Windows Vista and later) is by pressing Win+R, then type ```wf.msc``` in the input box, and press OK. Add the appropriate outgoing connection rule from there, or consider disabling it entirely if you use a 3rd party firewall.
-    - Many Linux distributions include [SELinux](http://selinuxproject.org/) as a firewall solution. If PHP is running as an Apache module, then you can allow Apache to make outgoing connections by running the command ```setsebool -P httpd_can_network_connect 1```. See the SELinux documentation for details.
-    - Linux distributions that don't include SELinux typically use [iptables](http://www.netfilter.org/projects/iptables/) instead. It acts similarly to RouterOS' firewall, in that it can (apparently?) enable/disable only based on packet contents, and not based on application. You can enable outgoing connections to port 8728 (from any interface, to any IP) with the command ```iptables -A OUTPUT -p tcp --dport 8728 -j ACCEPT```. See [iptables' documentation](http://www.netfilter.org/documentation/) for details.
+    - Many Linux distributions include [SELinux](http://selinuxproject.org/) as a firewall solution. If PHP is running as an Apache module, then you can allow Apache to make outgoing connections with the command:
+
+        ```sh
+setsebool -P httpd_can_network_connect 1
+        ```
+        See the SELinux documentation for details.
+    - Linux distributions that don't include SELinux typically use [iptables](http://www.netfilter.org/projects/iptables/) instead. It acts similarly to RouterOS' firewall, in that it can (apparently?) enable/disable only based on packet contents, and not based on application. You can enable outgoing connections to port 8728 (from any interface, to any IP) with the command:
+
+        ```sh
+iptables -A OUTPUT -p tcp --dport 8728 -j ACCEPT
+        ```
+        See [iptables' documentation](http://www.netfilter.org/documentation/) for details.
 
 * Many RouterBOARD devices come, by default, with a rule in "/ip firewall filter" that drops any incoming connections to the router, coming from the WAN interface. If your web server is outside the LAN (e.g. a web host, as opposed to your own web server inside your network), you must explicitly whitelist RouterOS' API port or (not recommended) disable that rule entirely. You can whitelist the API port for all interfaces with the following command:
     ```sh
