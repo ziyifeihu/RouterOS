@@ -113,7 +113,7 @@ require_once 'PEAR2_Net_RouterOS-1.0.0b5.phar';
 
 and then everything should work the same.
 
-### Installation with [Pyrus/PEAR2](http://pear2.php.net/) (recommended)
+### Installation with [Pyrus/PEAR2](http://pear2.php.net/)
 Assuming you have [installed Pyrus](http://pear.php.net/manual/en/installationpyrus.introduction.php), you can install PEAR2_Net_RouterOS from the PEAR2 channel with just
 
 ```sh
