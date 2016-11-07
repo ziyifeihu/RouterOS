@@ -90,8 +90,6 @@ The count() method returns the number of items in the current menu. Optionally, 
 
 With this method, the Util class implements PHP's Countable interface, so if you want to get the count of all items, instead of calling the count() method, you can just give the object to PHP's count() function.
 
-In order to be compatible with Countable, the Query is specified as a second argument. The first is normally the counting mode, which can be COUNT_NORMAL or COUNT_RECURSIVE, but Util's count() method currently ignores it, because it doesn't make sense in this context, nor is there an alternative counting mode that could be employed.
-
 Example:
 ```php
 <?php
@@ -111,7 +109,7 @@ echo count($util) . "\n";
 echo $util->count() . "\n";
 
 //Count only disabled ARP items
-echo $util->count(COUNT_NORMAL, RouterOS\Query::where('disabled', 'true')) . "\n";
+echo $util->count(RouterOS\Query::where('disabled', 'true')) . "\n";
 ```
 
 ## getAll()
